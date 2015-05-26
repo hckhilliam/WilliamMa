@@ -1,0 +1,76 @@
+body {
+  overflow:hidden;
+  margin: 0;
+  padding: 0;
+  height:100%;
+  background: rgb(45,45,48);
+  color: #99FFCC;
+  font: 16px;
+  line-height: 1.5;
+  /*font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;*/
+}
+
+html {
+  height: 100%;
+}
+
+.menu {
+  position:absolute;
+  float: left;
+  margin:0;
+  height:calc(100% - 50px);
+  border: 5px solid #99FFCC;
+  border-left:none;
+  width:240px;
+  border-bottom-right-radius: 500px 100px;
+  border-top-right-radius: 500px 100px;
+  box-shadow: 1px 0px 5px rgba(153,255,204,0.5);
+  line-height: 50px; 
+  padding:40px 0 0 0;
+}
+
+.menu > li:hover {
+  background-color:#555;
+}
+
+.menu > li {
+  display:block;
+}
+
+.menu > li:first-child > a{
+  border:none;
+}
+
+.menu > li > a {
+  text-decoration: none;
+  color: #99FFCC;
+  font-size:22px;
+  border-top:1px solid;
+  display:block;
+  margin:0 15px;
+}
+
+.welcome {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align:center;
+}
+
+.welcome h1 {
+  font-size:100px;
+  font-weight:bold;
+  margin:0;
+}
+
+.welcome h2 {
+  font-size: 50px;
+  margin:0;
+}
+
+.main {
+  margin-left:200px;
+  height:100%;
+}
