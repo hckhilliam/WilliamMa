@@ -48,6 +48,9 @@ html {
   border-top:1px solid;
   display:block;
   margin:0 15px;
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
 }
 
 .welcome {
@@ -57,17 +60,24 @@ html {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   text-align:center;
+  cursor:default;
 }
 
 .welcome h1 {
   font-size:100px;
   font-weight:bold;
   margin:0;
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
 }
 
 .welcome h2 {
   font-size: 50px;
   margin:0;
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
 }
 
 .main {
