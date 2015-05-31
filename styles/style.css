@@ -14,6 +14,16 @@ html {
   height: 100%;
 }
 
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #99FFCC;
+  /*display:inline-block;*/
+  float:left;
+}
+
 .menu {
   position:absolute;
   float: left;
@@ -29,15 +39,21 @@ html {
   padding:40px 0 0 0;
 }
 
-.menu > li:hover {
+.menu > li:hover, .menu > div:hover {
   background-color:#555;
+  cursor:pointer;
 }
 
 .menu > li {
   display:block;
 }
 
-.menu > li:first-child > a{
+.menu > div {
+  padding:5px 15px 5px 25px;
+  line-height:normal;
+}
+
+.menu > li:first-child > a {
   border:none;
 }
 
@@ -48,6 +64,16 @@ html {
   border-top:1px solid;
   display:block;
   margin:0 15px;
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+}
+
+.menu > div > a {
+  text-decoration:none;
+  color: #99FFCC;
+  font-size:18px;
+  margin:0 15px 0 10px;
   -webkit-user-select: none; /* Chrome/Safari */        
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
@@ -81,6 +107,6 @@ html {
 }
 
 .main {
-  margin-left:200px;
+  margin-left:245px;
   height:100%;
 }
