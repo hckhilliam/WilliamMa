@@ -12,6 +12,9 @@
 	$(function() {
 		$('.menu > li, .menu > div').click(function() {
 			console.log($(this).children('a').attr('id'));
+			$('#main').empty();
+			$('#main').load($(this).children('a').attr('id') + '.html');
+			location.href = '#' + $(this).children('a').attr('id');
 		});
 	});
 </script>

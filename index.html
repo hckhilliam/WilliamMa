@@ -7,17 +7,21 @@
 		<link rel="stylesheet" type="text/css" href="styles/style.css" media="screen">
 		<link rel="shortcut icon" href="images/GenesisLogo.ico" />
 	    <script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
-	    <script type="text/javascript" src="scripts/script.js"></script>
 	</head>
 
 	<body>
 		<div id="menu"></div>
-		<div id="main" class="main">
-			<div class="welcome">
-				<h1>William Ma</h1>
-				<h2>Welcome</h2>
-			</div>
-		</div>
+		<div id="main" class="main"></div>
 	</body>  
 </html>  
 
+<script>
+	$(function() {
+		$('#menu').load('Menu.html');
+		var hrefIndex = location.href.indexOf('#');
+		if (hrefIndex != -1) 
+			$('#main').load(location.href.substring(hrefIndex+1) + '.html');
+		else
+			$('#main').load('Home.html');
+	});
+</script>
