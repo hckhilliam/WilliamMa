@@ -1,15 +1,18 @@
+<script type="text/javascript" src="scripts/shades.js"></script>
+
 <h1>Shades</h1>
 <div class="shades-screen" id="ShadesGame">
 	<div id="instructions">
 		<h2>Click the lightest square</h2>
 		<div style="text-align:center;">
-			<button>Standard</button>
-			<button>Timed Mode</button>
-			<button>High Scores</button>
+			<button id="standard">Standard</button>
+			<button id="timed">Timed Mode</button>
+			<button id="highScores">High Scores</button>
 		</div>
 	</div>
-	<div id="game">
+	<div id="game" style="display:none;">
+	<h2 id="countdown">Time Left:</h2>
 	</div>
-	<div id="conclusion">
+	<div id="conclusion" style="display:none;">
 	</div>
 </div>
