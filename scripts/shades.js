@@ -24,11 +24,12 @@ $(function() {
 function startNewGame() {
 	score = 0;
 	if (standard) 
-		timer = 5;
+		timer = 3;
 	else
 		timer = 60;
 
 	initSize = 0.5;
+	threshold = 50;
 
 	randomize();
 	$('#instructions').hide();
@@ -63,26 +64,28 @@ function randomize() {
 		if ($(this).attr('id') == odd) {
 			score += 10;
 			if (standard)
-				timer += 5;
+				timer += 3;
 			$('#score').text('Score: ' + score);
 			$('#countdown').text('Time Left: ' + timer);
 
-			if (score >= 230) {
+			if (score == 300 || score == 305) {
+				threshold -= 5;
+			} else if (score == 230 || score == 235) {
 				initSize = 0.1;
 				threshold -= 5;
-			} else if (score >= 150) {
+			} else if (score == 150 || score == 155) {
 				initSize = 0.125;
 				threshold -= 5;
-			} else if (score >= 100) {
+			} else if (score == 100 || score == 105) {
 				initSize = 0.142857;
 				threshold -= 5;
-			} else if (score >= 60) {
+			} else if (score == 60 || score == 65) {
 				initSize = 0.2;
 				threshold -= 5;
-			} else if (score >= 30) {
+			} else if (score == 30 || score == 35) {
 				initSize = 0.25;
 				threshold -= 5;
-			} else if (score >= 10) {
+			} else if (score == 10) {
 				initSize = 0.33;
 				threshold -= 10;
 			}  
