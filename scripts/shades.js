@@ -62,33 +62,35 @@ function randomize() {
 	$('#' + odd).css('background-color', 'rgb('+(r+threshold)+','+(g+threshold)+','+(b+threshold)+')');
 	$('#blocks > div').click(function() {
 		if ($(this).attr('id') == odd) {
-			inc++;
 			score += 10;
-			if (inc == 3) {
-				timer += 5;
-				inc = 0;
+			if (standard) {
+				inc++;
+				if (inc == 3) {
+					timer += 5;
+					inc = 0;
+				}
 			}
 			$('#score').text('Score: ' + score);
 			$('#countdown').text('Time Left: ' + timer);
 
-			if (score == 300 || score == 305) {
+			if (score == 300 || score == 295) {
 				threshold -= 5;
-			} else if (score == 230 || score == 235) {
+			} else if (score == 230 || score == 225) {
 				initSize = 0.1;
 				threshold -= 5;
-			} else if (score == 150 || score == 155) {
+			} else if (score == 150 || score == 145) {
 				initSize = 0.125;
 				threshold -= 5;
-			} else if (score == 100 || score == 105) {
+			} else if (score == 100 || score == 95) {
 				initSize = 0.142857;
 				threshold -= 5;
-			} else if (score == 60 || score == 65) {
+			} else if (score == 60 || score == 55) {
 				initSize = 0.2;
 				threshold -= 5;
-			} else if (score == 30 || score == 35) {
+			} else if (score == 30 || score == 25) {
 				initSize = 0.25;
 				threshold -= 5;
-			} else if (score == 10) {
+			} else if (score == 10 || score == 5) {
 				initSize = 0.33;
 				threshold -= 10;
 			}  
