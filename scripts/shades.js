@@ -1,4 +1,4 @@
-var score = 0, timer = 0, initSize = 0.5, threshold = 50, odd = 0, standard = true;
+var score = 0, timer = 0, initSize = 0.5, threshold = 50, odd = 0, standard = true, inc = 0;
 
 $(function() {
 	$('#standard').click(function() {
@@ -62,9 +62,12 @@ function randomize() {
 	$('#' + odd).css('background-color', 'rgb('+(r+threshold)+','+(g+threshold)+','+(b+threshold)+')');
 	$('#blocks > div').click(function() {
 		if ($(this).attr('id') == odd) {
+			inc++;
 			score += 10;
-			if (standard)
-				timer += 3;
+			if (inc == 3) {
+				timer += 5;
+				inc = 0;
+			}
 			$('#score').text('Score: ' + score);
 			$('#countdown').text('Time Left: ' + timer);
 
