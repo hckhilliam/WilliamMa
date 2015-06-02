@@ -10,13 +10,18 @@
 			<button id="highScores">High Scores</button>
 		</div>
 	</div>
-	<div id="game" style="display:none;">
+	<div id="game" style="display:none; height:100%;">
 		<div class="shades-label">
-			<div style="float:left;" id="score">Score: 0</div>
+			<div style="float:left;" id="score">Score:</div>
 			<div style="float:right;" id="countdown">Time Left:</div>
 		</div>
-		<div id="blocks"></div>
+		<div id="blocks" style="width:100%; height:calc(100% - 52px);"></div>
 	</div>
 	<div id="conclusion" style="display:none;">
+		<h3>Game Over</h3>
+		<h2 id="result">Your Score:</h2>
+		<h2 id="highScore">High Score:</h2>
+		<button id="playAgain" style="min-width:29.56705385vh; float:left;">Play Again</button>
+		<button id="menuBtn" style="min-width:29.56705385vh; float: right;">Menu</button>
 	</div>
 </div>

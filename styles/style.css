@@ -33,24 +33,29 @@ h2 {
   font-size:35px;
 }
 
+h3 {
+  font-size:50px;
+  font-weight:bold;
+}
+
 button {
   background:
     linear-gradient(135deg, transparent 25px, #99FFCC 0) top left,
     linear-gradient(225deg, transparent 25px, #99FFCC 0) top right,
     linear-gradient(315deg, transparent 25px, #99FFCC 0) bottom right,
     linear-gradient(45deg,  transparent 25px, #99FFCC 0) bottom left;
-  background-size:65% 50%;
+  background-size:calc(16.156283vh + 1px) calc(3.801478353vh + 1px);
   background-repeat: no-repeat;
-  margin:30px auto;
+  margin:3.167898627vh auto;
   border:none;
   /*padding:7px 30px;
   font-size:25px;*/
-  padding:15px 50px;
-  font-size:35px;
+  padding:1.583949314vh 5.279831045vh;
+  font-size:3.695881732vh;
   font-weight:bold;
   cursor:pointer;
   display:block;
-  min-width:305px;
+  min-width:32.20696938vh;
 }
 
 button:hover {
@@ -59,7 +64,7 @@ button:hover {
     linear-gradient(225deg, transparent 25px, lightgreen 0) top right,
     linear-gradient(315deg, transparent 25px, lightgreen 0) bottom right,
     linear-gradient(45deg,  transparent 25px, lightgreen 0) bottom left;
-    background-size:65% 50%;
+    background-size:calc(16.156283vh + 1px) calc(3.801478353vh + 1px);
     background-repeat: no-repeat; 
 }
 
@@ -158,8 +163,8 @@ button:focus {
 }
 
 .shades-screen {
-  width:600px;
-  height:652px;
+  width:63.35vh;
+  height:calc(63.35% + 52px);
   margin:0 auto;
   position: relative;
   top: calc(50% - 55px);
