@@ -33,6 +33,40 @@ h2 {
   font-size:35px;
 }
 
+button {
+  background:
+    linear-gradient(135deg, transparent 25px, #99FFCC 0) top left,
+    linear-gradient(225deg, transparent 25px, #99FFCC 0) top right,
+    linear-gradient(315deg, transparent 25px, #99FFCC 0) bottom right,
+    linear-gradient(45deg,  transparent 25px, #99FFCC 0) bottom left;
+  background-size:65% 50%;
+  background-repeat: no-repeat;
+  margin:30px auto;
+  border:none;
+  /*padding:7px 30px;
+  font-size:25px;*/
+  padding:15px 50px;
+  font-size:35px;
+  font-weight:bold;
+  cursor:pointer;
+  display:block;
+  min-width:305px;
+}
+
+button:hover {
+  background:
+    linear-gradient(135deg, transparent 25px, lightgreen 0) top left,
+    linear-gradient(225deg, transparent 25px, lightgreen 0) top right,
+    linear-gradient(315deg, transparent 25px, lightgreen 0) bottom right,
+    linear-gradient(45deg,  transparent 25px, lightgreen 0) bottom left;
+    background-size:65% 50%;
+    background-repeat: no-repeat; 
+}
+
+button:focus {
+  outline:none;
+}
+
 .arrow-right {
   width: 0; 
   height: 0; 
@@ -125,7 +159,7 @@ h2 {
 
 .shades-screen {
   width:600px;
-  height:600px;
+  height:652px;
   margin:0 auto;
   position: relative;
   top: calc(50% - 55px);
@@ -134,36 +168,14 @@ h2 {
   transform: translateY(-50%);
 }
 
-button {
-  background:
-    linear-gradient(135deg, transparent 30px, #99FFCC 0) top left,
-    linear-gradient(225deg, transparent 30px, #99FFCC 0) top right,
-    linear-gradient(315deg, transparent 30px, #99FFCC 0) bottom right,
-    linear-gradient(45deg,  transparent 30px, #99FFCC 0) bottom left;
-  background-size:65% 65%;
-  background-repeat: no-repeat;
-  margin:30px auto;
-  border:none;
-  /*padding:7px 30px;
-  font-size:25px;*/
-  padding:15px 50px;
+.shades-label {
+  overflow:hidden;
+}
+
+.shades-label > div {
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
   font-size:35px;
-  font-weight:bold;
-  cursor:pointer;
-  display:block;
-  min-width:305px;
-}
-
-button:hover {
-  background:
-    linear-gradient(135deg, transparent 30px, lightgreen 0) top left,
-    linear-gradient(225deg, transparent 30px, lightgreen 0) top right,
-    linear-gradient(315deg, transparent 30px, lightgreen 0) bottom right,
-    linear-gradient(45deg,  transparent 30px, lightgreen 0) bottom left;
-    background-size:65% 65%;
-    background-repeat: no-repeat; 
-}
-
-button:focus {
-  outline:none;
+  display:inline-block;
 }

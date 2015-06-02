@@ -1,7 +1,7 @@
 <script type="text/javascript" src="scripts/shades.js"></script>
 
 <h1>Shades</h1>
-<div class="shades-screen" id="ShadesGame">
+<div class="shades-screen" id="shadesGame">
 	<div id="instructions">
 		<h2>Click the lightest square</h2>
 		<div style="text-align:center;">
@@ -11,7 +11,11 @@
 		</div>
 	</div>
 	<div id="game" style="display:none;">
-	<h2 id="countdown">Time Left:</h2>
+		<div class="shades-label">
+			<div style="float:left;" id="score">Score: 0</div>
+			<div style="float:right;" id="countdown">Time Left:</div>
+		</div>
+		<div id="blocks"></div>
 	</div>
 	<div id="conclusion" style="display:none;">
 	</div>
