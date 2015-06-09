@@ -44,18 +44,22 @@ button {
     linear-gradient(225deg, transparent 25px, #99FFCC 0) top right,
     linear-gradient(315deg, transparent 25px, #99FFCC 0) bottom right,
     linear-gradient(45deg,  transparent 25px, #99FFCC 0) bottom left;
-  background-size:calc(16.156283vh + 1px) calc(3.801478353vh + 1px);
+  /*background-size:calc(16.156283vh + 1px) calc(3.801478353vh + 1px); 153 36*/
+  background-size:calc(50% + 1px) calc(50% + 1px);
   background-repeat: no-repeat;
-  margin:3.167898627vh auto;
+ /* margin:3.167898627vh auto;*/
+  margin:4.601226994% auto;
   border:none;
-  /*padding:7px 30px;
-  font-size:25px;*/
-  padding:1.583949314vh 5.279831045vh;
-  font-size:3.695881732vh;
+  /*padding:15px 50px;*/
+  font-size:35px;
+  /*padding:1.583949314vh 5.279831045vh;*/
+  padding:2.5% 8.33333333%;
+ /* font-size:3.695881732vh;*/
   font-weight:bold;
   cursor:pointer;
   display:block;
-  min-width:32.20696938vh;
+  min-width:57.6%;
+  max-width:265px;
 }
 
 button:hover {
@@ -64,7 +68,8 @@ button:hover {
     linear-gradient(225deg, transparent 25px, lightgreen 0) top right,
     linear-gradient(315deg, transparent 25px, lightgreen 0) bottom right,
     linear-gradient(45deg,  transparent 25px, lightgreen 0) bottom left;
-    background-size:calc(16.156283vh + 1px) calc(3.801478353vh + 1px);
+    /*background-size:calc(16.156283vh + 1px) calc(3.801478353vh + 1px);*/
+    background-size:calc(50% + 1px) calc(50% + 1px);
     background-repeat: no-repeat; 
 }
 
@@ -164,7 +169,9 @@ button:focus {
 
 .shades-screen {
   width:63.35vh;
+  min-width:500px;
   height:calc(63.35% + 52px);
+  min-height:552px;
   margin:0 auto;
   position: relative;
   top: calc(50% - 55px);

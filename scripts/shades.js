@@ -1,7 +1,10 @@
 var score = 0, timer = 0, initSize = 50, threshold = 50, standard = true;
 var odd = 0; //index of block with lighter shade
 var inc = 0; //increments for timer
-var levelCounter = 0, increase = 1, modder = 0, size = 2;
+var levelCounter = 0;	//current level
+var thresCount = 0, thresInc = 1, thresModder = 0;	//helpers for difficulty increase by lowering the threshold between a normal block and a lighter block
+var sizeCount = 0, sizeInc = 1, size = 2;	//helpers for difficulty increase by increasing # of squares
+var countdown; //timer
 
 $(function() {
 	$('#standard').click(function() {
@@ -41,20 +44,11 @@ $(function() {
 	});
 });
 
-function startNewGame() {
-	score = 0;
+function startNewGame() {	
 	if (standard) 
 		timer = 3;
 	else
 		timer = 60;
-
-	initSize = 50;
-	threshold = 50;
-	inc = 0;
-	levelCounter = 0;
-	increase = 1;
-	modder = 0;
-	size = 2;
 
 	$('#instructions').hide();
 	$('#conclusion').hide();
@@ -62,7 +56,7 @@ function startNewGame() {
 	randomize();	
 	$('#score').text('Score: ' + score);
 	$('#countdown').text('Time Left: ' + timer);
-	var countdown = setInterval(function () {
+	countdown = setInterval(function () {
 		if (--timer > 0) {
 			$('#countdown').text('Time Left: ' + timer);
 		} else {
@@ -85,6 +79,7 @@ function startNewGame() {
 			}
 			$('#highScore').text('High Score: ' + highScore);
 			$('#conclusion').show();
+			resetGame();
 		}
 	}, 1000);
 }
@@ -95,7 +90,8 @@ function randomize() {
 	var numBlocks = Math.pow(size, 2);
 	var r = Math.floor(Math.random()*206), g = Math.floor(Math.random()*206), b = Math.floor(Math.random()*206);
 	for (var i=0; i<numBlocks; i++) {
-		content.append('<div id=' + i + ' style="float: left; margin: ' + initSize*0.05 + '%; background-color: rgb('+r+','+g+','+b+'); border-radius: ' + initSize*0.1 + '%; width: ' + initSize*0.9 + '%; height: ' + initSize*0.9 + '%; cursor: pointer;"></div>');
+		var radius = 0.1*size*initSize;
+		content.append('<div id=' + i + ' style="float: left; margin: ' + initSize*0.05 + '%; background-color: rgb('+r+','+g+','+b+'); border-radius: ' + radius + '%; width: ' + initSize*0.9 + '%; height: ' + initSize*0.9 + '%; cursor: pointer;"></div>');
 	}	
 	odd = Math.floor(Math.random()*numBlocks);
 	$('#' + odd).css('background-color', 'rgb('+(r+threshold)+','+(g+threshold)+','+(b+threshold)+')');
@@ -110,24 +106,58 @@ function randomize() {
 				}
 			}
 			$('#score').text('Score: ' + score);
-			$('#countdown').text('Time Left: ' + timer);
-
-			levelCounter++;
-			if (levelCounter == increase) {
-				levelCounter = 0;
-				modder++;
-				if (modder%2 == 0)
-					increase++;
-				var x = size-1;
-				threshold = Math.ceil(-71*Math.pow(x,3)/4320 + 295*Math.pow(x,2)/432 - 847*x/90 + 50);
-				size++;
-				initSize = 100/size;
-			}
-
+			$('#countdown').text('Time Left: ' + timer);	
+			computeNewThreshold();
+			computeNewSize();
 			randomize();
 		} else {
 			score -= 5;
 			$('#score').text('Score: ' + score);
 		}
 	});
+}
+
+function computeNewThreshold() {
+	thresCount++;
+	if (thresCount == thresInc) {
+		levelCounter++;
+		thresModder++; 
+		thresCount = 0;
+		if (thresModder == 2) {
+			thresInc++;	
+			thresModder = 0;
+		}
+		threshold = Math.ceil(250/(2.3*levelCounter + 5));	
+	}
+}
+
+function computeNewSize() {
+	sizeCount++;
+	if (sizeCount == sizeInc) {
+		sizeCount = 0;
+		sizeInc++;
+		size++;
+		initSize = 100/size;
+	}
+}
+
+function resetGame() {
+	score = 0;
+	initSize = 50;
+	threshold = 50;
+	inc = 0;
+	levelCounter = 0;
+
+	thresCount = 0;
+	thresInc = 1;
+	thresModder = 0;
+
+	sizeCount = 0;
+	sizeInc = 1;
+	size = 2;
+}
+
+function endShadesGame() {
+	resetGame();
+	clearInterval(countdown);
 }
