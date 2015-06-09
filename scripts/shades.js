@@ -1,4 +1,7 @@
-var score = 0, timer = 0, initSize = 50, threshold = 50, odd = 0, standard = true, inc = 0;
+var score = 0, timer = 0, initSize = 50, threshold = 50, standard = true;
+var odd = 0; //index of block with lighter shade
+var inc = 0; //increments for timer
+var levelCounter = 0, increase = 1, modder = 0, size = 2;
 
 $(function() {
 	$('#standard').click(function() {
@@ -12,7 +15,14 @@ $(function() {
 	});
 
 	$('#highScores').click(function() {
-
+		$('#instructions').hide();
+		var standardScore = localStorage.ShadesStandardHighScore;
+		if (standardScore) $('#standardScore').text('Standard: ' + standardScore);
+		else $('#standardScore').text('Standard: ' + 0);
+		var timedScore = localStorage.ShadesTimedHighScore;
+		if (timedScore) $('#timedScore').text('Timed Mode: ' + timedScore);
+		else $('#timedScore').text('Timed Mode: ' + 0);
+		$('#scores').show();
 	});
 
 	$('#playAgain').click(function() {
@@ -23,7 +33,12 @@ $(function() {
 	$('#menuBtn').click(function() {
 		$('#conclusion').hide();
 		$('#instructions').show();
-	})
+	});
+
+	$('#return').click(function() {
+		$('#scores').hide();
+		$('#instructions').show();
+	});
 });
 
 function startNewGame() {
@@ -35,6 +50,11 @@ function startNewGame() {
 
 	initSize = 50;
 	threshold = 50;
+	inc = 0;
+	levelCounter = 0;
+	increase = 1;
+	modder = 0;
+	size = 2;
 
 	$('#instructions').hide();
 	$('#conclusion').hide();
@@ -49,10 +69,19 @@ function startNewGame() {
 			clearInterval(countdown);
 			$('#game').hide();
 			$('#result').text('Your Score: ' + score);
-			var highScore = localStorage.ShadesHighScore;
-			if (score > highScore || !highScore) {
-				localStorage.ShadesHighScore = score;
-				highScore = score;
+			var highScore = 0;
+			if (standard) {
+				highScore = localStorage.ShadesStandardHighScore;
+				if (score > highScore || !highScore) {
+					localStorage.ShadesStandardHighScore = score;
+					highScore = score;
+				}
+			} else {
+				highScore = localStorage.ShadesTimedHighScore;
+				if (score > highScore || !highScore) {
+					localStorage.ShadesTimedHighScore = score;
+					highScore = score;
+				}
 			}
 			$('#highScore').text('High Score: ' + highScore);
 			$('#conclusion').show();
@@ -63,7 +92,7 @@ function startNewGame() {
 function randomize() {
 	var content = $('#blocks');
 	content.empty();
-	var numBlocks = Math.floor(Math.pow(100/initSize, 2));
+	var numBlocks = Math.pow(size, 2);
 	var r = Math.floor(Math.random()*206), g = Math.floor(Math.random()*206), b = Math.floor(Math.random()*206);
 	for (var i=0; i<numBlocks; i++) {
 		content.append('<div id=' + i + ' style="float: left; margin: ' + initSize*0.05 + '%; background-color: rgb('+r+','+g+','+b+'); border-radius: ' + initSize*0.1 + '%; width: ' + initSize*0.9 + '%; height: ' + initSize*0.9 + '%; cursor: pointer;"></div>');
@@ -83,27 +112,17 @@ function randomize() {
 			$('#score').text('Score: ' + score);
 			$('#countdown').text('Time Left: ' + timer);
 
-			if (score == 300 || score == 295) {
-				threshold -= 5;
-			} else if (score == 230 || score == 225) {
-				initSize = 10;
-				threshold -= 5;
-			} else if (score == 150 || score == 145) {
-				initSize = 12.5;
-				threshold -= 5;
-			} else if (score == 100 || score == 95) {
-				initSize = 14.2857;
-				threshold -= 5;
-			} else if (score == 60 || score == 55) {
-				initSize = 20;
-				threshold -= 5;
-			} else if (score == 30 || score == 25) {
-				initSize = 25;
-				threshold -= 5;
-			} else if (score == 10 || score == 5) {
-				initSize = 33;
-				threshold -= 10;
-			}  
+			levelCounter++;
+			if (levelCounter == increase) {
+				levelCounter = 0;
+				modder++;
+				if (modder%2 == 0)
+					increase++;
+				var x = size-1;
+				threshold = Math.ceil(-71*Math.pow(x,3)/4320 + 295*Math.pow(x,2)/432 - 847*x/90 + 50);
+				size++;
+				initSize = 100/size;
+			}
 
 			randomize();
 		} else {
