@@ -117,6 +117,7 @@ function randomize() {
 	});
 }
 
+//decrease threshold every 1 hit, 1 hit, 2, 2, 3, 3,....
 function computeNewThreshold() {
 	thresCount++;
 	if (thresCount == thresInc) {
@@ -131,6 +132,7 @@ function computeNewThreshold() {
 	}
 }
 
+//increase 1 column and 1 row of blocks every 1 hit, 2 hits, 3, 4, ....
 function computeNewSize() {
 	sizeCount++;
 	if (sizeCount == sizeInc) {
