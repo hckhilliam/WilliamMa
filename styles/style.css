@@ -168,6 +168,24 @@ button:focus {
   font-size: 50px;
 }
 
+.bottom-panel {
+  position: relative;
+  top: 60%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align:center;
+}
+
+.bottom-panel a {
+  margin: 0 5px;
+}
+
+.bottom-panel a img {
+  width: 40px;
+  height: 40px;
+}
+
 .main {
   margin-left:245px;
   height:100%;
