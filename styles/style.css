@@ -82,6 +82,48 @@ button:focus {
   outline:none;
 }
 
+input[type=text] {
+  background-color: #555;
+  font-size: 24px;
+  padding: 2px 5px;
+  text-align: right;
+  color: #99FFCC;
+  border: none;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(153,255,204,1);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(153,255,204,1);
+  box-shadow: 0px 0px 0px 1px rgba(153,255,204,1);
+  display:inline-block;
+}
+
+input[type=text]:focus {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 7px 2px rgba(153,255,204,1);
+  -moz-box-shadow: 0px 0px 7px 2px rgba(153,255,204,1);
+  box-shadow: 0px 0px 7px 2px rgba(153,255,204,1);
+}
+
+input[type=button] {
+  height:34px;
+  width:33px;
+  display:inline-block;
+  top:8px;
+  right: 3px;
+  border:none;
+  position:relative;
+  background-image: url('../images/enter.png');
+  background-size:32px 32px;
+  background-color: #99FFCC;
+  cursor:pointer;
+}
+
+input[type=button]:active {
+  background-color: lightgreen;
+}
+
+input[type=button]:focus {
+  outline:none;
+}
+
 .arrow-right {
   width: 0; 
   height: 0; 
@@ -214,4 +256,30 @@ button:focus {
   -ms-user-select: none; /* IE10+ */
   font-size:35px;
   display:inline-block;
+}
+
+.shades-screen #blocks div {
+  float: left;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+
+.items-screen {
+  width:63.35vh;
+  min-width:500px;
+  height:calc(63.35% + 90px);
+  min-height:590px;
+  margin:0 auto;
+  position: relative;
+  top: calc(50% - 55px);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.items-screen #blocks div {
+  position: absolute;
+  background-color: #99FFCC;
+  border-radius: 10%;
 }

@@ -45,10 +45,8 @@ $(function() {
 });
 
 function startNewGame() {	
-	if (standard) 
-		timer = 3;
-	else
-		timer = 60;
+	if (standard) timer = 3;
+	else timer = 60;
 
 	$('#instructions').hide();
 	$('#conclusion').hide();
@@ -90,8 +88,7 @@ function randomize() {
 	var numBlocks = Math.pow(size, 2);
 	var r = Math.floor(Math.random()*206), g = Math.floor(Math.random()*206), b = Math.floor(Math.random()*206);
 	for (var i=0; i<numBlocks; i++) {
-		var radius = 0.1*size*initSize;
-		content.append('<div id=' + i + ' style="float: left; margin: ' + initSize*0.05 + '%; background-color: rgb('+r+','+g+','+b+'); border-radius: ' + radius + '%; width: ' + initSize*0.9 + '%; height: ' + initSize*0.9 + '%; cursor: pointer;"></div>');
+		content.append('<div id=' + i + ' style="margin: ' + initSize*0.05 + '%; background-color: rgb('+r+','+g+','+b+'); width: ' + initSize*0.9 + '%; height: ' + initSize*0.9 + '%;"></div>');
 	}	
 	odd = Math.floor(Math.random()*numBlocks);
 	$('#' + odd).css('background-color', 'rgb('+(r+threshold)+','+(g+threshold)+','+(b+threshold)+')');
@@ -103,10 +100,10 @@ function randomize() {
 				if (inc == 3) {
 					timer += 5;
 					inc = 0;
+					$('#countdown').text('Time Left: ' + timer);
 				}
 			}
 			$('#score').text('Score: ' + score);
-			$('#countdown').text('Time Left: ' + timer);	
 			computeNewThreshold();
 			computeNewSize();
 			randomize();

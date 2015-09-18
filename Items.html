@@ -1,0 +1,37 @@
+<script type="text/javascript" src="scripts/items.js"></script>
+
+<h1>Items</h1>
+<div class="items-screen" id="itemsGame">
+    <div id="instructions">
+        <h2>Enter the number of items on the screen</h2>
+        <div style="text-align:center;">
+            <button id="standard">Standard</button>
+            <button id="timed">Timed Mode</button>
+            <button id="highScores">High Scores</button>
+        </div>
+    </div>
+    <div id="game" style="display:none; height:100%;">
+        <div class="shades-label">
+            <div style="float:left;" id="score">Score:</div>
+            <div style="float:right;" id="countdown">Time Left:</div>
+        </div>
+        <div id="blocks" style="width:100%; height:calc(100% - 90px); position: relative;"></div>
+        <div style="margin-top:5px; float:right;">
+            <input type="text" id="answer" maxlength="10" autocomplete="off"/>
+            <input type="button" id="enter"/>
+        </div>
+    </div>
+    <div id="conclusion" style="display:none;">
+        <h3>Game Over</h3>
+        <h2 id="result">Your Score:</h2>
+        <h2 id="highScore">High Score:</h2>
+        <button id="playAgain" style="min-width:47.66666667%; float:left; font-size:33px;">Play Again</button>
+        <button id="menuBtn" style="min-width:47.66666667%; float: right; font-size:33px;">Menu</button>
+    </div>
+    <div id="scores" style="display:none;">
+        <h3>High Scores</h3>
+        <h2 id="standardScore">Standard:</h2>
+        <h2 id="timedScore">Timed Mode:</h2>
+        <button id="return">Return</button>
+    </div>
+</div>
