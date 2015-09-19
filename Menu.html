@@ -11,8 +11,12 @@
 <script>
 	$(function() {
 		$('.menu > li, .menu > div').click(function() {
-			if (typeof(endShadesGame) === typeof(Function)) endShadesGame();
-			$('#main').empty();
+			if (game && typeof(game.endGame) === typeof(Function)) {
+				console.log('game deleted');
+				game.endGame();
+				game = null;
+			}
+//			$('#pageJs').remove();
 			$('#main').load($(this).children('a').attr('id') + '.html');
 			location.href = '#' + $(this).children('a').attr('id');
 		});
