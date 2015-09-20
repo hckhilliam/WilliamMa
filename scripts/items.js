@@ -4,6 +4,12 @@ function ItemsGame() {
     var maxNumItems = 5;	//current difficulty
     var countdown; //timer
     const NUM_BLOCKS = 25, MAX_SIZE = 20, ROW_SIZE = 5;
+    const STORAGE_LOCATION = {
+        '00':'ItemsTimedHighScore',
+        '01':'ItemsTimedProHighScore',
+        '10':'ItemsStandardHighScore',
+        '11':'ItemsStandardProHighScore'
+    };
 
     this.setStandard = function(isStandard) {
         standard = isStandard;
@@ -34,19 +40,11 @@ function ItemsGame() {
             clearInterval(countdown);
             $('#game').hide();
             $('#result').text('Your Score: ' + score);
-            var highScore = 0;
-            if (standard) {
-                highScore = localStorage.ItemsStandardHighScore;
-                if (score > highScore || !highScore) {
-                    localStorage.ItemsStandardHighScore = score;
-                    highScore = score;
-                }
-            } else {
-                highScore = localStorage.ItemsTimedHighScore;
-                if (score > highScore || !highScore) {
-                    localStorage.ItemsTimedHighScore = score;
-                    highScore = score;
-                }
+            var storageLoc = STORAGE_LOCATION['' + +standard + +pro];
+            var highScore = localStorage[storageLoc];
+            if (score > highScore || !highScore) {
+                localStorage[storageLoc] = score;
+                highScore = score;
             }
             $('#highScore').text('High Score: ' + highScore);
             $('#conclusion').show();
@@ -69,9 +67,11 @@ function ItemsGame() {
             var randomSize = 18;
             if (pro) {
                 randomSize = Math.floor(Math.random()*14)+5;
-                //TODO
+                var moreShiftPossibility = MAX_SIZE - randomSize - 2;
+                top += Math.floor(Math.random()*moreShiftPossibility);
+                left += Math.floor(Math.random()*moreShiftPossibility);
             }
-            content.append('<div id=' + i + ' style="left: ' + left + '%; top: ' + top + '%; width: ' + MAX_SIZE*0.25 + '%; height: ' + MAX_SIZE*0.25 + '%;"></div>');
+            content.append('<div id=' + i + ' style="left: ' + left + '%; top: ' + top + '%; width: ' + randomSize + '%; height: ' + randomSize + '%;"></div>');
         }
     }
 
@@ -93,7 +93,7 @@ function ItemsGame() {
             $('#score').text('Score: ' + score);
 
             if (standard) {
-                clearInterval(countdown)
+                clearInterval(countdown);
                 timer = 3;
                 countdown = setInterval(subtractTime, 1000);
                 $('#countdown').text('Time Left: ' + timer);
@@ -110,7 +110,7 @@ function ItemsGame() {
         resetGame();
         clearInterval(countdown);
     };
-};
+}
 
 $(function () {
     game = new ItemsGame();
@@ -135,7 +135,10 @@ $(function () {
         game.startNewGame(true);
     });
 
-    $('#enter').click(game.answer);
+    $('#enter').click(function () {
+        game.answer();
+        $('#answer').focus();
+    });
 
     $('#answer').keypress(function(e) {
         if (e.which == 13) {
@@ -148,9 +151,15 @@ $(function () {
         var standardScore = localStorage.ItemsStandardHighScore;
         if (standardScore) $('#standardScore').text('Standard: ' + standardScore);
         else $('#standardScore').text('Standard: ' + 0);
+        var standardScorePro = localStorage.ItemsStandardProHighScore;
+        if (standardScorePro) $('#standardScorePro').text('Standard Pro: ' + standardScorePro);
+        else $('#standardScorePro').text('Standard Pro: ' + 0);
         var timedScore = localStorage.ItemsTimedHighScore;
         if (timedScore) $('#timedScore').text('Timed Mode: ' + timedScore);
         else $('#timedScore').text('Timed Mode: ' + 0);
+        var timedScorePro = localStorage.ItemsTimedProHighScore;
+        if (timedScorePro) $('#timedScorePro').text('Timed Mode Pro: ' + timedScorePro);
+        else $('#timedScorePro').text('Timed Mode Pro: ' + 0);
         $('#scores').show();
     });
 
@@ -164,8 +173,9 @@ $(function () {
         $('#instructions').show();
     });
 
-    $('#return').click(function() {
+    $('.returnBtn').click(function() {
         $('#scores').hide();
+        $('#gametype').hide();
         $('#instructions').show();
     });
 });
