@@ -71,7 +71,7 @@ function ItemsGame() {
                 top += Math.floor(Math.random()*moreShiftPossibility);
                 left += Math.floor(Math.random()*moreShiftPossibility);
             }
-            content.append('<div id=' + i + ' style="left: ' + left + '%; top: ' + top + '%; width: ' + randomSize + '%; height: ' + randomSize + '%;"></div>');
+            content.append('<div class="gameSquare" id=' + i + ' style="left: ' + left + '%; top: ' + top + '%; width: ' + randomSize + '%; height: ' + randomSize + '%;"></div>');
         }
     }
 
@@ -101,6 +101,8 @@ function ItemsGame() {
 
             randomize();
         } else {
+            $('#answer').addClass('wrongAnswer');
+            setTimeout(function () { $('#answer').removeClass('wrongAnswer'); }, 400);
             score -= 5;
             $('#score').text('Score: ' + score);
         }

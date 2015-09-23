@@ -1,1 +1,91 @@
 <h1>Projects</h1>
+
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+    <!--HisTree-->
+    <tr>
+        <td>June 2015</td>
+        <td>HisTree</td>
+        <td>Chrome Extension</td>
+        <td class="desc">Graphs your tab's history into a tree, saving all branches to make history navigation much easier.</td>
+        <td><div class="moreBtn expandIcon unselectable"></div></td>
+    </tr>
+    <!--PG13-->
+    <tr>
+        <td>November 2014</td>
+        <td>PG13</td>
+        <td>Chrome Extension</td>
+        <td class="desc">Replaces all profanity on page with less offensive words, featuring customizable dictionary of censored words.</td>
+        <td><div class="moreBtn expandIcon unselectable"></div></td>
+    </tr>
+    <!--Find the Country-->
+    <tr>
+        <td>March 2014</td>
+        <td>Find the Country</td>
+        <td>Web Game</td>
+        <td class="desc">Given a country name, scroll through the map of the world and try to find the country.</td>
+        <td><div class="moreBtn expandIcon unselectable"></div></td>
+    </tr>
+    <!--The Labyrinth-->
+    <tr>
+        <td>January 2014</td>
+        <td>The Labyrinth</td>
+        <td>Android Game</td>
+        <td class="desc">Find your way out of a maze with locked doors, keys, and food that keeps you alive.</td>
+        <td><div class="moreBtn expandIcon unselectable"></div></td>
+    </tr>
+    <!--Greed: Dodge Game-->
+    <tr>
+        <td>December 2013</td>
+        <td>Greed: Dodge Game</td>
+        <td>Android Game</td>
+        <td class="desc">Collect coins while avoiding cannonballs bouncing around the screen.</td>
+        <td><div class="moreBtn expandIcon unselectable"></div></td>
+    </tr>
+    <!--Schematic-o-matic-->
+    <tr>
+        <td>February 2013</td>
+        <td>Schematic-o-matic</td>
+        <td>Java Program</td>
+        <td class="desc">Design and simulate your own circuits with over 15 different circuit parts.</td>
+        <td><div class="moreBtn expandIcon unselectable"></div></td>
+    </tr>
+    <!--Mouse Trainer-->
+    <tr>
+        <td>July 2012</td>
+        <td>Mouse Trainer</td>
+        <td>Java Program</td>
+        <td class="desc">Test your mouse accuracy by trying to click on targets as fast and accurately as possible.</td>
+        <td><div class="moreBtn expandIcon unselectable"></div></td>
+    </tr>
+    <!--Javelin Tosser-->
+    <tr>
+        <td>January 2012</td>
+        <td>Javelin Tosser</td>
+        <td>Java Program</td>
+        <td class="desc">Aim, and fire your javelin with just the right angle and power to hit a target.</td>
+        <td><div class="moreBtn expandIcon unselectable"></div></td>
+    </tr>
+</table>
+
+<script>
+    $(function () {
+        setTableWidth();
+        $(window).resize(setTableWidth);
+
+        $('.moreBtn').click(function () {
+            $(this).toggleClass('expandIcon');
+            $(this).toggleClass('collapseIcon');
+        });
+    });
+
+    function setTableWidth() {
+        $('table').css('width', $('h1').width());
+    }
+</script>

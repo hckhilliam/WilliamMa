@@ -52,11 +52,11 @@ function ShadesGame() {
 		var numBlocks = Math.pow(size, 2);
 		var r = Math.floor(Math.random()*206), g = Math.floor(Math.random()*206), b = Math.floor(Math.random()*206);
 		for (var i=0; i<numBlocks; i++) {
-			content.append('<div id=' + i + ' style="margin: ' + initSize*0.05 + '%; background-color: rgb('+r+','+g+','+b+'); width: ' + initSize*0.9 + '%; height: ' + initSize*0.9 + '%;"></div>');
+			content.append('<div class="gameSquare" id=' + i + ' style="margin: ' + initSize*0.05 + '%; background-color: rgb('+r+','+g+','+b+'); width: ' + initSize*0.9 + '%; height: ' + initSize*0.9 + '%;"></div>');
 		}
 		odd = Math.floor(Math.random()*numBlocks);
 		$('#' + odd).css('background-color', 'rgb('+(r+threshold)+','+(g+threshold)+','+(b+threshold)+')');
-		$('#blocks > div').click(function() {
+		$('.gameSquare').click(function() {
 			if ($(this).attr('id') == odd) {
 				score += 10;
 				if (standard) {
@@ -70,6 +70,10 @@ function ShadesGame() {
 				computeNewSize();
 				randomize();
 			} else {
+				$(this).css({'background-color': 'inherit', 'cursor': 'default'})
+					.addClass('unselectable')
+					.append('<span style="color: red; font-size:' + $(this).width()*0.7 + 'px;">X</span>')
+					.unbind('click');
 				score -= 5;
 				$('#score').text('Score: ' + score);
 			}
@@ -122,7 +126,7 @@ function ShadesGame() {
 		resetGame();
 		clearInterval(countdown);
 	};
-};
+}
 
 $(function () {
 	game = new ShadesGame();
