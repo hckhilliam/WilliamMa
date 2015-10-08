@@ -1,0 +1,9 @@
+body {
+    overflow: hidden;
+    height: 100%;
+    min-height: 0;
+}
+
+.war {
+    height: 100%;
+}

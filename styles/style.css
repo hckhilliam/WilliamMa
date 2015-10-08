@@ -125,6 +125,16 @@ input[type=button]:focus {
   outline:none;
 }
 
+a {
+  text-decoration: none;
+  color: #66FFFF;
+}
+
+a:hover {
+  color: #66FFFF;
+  text-decoration:underline;
+}
+
 table {
   margin: 20px auto 0 auto;
   border: 5px solid #99FFCC;
@@ -164,6 +174,11 @@ td {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
 }
 
 .main {
@@ -276,8 +291,6 @@ td {
 }
 
 .expandIcon {
-  width: 32px;
-  height: 32px;
   background-image: url('../images/expand.png');
   cursor: pointer;
 }
@@ -287,14 +300,20 @@ td {
 }
 
 .collapseIcon {
-  width: 32px;
-  height: 32px;
   background-image: url('../images/collapse.png');
   cursor: pointer;
 }
 
 .collapseIcon:hover  {
   background-image: url('../images/collapseHover.png');
+}
+
+.gitIcon {
+  background-image: url('../images/github.png');
+}
+
+.gitIcon:hover {
+  background-image: url('../images/githubHover.png');
 }
 
 /*SHADES.HTML*/

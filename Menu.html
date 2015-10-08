@@ -3,6 +3,7 @@
 	<li><a id="About">About</a></li>
 	<li><a id="Work">Work</a></li>
 	<li><a id="Projects">Projects</a></li>
+	<div style="margin-bottom:10px;"><div class="arrow-right"></div><a href="War.html">War</a></div>
 	<li><a id="Minigames">Minigames</a></li>
 	<div><div class="arrow-right"></div><a id="Shades">Shades</a></div>
 	<div><div class="arrow-right"></div><a id="Items">Items</a></div>
@@ -11,14 +12,18 @@
 <script>
 	$(function() {
 		$('.menu > li, .menu > div').click(function() {
-			if (game && typeof(game.endGame) === typeof(Function)) {
-				console.log('game deleted');
-				game.endGame();
-				game = null;
+			var link = $(this).children('a');
+			if (!link.attr('href')) {
+				if (game && typeof(game.endGame) === typeof(Function)) {
+					console.log('game deleted');
+					game.endGame();
+					game = null;
+				}
+				$('#main').load(link.attr('id') + '.html');
+				location.href = '#' + link.attr('id');
+			} else {
+				location.href = link.attr('href');
 			}
-//			$('#pageJs').remove();
-			$('#main').load($(this).children('a').attr('id') + '.html');
-			location.href = '#' + $(this).children('a').attr('id');
 		});
 	});
 </script>
