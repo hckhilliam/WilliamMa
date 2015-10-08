@@ -142,6 +142,11 @@ function renderMap(wallGroup, wall, snap) {
         }
     }
 
+    //compare function for integers
+    function cmp(a, b) {
+        return a > b;
+    }
+
     function recurse(start, end) {
         //Everything calculated will be done with positions first
 
@@ -190,8 +195,8 @@ function renderMap(wallGroup, wall, snap) {
                 vHoles.push(getRandomPos(0, positionsY));
             }
 
-            createHWalls(start.x, end.x, actualInter.y - 10, hHoles.sort());
-            createVWalls(start.y, end.y, actualInter.x - 10, vHoles.sort());
+            createHWalls(start.x, end.x, actualInter.y - 10, hHoles.sort(cmp));
+            createVWalls(start.y, end.y, actualInter.x - 10, vHoles.sort(cmp));
 
             recurse({x: start.x, y: start.y}, {x: actualInter.x, y: actualInter.y});    //NW
             recurse({x: actualInter.x, y: start.y}, {x: end.x, y: actualInter.y});      //NE
