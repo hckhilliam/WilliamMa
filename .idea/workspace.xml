@@ -2,7 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37a9eb9d-7ea4-48cc-a0ef-640dab32d80e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/war/game.js" afterPath="$PROJECT_DIR$/scripts/war/game.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/batBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/bird.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/blackBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/blockerMad.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/blueBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/cookieBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/cyanBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/diamondBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/electricBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/fireball.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/github.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/githubHover.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/grassCliffLeft.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/grassCliffRight.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/grassLeft.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/grassMid.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/grassRight.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/greenBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/happyBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/loveBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/magentaBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/marineBall2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/minionBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/moneyBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/ninjaBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/pipe.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/player.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/pokeBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/redBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/richBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/sadBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/skullBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/slimeBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/superBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/superHappyBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/yellowBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/zealotBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/zergBall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/war/menu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/phaser.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/phaser.min2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/testMap.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/tileMap.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WilliamMa.iws" />
@@ -352,7 +394,13 @@
       <option name="project" value="LOCAL" />
       <updated>1444267769677</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="WAR game&#10;- fixed issue where holes were not sorted, so map generation was off and there were blocked rooms generated">
+      <created>1444268364077</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1444268364077</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -414,7 +462,8 @@
     <MESSAGE value="Shades&#10;- when user clicks wrong square, it will disappear and show an X now&#10;Items&#10;- when user enters a wrong number count, the textbox will flash red&#10;Projects&#10;-Basis of projects page completed" />
     <MESSAGE value="added missing images" />
     <MESSAGE value="WAR game&#10;- player prototypes made (note I intend to make this online multiplayer so p2-4 are not really functional.&#10;- player should move with WASD and use mouse to aim and shoot&#10;&#10;- random map generation complete." />
-    <option name="LAST_COMMIT_MESSAGE" value="WAR game&#10;- player prototypes made (note I intend to make this online multiplayer so p2-4 are not really functional.&#10;- player should move with WASD and use mouse to aim and shoot&#10;&#10;- random map generation complete." />
+    <MESSAGE value="WAR game&#10;- fixed issue where holes were not sorted, so map generation was off and there were blocked rooms generated" />
+    <option name="LAST_COMMIT_MESSAGE" value="WAR game&#10;- fixed issue where holes were not sorted, so map generation was off and there were blocked rooms generated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
