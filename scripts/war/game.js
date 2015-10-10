@@ -52,8 +52,8 @@ War.Game.prototype = {
         bottomWall.body.setSize(2520, 0, 0, 0);
         bottomWall.body.immovable = true;
 
-        var wall = game.add.bitmapData(20,20);
-        wall.rect(0, 0, 20, 20, '#ffffff');
+        var wall = game.add.bitmapData(10,10);
+        wall.rect(0, 0, 10, 10, '#ffffff');
         renderMap(this.wallGroup, wall, 70);
 
         this.players[0].addBullet();
@@ -84,7 +84,7 @@ War.Game.prototype = {
 function renderMap(wallGroup, wall, snap) {
     //takes start and how many positions left and computes place of hole in positions
     function getRandomPos(refP, posLeft) {
-        return refP + Math.floor(Math.random()*posLeft); //min hole size is 2 so subtract 1 from avail pos
+        return refP + Math.floor(Math.random()*posLeft);
     }
 
     //function create all walls horizontally

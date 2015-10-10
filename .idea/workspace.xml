@@ -2,49 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37a9eb9d-7ea4-48cc-a0ef-640dab32d80e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/batBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/bird.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/blackBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/blockerMad.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/blueBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/cookieBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/cyanBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/diamondBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/electricBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/fireball.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/github.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/githubHover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/grassCliffLeft.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/grassCliffRight.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/grassLeft.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/grassMid.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/grassRight.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/greenBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/happyBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/loveBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/magentaBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/marineBall2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/minionBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/moneyBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/ninjaBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/pipe.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/player.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/pokeBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/redBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/richBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/sadBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/skullBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/slimeBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/superBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/superHappyBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/yellowBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/zealotBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/zergBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/war/menu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/phaser.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/phaser.min2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/testMap.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/tileMap.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/war/game.js" afterPath="$PROJECT_DIR$/scripts/war/game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WilliamMa.iws" />
@@ -79,7 +37,7 @@
       <file leaf-file-name="Menu.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Menu.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769">
+            <state vertical-scroll-proportion="0.0">
               <caret line="8" column="62" selection-start-line="8" selection-start-column="62" selection-end-line="8" selection-end-column="62" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#ul#0;n#!!top" expanded="true" />
@@ -135,7 +93,7 @@
       <file leaf-file-name="War.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/War.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.769231">
+            <state vertical-scroll-proportion="0.0">
               <caret line="28" column="67" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -157,8 +115,8 @@
       <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/war/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8374126">
-              <caret line="144" column="35" selection-start-line="144" selection-start-column="35" selection-end-line="144" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.34982738">
+              <caret line="62" column="42" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -236,6 +194,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -302,8 +262,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -400,7 +358,13 @@
       <option name="project" value="LOCAL" />
       <updated>1444268364077</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="-added files that weren't added in before">
+      <created>1444268554549</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1444268554549</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -409,7 +373,6 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24960423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -419,6 +382,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -463,23 +427,14 @@
     <MESSAGE value="added missing images" />
     <MESSAGE value="WAR game&#10;- player prototypes made (note I intend to make this online multiplayer so p2-4 are not really functional.&#10;- player should move with WASD and use mouse to aim and shoot&#10;&#10;- random map generation complete." />
     <MESSAGE value="WAR game&#10;- fixed issue where holes were not sorted, so map generation was off and there were blocked rooms generated" />
-    <option name="LAST_COMMIT_MESSAGE" value="WAR game&#10;- fixed issue where holes were not sorted, so map generation was off and there were blocked rooms generated" />
+    <MESSAGE value="-added files that weren't added in before" />
+    <option name="LAST_COMMIT_MESSAGE" value="-added files that weren't added in before" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#ul#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/shades.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -819,41 +774,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769">
-          <caret line="8" column="62" selection-start-line="8" selection-start-column="62" selection-end-line="8" selection-end-column="62" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#ul#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/war/load.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#44#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/War.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.769231">
+        <state vertical-scroll-proportion="0.0">
           <caret line="28" column="67" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/war.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -867,10 +794,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/war/load.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="62" selection-start-line="8" selection-start-column="62" selection-end-line="8" selection-end-column="62" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#ul#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/war.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/war/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8374126">
-          <caret line="144" column="35" selection-start-line="144" selection-start-column="35" selection-end-line="144" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.34982738">
+          <caret line="62" column="42" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
           <folding />
         </state>
       </provider>
