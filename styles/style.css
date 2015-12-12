@@ -141,6 +141,7 @@ table {
   border-radius: 10px;
   border-spacing: 0;
   background-color: #444;
+  max-width: 1000px;
 }
 
 tr:not(:last-child) td,
@@ -150,15 +151,15 @@ tr th {
 
 th {
   font-size: 25px;
-  padding: 10px 20px;
+  padding: 10px 15px;
   text-align: left;
 }
 
 td {
-  padding: 20px;
+  padding: 10px 15px;
   font-weight: bold;
   font-size: 20px;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
 }
 
 .arrow-right {
@@ -179,6 +180,7 @@ td {
 .icon {
   width: 32px;
   height: 32px;
+  background-size: 32px 32px;
 }
 
 .main {
@@ -188,7 +190,7 @@ td {
 
 /*MENU.HTML*/
 .menu {
-  position:absolute;
+  position:fixed;
   float: left;
   margin:0;
   height:calc(100% - 50px);

@@ -31,6 +31,8 @@ War.Load.prototype = {
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVeritcally = true;
         game.scale.refresh();
+
+        game.stage.disableVisibilityChange = true;
         // Load the bird sprite
         //game.load.image('enemy1', 'images/blockerMad.png');
         //game.load.image('grassMid', 'images/grassMid.png');

@@ -1,8 +1,9 @@
 var PlayerEnum = {
-    Player1: 1,
-    Player2: 2,
-    Player3: 3,
-    Computer: 4
+    Player1: 1, //red
+    Player2: 2, //blue
+    Player3: 3, //green
+    Player4: 4, //pink
+    Computer: 5
 };
 
 var skins = [ 'marineSkin',
@@ -28,13 +29,13 @@ War.Game.prototype = {
 
         // Set the physics system
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        game.stage.disableVisibilityChange = true;
 
         // The player and its settings
         this.players = [];
         this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player1));
         this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player2));
         this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player3));
+        this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player4));
 
         this.wallGroup = game.add.group();
         this.wallGroup.enableBody = true;
@@ -48,7 +49,7 @@ War.Game.prototype = {
         var rightWall = this.wallGroup.create(2520, 0, null);
         rightWall.body.setSize(0, 1400, 0, 0);
         rightWall.body.immovable = true;
-        var bottomWall = this.wallGroup.create(0, 1400, null);
+        var bottomWall = this.wallGroup.create(0, 1260, null);
         bottomWall.body.setSize(2520, 0, 0, 0);
         bottomWall.body.immovable = true;
 
@@ -56,14 +57,10 @@ War.Game.prototype = {
         wall.rect(0, 0, 10, 10, '#ffffff');
         renderMap(this.wallGroup, wall, 70);
 
-        this.players[0].addBullet();
-        this.players[0].addBullet();
-        this.players[0].addBullet();
-        this.players[0].addBullet();
-        this.players[0].increaseBounces();
     },
 
     update: function () {
+    //    console.log('upd');
         for (var i = 0; i < this.players.length; i++) {
             var currPlayer = this.players[i];
             currPlayer.update();
@@ -74,7 +71,7 @@ War.Game.prototype = {
             for (var j = 0; j < this.players.length; j++) {
                 if (i != j) {
                     var bulletPlayer = this.players[j];
-                    game.physics.arcade.collide(sprite, bulletPlayer.getBullets(), bulletPlayer.bulletCollide);
+                    game.physics.arcade.collide(sprite, bulletPlayer.getBullets(), currPlayer.bulletCollide);
                 }
             }
         }
@@ -169,6 +166,7 @@ function renderMap(wallGroup, wall, snap) {
             vHoles.push(getRandomPos(0, inter.y - 1));
             vHoles.push(getRandomPos(inter.y, positionsY - inter.y + 2));
 
+            //extra math just to get more holes in the map
             var extraHHoles = Math.ceil(positionsX/7);
             var extraVHoles = Math.ceil(positionsY/7);
             var scale = 0.5;
@@ -191,7 +189,7 @@ function renderMap(wallGroup, wall, snap) {
             for (var i = 0; i < extraHHoles; i++) {
                 hHoles.push(getRandomPos(0, positionsX));
             }
-            for (var j = 0; i < extraVHoles; i++) {
+            for (var j = 0; j < extraVHoles; j++) {
                 vHoles.push(getRandomPos(0, positionsY));
             }
 
@@ -205,7 +203,7 @@ function renderMap(wallGroup, wall, snap) {
         }
     }
 
-    recurse({x: 0, y: 0}, {x: 2520, y: 1400});
+    recurse({x: 0, y: 0}, {x: 2520, y: 1260});
 }
 
 function Player(skin, playerNum) {
@@ -217,12 +215,13 @@ function Player(skin, playerNum) {
     var maxBounces = 1;
     var bullets = game.add.group();
     var bulletDrawing = game.add.bitmapData(bulletRadius*2, bulletRadius*2);
-    var sprite = game.add.sprite(250, 250, skin);
+    var sprite;
     var gunDrawing = game.add.bitmapData(10, 5);
     var gun;
+    var color;
     var cursors;
 
-    construct();
+
 
     this.getSprite = function() {
         return sprite;
@@ -232,22 +231,17 @@ function Player(skin, playerNum) {
         return bullets;
     };
 
-    this.addBullet = function () {
-        var bullet = new Bullet(bulletSpeed, bulletRadius, maxBounces, bulletDrawing);
-        game.add.existing(bullet);
-        bullets.add(bullet);
-        bullet.initialize();
-    };
+    this.addBullet = _addBullet;
 
-    this.increaseBounces = function () {
-        maxBounces++;
-        for (var i = 0; i < bullets.children.length; i++) {
-            bullets.children[i].updateMaxBounces(maxBounces);
-        }
-    };
+    this.increaseBounces = _increaseBounces;
 
     this.bulletCollide = function (player, bullet) {
-        bullet.killEm();
+        if (sprite.alive) {
+            sprite.kill();
+            bullet.killEm();
+
+            setTimeout(_revive, 5000);
+        }
     };
 
     this.envCollide = function (bullet) {
@@ -255,42 +249,56 @@ function Player(skin, playerNum) {
     };
 
     this.update = function() {
+        if (sprite.alive) {
+            //movement controls
+            if (cursors.left.isDown) {
+                sprite.body.velocity.x = -speed;
+            } else if (cursors.right.isDown) {
+                sprite.body.velocity.x = speed;
+            } else {
+                sprite.body.velocity.x = 0;
+            }
+            if (cursors.up.isDown) {
+                sprite.body.velocity.y = -speed;
+            } else if (cursors.down.isDown) {
+                sprite.body.velocity.y = speed;
+            } else {
+                sprite.body.velocity.y = 0;
+            }
 
-        //movement controls
-        if (cursors.left.isDown) {
-            sprite.body.velocity.x = -speed;
-        } else if (cursors.right.isDown) {
-            sprite.body.velocity.x = speed;
-        } else {
-            sprite.body.velocity.x = 0;
-        }
-        if (cursors.up.isDown) {
-            sprite.body.velocity.y = -speed;
-        } else if (cursors.down.isDown) {
-            sprite.body.velocity.y = speed;
-        } else {
-            sprite.body.velocity.y = 0;
-        }
+            //normalize speed when moving diagonally
+            if (sprite.body.velocity.y != 0 && sprite.body.velocity.x != 0) {
+                var evenVelocity = Math.sqrt(Math.pow(speed, 2) / 2);
+                sprite.body.velocity.y = evenVelocity * sprite.body.velocity.y / speed;
+                sprite.body.velocity.x = evenVelocity * sprite.body.velocity.x / speed;
+            }
 
-        //normalize speed when moving diagonally
-        if (sprite.body.velocity.y != 0 && sprite.body.velocity.x != 0) {
-            var evenVelocity = Math.sqrt(Math.pow(speed, 2) / 2);
-            sprite.body.velocity.y = evenVelocity * sprite.body.velocity.y / speed;
-            sprite.body.velocity.x = evenVelocity * sprite.body.velocity.x / speed;
-        }
-
-        //aiming gun controls
-        if (cursors.rotateLeft.isDown) {
-            gun.angle -= 4;
-        } else if (cursors.rotateRight.isDown) {
-            gun.angle += 4;
+            //aiming gun controls
+            if (cursors.rotateLeft.isDown) {
+                gun.angle -= 3;
+            } else if (cursors.rotateRight.isDown) {
+                gun.angle += 3;
+            }
         }
     };
 
+    function _addBullet() {
+        var bullet = new Bullet(bulletSpeed, bulletRadius, maxBounces, bulletDrawing);
+        game.add.existing(bullet);
+        bullets.add(bullet);
+        bullet.initialize();
+    }
+
+    function _increaseBounces() {
+        maxBounces++;
+        for (var i = 0; i < bullets.children.length; i++) {
+            bullets.children[i].updateMaxBounces(maxBounces);
+        }
+    }
+
     function construct() {
-        gunDrawing.context.fillRect(0, 0, 10, 10);
-        gunDrawing.context.fillStyle = '#000000';
-        gun = game.make.sprite(16, 16, gunDrawing);
+        var pos = _getRandomPos();
+        sprite = game.add.sprite(pos.x, pos.y, skin);
 
         switch (playerNum) {
             case PlayerEnum.Player1:
@@ -299,27 +307,42 @@ function Player(skin, playerNum) {
                     'left': Phaser.Keyboard.A, 'right': Phaser.Keyboard.D, 'rotateLeft': Phaser.Keyboard.Q,
                     'rotateRight': Phaser.Keyboard.E, 'fire': Phaser.Keyboard.TWO
                 });
+                color = '#FF0000';
                 //aiming gun
-                $(document).mousemove(function () {
-                    $('#mousecoord').text('mouse: x: ' + game.input.mousePointer.x + ' y: ' + game.input.mousePointer.y);
-                    gun.angle = game.math.radToDeg(game.math.angleBetween(sprite.x + radius, sprite.y + radius, game.input.mousePointer.x, game.input.mousePointer.y))+90;
-                });
+        //        $(document).mousemove(function () {
+       //             $('#mousecoord').text('mouse: x: ' + game.input.mousePointer.x + ' y: ' + game.input.mousePointer.y);
+          //          gun.angle = game.math.radToDeg(game.math.angleBetween(sprite.x + radius, sprite.y + radius, game.input.mousePointer.x, game.input.mousePointer.y))+90;
+           //     });
                 break;
             case PlayerEnum.Player2:
                 cursors = game.input.keyboard.addKeys({
-                    'up': Phaser.Keyboard.I, 'down': Phaser.Keyboard.K,
-                    'left': Phaser.Keyboard.J, 'right': Phaser.Keyboard.L, 'rotateLeft': Phaser.Keyboard.U,
-                    'rotateRight': Phaser.Keyboard.O, 'fire': Phaser.Keyboard.EIGHT
+                    'up': Phaser.Keyboard.Y, 'down': Phaser.Keyboard.H,
+                    'left': Phaser.Keyboard.G, 'right': Phaser.Keyboard.J, 'rotateLeft': Phaser.Keyboard.T,
+                    'rotateRight': Phaser.Keyboard.U, 'fire': Phaser.Keyboard.SIX
                 });
+                color = '#66FFFF';
                 break;
             case PlayerEnum.Player3:
+                cursors = game.input.keyboard.addKeys({
+                    'up': Phaser.Keyboard.P, 'down': Phaser.Keyboard.COLON,
+                    'left': Phaser.Keyboard.L, 'right': Phaser.Keyboard.QUOTES, 'rotateLeft': Phaser.Keyboard.O,
+                    'rotateRight': Phaser.Keyboard.OPEN_BRACKET, 'fire': Phaser.Keyboard.ZERO
+                });
+                color = '#00FF00';
+                break;
+            case PlayerEnum.Player4:
                 cursors = game.input.keyboard.addKeys({
                     'up': Phaser.Keyboard.UP, 'down': Phaser.Keyboard.DOWN,
                     'left': Phaser.Keyboard.LEFT, 'right': Phaser.Keyboard.RIGHT, 'rotateLeft': Phaser.Keyboard.DELETE,
                     'rotateRight': Phaser.Keyboard.PAGE_DOWN, 'fire': Phaser.Keyboard.HOME
                 });
+                color = '#FF00FF';
                 break;
         }
+
+        gunDrawing.context.fillStyle = color;
+        gunDrawing.context.fillRect(0, 0, 10, 10);
+        gun = game.make.sprite(16, 16, gunDrawing);
 
         sprite.addChild(gun);
         gun.pivot.y = 23;
@@ -331,14 +354,12 @@ function Player(skin, playerNum) {
         bullets.enableBody = true;
         bullets.physicsBodyType = Phaser.Physics.ARCADE;
 
-        bulletDrawing.circle(bulletRadius, bulletRadius, bulletRadius, '#000000');
-        var bullet = new Bullet(bulletSpeed, bulletRadius, maxBounces, bulletDrawing);
-        game.add.existing(bullet);
-        bullets.add(bullet);
-        bullet.initialize();
+        bulletDrawing.circle(bulletRadius, bulletRadius, bulletRadius, color);
+
+        for (var i = 0; i < 3; i++) { _addBullet(); }
 
         //fire only happens once when holding
-        game.input.onDown.add(function () {
+        cursors.fire.onDown.add(function () {
             if (game.time.now > bulletTime) {
                 var bullet = bullets.getFirstExists(false);
                 if (bullet) {
@@ -348,6 +369,18 @@ function Player(skin, playerNum) {
             }
         });
     }
+
+    function _revive() {
+        var randomPos = _getRandomPos();
+        sprite.reset(randomPos.x, randomPos.y);
+    }
+
+    function _getRandomPos() {
+        War.Game.prototype.players;// CONTINUE WORK HERE
+        return  { x:Math.floor(Math.random()*(2520/70))*70, y:Math.floor(Math.random()*(1260/70))*70 };
+    }
+
+    construct();
 }
 
 function Bullet(s, r, b, bD) {
