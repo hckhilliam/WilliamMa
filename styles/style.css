@@ -39,7 +39,9 @@ h3 {
 
 p {
   font-size:25px;
-  margin:20px 50px;
+  margin: 20px auto;
+  padding: 0 50px;
+  max-width: 1000px;
 }
 
 button {
