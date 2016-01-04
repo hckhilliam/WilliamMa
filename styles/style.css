@@ -6,7 +6,7 @@ body {
   color: #99FFCC;
   font-size: 16px;
   line-height: 1.5;
-  min-width:1200px;
+  min-width:1000px;
   min-height:700px;
 }
 
@@ -144,9 +144,8 @@ table {
   max-width: 1000px;
 }
 
-tr:not(:last-child) td,
-tr th {
-  border-bottom: 5px solid #99FFCC;
+tr:nth-child(even) td {
+  border-top: 5px solid #99FFCC;
 }
 
 th {
@@ -160,6 +159,14 @@ td {
   font-weight: bold;
   font-size: 20px;
   /*white-space: nowrap;*/
+}
+
+td p {
+  font-size: 14px;
+  margin: 0;
+  border-top: 2px dotted #99FFCC;
+  padding: 10px;
+  display: none;
 }
 
 .arrow-right {
@@ -316,6 +323,10 @@ td {
 
 .gitIcon:hover {
   background-image: url('../images/githubHover.png');
+}
+
+.projectDetails {
+  padding: 0 15px;
 }
 
 /*SHADES.HTML*/
