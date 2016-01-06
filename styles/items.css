@@ -1,0 +1,57 @@
+.items-screen {
+    width:63.35vh;
+    min-width:500px;
+    height:calc(63.35% + 90px);
+    min-height:590px;
+    margin:0 auto;
+    position: relative;
+    top: calc(50% - 55px);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.items-screen #blocks .gameSquare {
+    position: absolute;
+    background-color: #99FFCC;
+    border-radius: 10%;
+}
+
+.wrongAnswer {
+    -webkit-animation-name: flashRed;
+    -webkit-animation-duration: .2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+
+    -moz-animation-name: flashRed;
+    -moz-animation-duration: .2s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+
+    animation-name: flashRed;
+    animation-duration: .2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes flashRed {
+    0% { -webkit-box-shadow: 0 0 0 1px rgba(153,255,204,1); }
+    50% { -webkit-box-shadow: 0 0 0 1px red; }
+    100% { -webkit-box-shadow: 0 0 0 1px rgba(153,255,204,1); }
+}
+@-moz-keyframes flashRed {
+    0% { -moz-box-shadow: 0 0 0 1px rgba(153,255,204,1); }
+    50% { -moz-box-shadow: 0 0 0 1px red; }
+    100% { -moz-box-shadow: 0 0 0 1px rgba(153,255,204,1); }
+}
+@-ms-keyframes flashRed {
+    0% { -ms-box-shadow: 0 0 0 1px rgba(153,255,204,1); }
+    50% { -ms-box-shadow: 0 0 0 1px red; }
+    100% { -ms-box-shadow: 0 0 0 1px rgba(153,255,204,1); }
+}
+@keyframes flashRed {
+    0% { box-shadow: 0 0 0 1px rgba(153,255,204,1); }
+    50% { box-shadow: 0 0 0 1px red; }
+    100% { box-shadow: 0 0 0 1px rgba(153,255,204,1); }
+}

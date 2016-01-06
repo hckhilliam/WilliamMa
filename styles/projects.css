@@ -1,0 +1,33 @@
+.desc {
+    white-space: normal;
+}
+
+.expandIcon {
+    background-image: url('../images/expand.png');
+    cursor: pointer;
+}
+
+.expandIcon:hover {
+    background-image: url('../images/expandHover.png');
+}
+
+.collapseIcon {
+    background-image: url('../images/collapse.png');
+    cursor: pointer;
+}
+
+.collapseIcon:hover  {
+    background-image: url('../images/collapseHover.png');
+}
+
+.gitIcon {
+    background-image: url('../images/github.png');
+}
+
+.gitIcon:hover {
+    background-image: url('../images/githubHover.png');
+}
+
+.projectDetails {
+    padding: 0 15px;
+}

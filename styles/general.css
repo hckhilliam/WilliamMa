@@ -1,0 +1,211 @@
+body {
+    margin: 0;
+    padding: 0;
+    height:100%;
+    background: rgb(45,45,48);
+    color: #99FFCC;
+    font-size: 16px;
+    line-height: 1.5;
+    min-width:1000px;
+    min-height:700px;
+}
+
+html {
+    height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    text-align:center;
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+}
+
+h1 {
+    font-size:50px;
+    border-bottom:solid 5px;
+    margin:0 50px;
+}
+
+h2 {
+    font-size:35px;
+}
+
+h3 {
+    font-size:50px;
+    font-weight:bold;
+}
+
+h4 {
+    font-size: 25px;
+    font-style: italic;
+    text-align: center;
+    margin-top: 10px;
+}
+
+h5 {
+    text-align: left;
+    margin: 20px 0;
+    border-bottom: 1px dotted;
+}
+
+p {
+    font-size:20px;
+    margin: 20px auto;
+    padding: 0 50px;
+    max-width: 1000px;
+}
+
+button {
+    background:
+    linear-gradient(135deg, transparent 25px, #99FFCC 0) top left,
+    linear-gradient(225deg, transparent 25px, #99FFCC 0) top right,
+    linear-gradient(315deg, transparent 25px, #99FFCC 0) bottom right,
+    linear-gradient(45deg,  transparent 25px, #99FFCC 0) bottom left;
+    /*background-size:calc(16.156283vh + 1px) calc(3.801478353vh + 1px); 153 36*/
+    background-size:calc(50% + 1px) calc(50% + 2px);
+    background-repeat: no-repeat;
+    /* margin:3.167898627vh auto;*/
+    margin:4.601226994% auto;
+    border:none;
+    /*padding:15px 50px;*/
+    font-size:35px;
+    /*padding:1.583949314vh 5.279831045vh;*/
+    padding:2.5% 8.33333333%;
+    /* font-size:3.695881732vh;*/
+    font-weight:bold;
+    cursor:pointer;
+    display:block;
+    min-width:57.6%;
+    max-width:265px;
+}
+
+button:hover {
+    background:
+    linear-gradient(135deg, transparent 25px, lightgreen 0) top left,
+    linear-gradient(225deg, transparent 25px, lightgreen 0) top right,
+    linear-gradient(315deg, transparent 25px, lightgreen 0) bottom right,
+    linear-gradient(45deg,  transparent 25px, lightgreen 0) bottom left;
+    /*background-size:calc(16.156283vh + 1px) calc(3.801478353vh + 1px);*/
+    background-size:calc(50% + 1px) calc(50% + 2px);
+    background-repeat: no-repeat;
+}
+
+button:focus {
+    outline:none;
+}
+
+input[type=text] {
+    background-color: #555;
+    font-size: 24px;
+    padding: 2px 5px;
+    text-align: right;
+    color: #99FFCC;
+    border: none;
+    -webkit-box-shadow: 0 0 0 1px rgba(153,255,204,1);
+    -moz-box-shadow: 0 0 0 1px rgba(153,255,204,1);
+    -ms-box-shadow: 0 0 0 1px rgba(153,255,204,1);
+    box-shadow: 0 0 0 1px rgba(153,255,204,1);
+    display:inline-block;
+}
+
+input[type=text]:focus {
+    outline: none;
+    -webkit-box-shadow: 0 0 7px 2px rgba(153,255,204,1);
+    -moz-box-shadow: 0 0 7px 2px rgba(153,255,204,1);
+    -ms-box-shadow: 0 0 7px 2px rgba(153,255,204,1);
+    box-shadow: 0 0 7px 2px rgba(153,255,204,1);
+}
+
+input[type=button] {
+    height:34px;
+    width:33px;
+    display:inline-block;
+    top:8px;
+    right: 3px;
+    border:none;
+    position:relative;
+    background-image: url('../images/enter.png');
+    background-size:32px 32px;
+    background-color: #99FFCC;
+    cursor:pointer;
+}
+
+input[type=button]:active {
+    background-color: lightgreen;
+}
+
+input[type=button]:focus {
+    outline:none;
+}
+
+a {
+    text-decoration: none;
+    color: #66FFFF;
+}
+
+a:hover {
+    color: #66FFFF;
+    text-decoration:underline;
+}
+
+table {
+    margin: 20px auto 0 auto;
+    border: 5px solid #99FFCC;
+    border-radius: 10px;
+    border-spacing: 0;
+    background-color: #444;
+    max-width: 1000px;
+}
+
+tr:nth-child(even) td {
+    border-top: 5px solid #99FFCC;
+}
+
+th {
+    font-size: 25px;
+    padding: 10px 15px;
+    text-align: left;
+}
+
+td {
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 20px;
+    /*white-space: nowrap;*/
+}
+
+td p {
+    font-size: 14px;
+    margin: 0;
+    border-top: 2px dotted #99FFCC;
+    padding: 10px;
+    display: none;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #99FFCC;
+    float:left;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    background-size: 32px 32px;
+}
+
+.main {
+    margin-left:245px;
+    height:100%;
+}

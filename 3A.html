@@ -1,0 +1,46 @@
+<h1>3A</h1>
+
+<div class="tabs tabs-style-linemove">
+    <nav>
+        <ul>
+            <li class="tab-current"><a href="#section-linemove-1"><span>CS349</span></a></li>
+            <li class=""><a href="#section-linemove-2"><span>CS370</span></a></li>
+            <li class=""><a href="#section-linemove-3"><span>SE465</span></a></li>
+            <li class=""><a href="#section-linemove-4"><span>SE350</span></a></li>
+            <li class=""><a href="#section-linemove-5"><span>PHIL226</span></a></li>
+            <li class=""><a href="#section-linemove-6"><span>CS341</span></a></li>
+        </ul>
+    </nav>
+    <div class="content-wrap">
+        <section id="section-linemove-1" class="content-current"></section>
+        <section id="section-linemove-2" class=""></section>
+        <section id="section-linemove-3" class=""></section>
+        <section id="section-linemove-4" class=""></section>
+        <section id="section-linemove-5" class=""></section>
+        <section id="section-linemove-6" class=""></section>
+    </div><!-- /content -->
+</div>
+
+<script>
+
+    $(function () {
+        $('#section-linemove-1').load('3A/CS349.html');
+        $('#section-linemove-2').load('3A/CS370.html');
+        $('#section-linemove-3').load('3A/SE465.html');
+        $('#section-linemove-4').load('3A/SE350.html');
+        $('#section-linemove-5').load('3A/PHIL226.html');
+        $('#section-linemove-6').load('3A/CS341.html');
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+
+        $('.tabs > nav > ul > li').click(function(e) {
+            var tab = $(this);
+            e.preventDefault();
+            $('.tabs > nav  > ul').find('.tab-current').removeClass('tab-current');
+            $(this).addClass('tab-current');
+            var href = tab.find('a').attr('href');
+            var contentWrap = $('.tabs .content-wrap');
+            contentWrap.find('.content-current').removeClass('content-current');
+            $(href).addClass('content-current');
+        });
+    });
+</script>
