@@ -1,10 +1,72 @@
 <h4>Numerical Computation</h4>
-<h5>January 4, 2016</h5>
-<p>
-    Suppose we need to compute the integral \(I_n = \int_0^1{\frac {x^n}{x + \alpha}dx}\) <br>
-    For a given real number \(\alpha\) and integer n, n>=0.
-    This is tough to do, except for this trick..
-</p>
-<p>\(I_n) = \int_0^1{\frac {x^n}{x + \alpha}dx}\)</p>
-<p>\( = \int_0^1{\frac {x^n + x^{n-1}\alpha - x^{n+1}\alpha}{x + \alpha}dx}\)</p>
-<p>\( = \int_0^1{x^{n-1}}\)</p>
+<div class="notes 20160104">
+    <h5>January 4, 2016</h5>
+    <p>
+        Suppose we need to compute the integral \(I_n = \int_0^1{\frac {x^n}{x + \alpha}dx}\)
+        For a given real number \(\alpha\) and integer n, \(n \geq 0\). This is tough to do, except for this trick.
+    </p>
+    <div>\(I_n = \int_0^1{\frac {x^n}{x + \alpha}dx}\)</div>
+    <div>\( = \int_0^1{\frac {x^n + x^{n-1}\alpha - x^{n+1}\alpha}{x + \alpha}dx}\)</div>
+    <div>\( = \int_0^1{x^{n-1}\frac{x+\alpha}{x+\alpha} - \alpha\frac{x^{n-1}}{x+\alpha}dx}\)</div>
+    <div>\( = \int_0^1{x^{n-1}dx - \alpha\int_0^1\frac{x^{n-1}}{x+\alpha}dx}\)</div>
+    <div>\( = \frac{1}{n} - \alpha I_{n-1}\) &nbsp&nbspWoW!</div>
+    <p>
+        Thus, \(I_n = \frac{1}{n} - \alpha I_{n-1}\) (recurrence relation) 
+        Notice that I_0 is easy
+    </p>
+    <div>\(I_0 = \int_0^1 \frac{1}{x+\alpha}dx = ln(x+\alpha)|_0^1 = ln(1+\alpha) - ln\alpha = ln\frac{1+\alpha}{\alpha}\)</div>
+    <p>
+        Cool! Let's try it out. 
+        Create a Matlab script (text file with extension .m).
+    </p>
+    <p class="code">
+        % Try alpha values of 0.5 and 2.<br>
+        % Initialize params<br>
+        alpha = 0.5;<br>
+        N = 100;<br>
+        <br>
+        I = log((1 + alpha)/alpha); %\(I_0\)<br>
+        <br>
+        % \(I_n = \frac{1}{n} - \alpha I_{n-1}\)<br>
+        for n = 1:N <br>
+        &nbsp I = 1/n - alpha*I; <br>
+        end <br>
+        <br>
+        % Print result<br>
+        disp(['Answer:' num2str(I)]);
+    </p>
+    <p>For \(\alpha = 0.5 \rightarrow\) answer = <em>\(0.0066444\)</em></p>
+    <p>For \(\alpha = 2 \rightarrow\) answer = <em>\(6.058 x 10^12\)</em></p>
+    <p>
+        Hmmm... seems strange <br>
+        Observation: If \(0 \leq x \leq 1\) and \(\alpha > 1, then \frac{x^n}{x+\alpha} \leq x^n\)
+    </p>
+    <p>Hence, \(I_n = \int_0^1\frac{x^n}{x+\alpha}dx \leq \int_0^1 x^n = \frac{1}{n+1}\)</p>
+    <p>So, for \(\alpha = 2\), we should get \(I_100 \leq \frac{1}{101}\)</p>
+    <div>Note:&nbsp&nbsp&nbsp&nbsp Arithmetic on a computer uses truncated numbers. <br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Thus, we can have a small error in every number.</div>
+    <p>Thus, \(I_0^{(comp)} = I_0^{(exact)} + e_0 \leftarrow\) tiny error</p>
+    <p>and \(I_n^{(comp)} = I_n^{(exact)} + e_n \leftarrow\) error at step n</p>
+    <p>Using our recurrence relation,</p>
+    <div>\(I_n^{(exact)} = \frac{1}{n} - \alpha I_{n-1}^{(exact)}\) (mathematical)</div>
+    <div>\(I_n^{(comp)} = \frac{1}{n} - \alpha I_{n-1}^{(comp)}\) (computational)</div>
+    <p>Then, \(e_n = I_n^{(comp)} - I_n^{(exact)}\)</p>
+    <p>\( = (\frac{1}{n} - \alpha I_{n-1}^{(comp)}) - (\frac{1}{n} - \alpha I_{n-1}^{(exact)})\)</p>
+    <p>\( = -\alpha(I_{n-1}^{(comp)} - I_{n-1}^{(exact)}\)</p>
+    <p>\(e_n = -\alpha e_{n-1}\)</p>
+    <p>That is, \(e_n = \alpha^2e_{n-2}\)</p>
+    <p>\( = \alpha^3e_{n-3}\)</p>
+    <p>\( =\)&nbsp&nbsp :</p>
+    <p>\( = \alpha^ne_0\)</p>
+    <p>If \(|\alpha| < 1 \rightarrow |e_n| \rightarrow 0\) as \(n \rightarrow \infty\) (Good)</p>
+    <p>If \(|\alpha| > 1 \rightarrow |e_n| \rightarrow \infty\) as \(n \rightarrow \infty\) (Bad)</p>
+    <p>So There seems to be a build-up of round-off errors, but only when \(|\alpha| > 1\)</p>
+    <p>Another example:</p>
+    <div>\(e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \)...</div>
+    <p>Suppose we use only 5 digits of accuracy.</p>
+    <div>\(e^{-5.5} = 1 - 5.5 + 15.125 - 27.729 + \) ... (25 terms)</div>
+    <div>\( = 0.0026363\)</div>
+    <p>Mathematically, it's equivalent to</p>
+    <div>\(\frac{1}{e^{5.5}} = \frac{1}{1 + 5.5 + 15.125 + 27.729 + ...}\)</div>
+    <div> = 0.0040865</div>
+</div>

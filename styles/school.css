@@ -178,3 +178,22 @@
 .tabs-style-linemove nav a span {
     font-weight: 700;
 }
+
+.notes > div {
+    text-align: center;
+    font-size: 20px;
+    margin: 20px auto;
+    padding: 0 50px;
+    max-width: 1000px;
+}
+
+.code {
+    font-family: monospace;
+    color: #EEE;
+    padding-left: 90px !important;
+}
+
+.notes em {
+    font-style: normal;
+    color: #66FFFF;
+}
