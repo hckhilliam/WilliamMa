@@ -22,7 +22,6 @@
 </div>
 
 <script>
-
     $(function () {
         $('#section-linemove-1').load('3A/CS349.html');
         $('#section-linemove-2').load('3A/CS370.html');
@@ -30,7 +29,11 @@
         $('#section-linemove-4').load('3A/SE350.html');
         $('#section-linemove-5').load('3A/PHIL226.html');
         $('#section-linemove-6').load('3A/CS341.html');
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+
+        //hacky fix to load mathjax for now. will need to do better later
+        setTimeout(function () {
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        }, 250);
 
         $('.tabs > nav > ul > li').click(function(e) {
             var tab = $(this);
