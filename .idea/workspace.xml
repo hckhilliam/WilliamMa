@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="764d5e96-d45b-42c5-8862-be94c76aeb9f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/3A/CS370.html" afterPath="$PROJECT_DIR$/3A/CS370.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WilliamMa.iws" />
@@ -56,8 +57,8 @@
       <file leaf-file-name="CS370.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/3A/CS370.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8073555">
-              <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.11908932">
+              <caret line="4" column="97" selection-start-line="4" selection-start-column="97" selection-end-line="4" selection-end-column="97" />
               <folding />
             </state>
           </provider>
@@ -422,7 +423,13 @@
       <option name="project" value="LOCAL" />
       <updated>1452053934784</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="trying to get images to show up">
+      <created>1452053982100</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1452053982100</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -856,8 +863,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/3A/CS370.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8073555">
-          <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.11908932">
+          <caret line="4" column="97" selection-start-line="4" selection-start-column="97" selection-end-line="4" selection-end-column="97" />
           <folding />
         </state>
       </provider>
