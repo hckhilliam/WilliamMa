@@ -1,0 +1,77 @@
+<h4>Algorithms</h4>
+<div class="notes 20160106">
+    <h5>January 6, 2016</h5>
+    <p>
+        Why are algorithms important? Why study algorithms?<br>
+        1. Pre-requisite <br>
+        2. Abstraction <br>
+        3. Efficacy (ability to produce desired result) <br>
+        4. Efficiency <br>
+        5. Optimization
+    </p>
+    <p>How would you determine if there is a duplicate item in an array?</p>
+    <p>Trivial solution: \(O(n^2)\)</p>
+    <p class="code">
+        Input = A size n <br>
+        for i = 1...n <br>
+            for j = i+1...n <br>
+                if A[i] == A[j] <br>
+                    return yes <br>
+        return no
+    </p>
+    <p>Better: \(O(n)\)</p>
+    <p class="code">
+        let H be a hash table
+        for i = 1...n <br>
+            if H.contains(A[i]) <br>
+                return yes <br>
+            else H.add(A[i]) <br>
+        return no
+    </p>
+    <p>Another solution: \(O(nlogn) + O(n) = O(nlogn)\)</p>
+    <p class="code">
+        Sort(A) <br>
+        for i = 1...n <br>
+            if A[i] == A[i+1] <br>
+                return yes <br>
+        return no
+    </p>
+    <div class="divider"></div>
+    <p>
+        We are concerned with: <br>
+        - average vs. worst-case complexity <br>
+        - RAM model <br>
+        - word-RAM <br>
+        For this course, we are most concerned with worst-case complexity
+    </p>
+    <p>
+        Recall asymptotic notations: <br>
+        \(g(n) = O(f(n)) \leftrightarrow \lim_{n\rightarrow\infty} \frac{g(n)}{f(n)} \leq c\) <br>
+        \(g(n) = o(f(n)) \leftrightarrow \lim_{n\rightarrow\infty} \frac{g(n)}{f(n)} = 0\) <br>
+        \(g(n) = \Theta(f(n) \leftrightarrow g(n) = O(f(n)) & f(n) = O(g(n))\) <br>
+    </p>
+    <p>
+        Algorithm Analysis - correctness & complexity <br>
+        Algorithm development <br>
+            - Reduction <br>
+            - Recursion <br>
+            - Divide-and-conquer <br>
+            - Greedy <br>
+            - Dynamic programming <br>
+    </p>
+    <p>
+        Topics we will study in this course: <br>
+        Intractability <br>
+        Polynomial - time reduction <br>
+        Undecidability
+    </p>
+    <p>Given an array, find the min and max element
+    <p>Trivial solution: Go through each element and compare for the max</p>
+    <p class="code">
+        min <- A[1], max <- A{i] <br>
+        for i = 2...n <br>
+            if A[i] > max then max \(\leftarrow\) A[i] <br>
+            else if A[i] < min then min \(\leftarrow\) A[i] <br>
+    </p>
+    <p>Better: do pairs and then compare the lower and max</p>
+</div>
