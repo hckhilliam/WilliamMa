@@ -1,77 +1,108 @@
 <h4>Algorithms</h4>
 <div class="notes 20160106">
     <h5>January 6, 2016</h5>
-    <p>
-        Why are algorithms important? Why study algorithms?<br>
-        1. Pre-requisite <br>
-        2. Abstraction <br>
-        3. Efficacy (ability to produce desired result) <br>
-        4. Efficiency <br>
-        5. Optimization
-    </p>
-    <p>How would you determine if there is a duplicate item in an array?</p>
-    <p>Trivial solution: \(O(n^2)\)</p>
-    <p class="code">
-        Input = A size n <br>
-        for i = 1...n <br>
-            for j = i+1...n <br>
-                if A[i] == A[j] <br>
-                    return yes <br>
-        return no
-    </p>
-    <p>Better: \(O(n)\)</p>
-    <p class="code">
-        let H be a hash table
-        for i = 1...n <br>
-            if H.contains(A[i]) <br>
-                return yes <br>
-            else H.add(A[i]) <br>
-        return no
-    </p>
-    <p>Another solution: \(O(nlogn) + O(n) = O(nlogn)\)</p>
-    <p class="code">
-        Sort(A) <br>
-        for i = 1...n <br>
-            if A[i] == A[i+1] <br>
-                return yes <br>
-        return no
-    </p>
-    <div class="divider"></div>
-    <p>
-        We are concerned with: <br>
-        - average vs. worst-case complexity <br>
-        - RAM model <br>
-        - word-RAM <br>
-        For this course, we are most concerned with worst-case complexity
-    </p>
-    <p>
-        Recall asymptotic notations: <br>
-        \(g(n) = O(f(n)) \leftrightarrow \lim_{n\rightarrow\infty} \frac{g(n)}{f(n)} \leq c\) <br>
-        \(g(n) = o(f(n)) \leftrightarrow \lim_{n\rightarrow\infty} \frac{g(n)}{f(n)} = 0\) <br>
-        \(g(n) = \Theta(f(n) \leftrightarrow g(n) = O(f(n)) & f(n) = O(g(n))\) <br>
-    </p>
-    <p>
-        Algorithm Analysis - correctness & complexity <br>
-        Algorithm development <br>
-            - Reduction <br>
-            - Recursion <br>
-            - Divide-and-conquer <br>
-            - Greedy <br>
-            - Dynamic programming <br>
-    </p>
-    <p>
-        Topics we will study in this course: <br>
-        Intractability <br>
-        Polynomial - time reduction <br>
-        Undecidability
-    </p>
-    <p>Given an array, find the min and max element
-    <p>Trivial solution: Go through each element and compare for the max</p>
-    <p class="code">
-        min <- A[1], max <- A{i] <br>
-        for i = 2...n <br>
-            if A[i] > max then max \(\leftarrow\) A[i] <br>
-            else if A[i] < min then min \(\leftarrow\) A[i] <br>
-    </p>
-    <p>Better: do pairs and then compare the lower and max</p>
+    <div>
+        <i>Why are algorithms important? Why study algorithms?</i>
+        <ul class="numbers">
+            <li>Pre-requisite</li>
+            <li>Abstraction</li>
+            <li>Efficacy (ability to produce desired result)</li>
+            <li>Efficiency</li>
+            <li>Optimization</li>
+        </ul>
+    </div>
+    <div>
+        <em>Question: How would you determine if there is a duplicate item in an array?</em>
+        <div class="definition">
+            <b>Trivial solution:</b>
+            <div>For each element, look for another element equal to this one</div>
+        </div>
+        <div class="nospace b2">\(O(n^2)\)</div>
+        <div class="code">
+            Input = A size n
+            for i = 1...n
+                for j = i+1...n
+                    if A[i] == A[j]
+                        return yes
+            return no</div>
+        <div class="definition">
+            <b>Better:</b>
+            <div>Using a hashtable</div>
+        </div>
+        <div class="nospace b2">\(O(n)\)</div>
+        <div class="code">
+            let H be a hash table
+            for i = 1...n
+                if H.contains(A[i])
+                    return yes
+                else H.add(A[i])
+            return no</div>
+        <div class="definition">
+            <b>Another solution:</b>
+            <div>Sort the array first and then find a duplicate element</div>
+        </div>
+        <div class="nospace b2">\(O(nlogn) + O(n) = O(nlogn)\)</div>
+        <div class="code">
+            Sort(A)
+            for i = 1...n
+                if A[i] == A[i+1]
+                    return yes
+            return no</div>
+        <div class="divider"></div>
+    </div>
+    <div>
+        <i>We are concerned with:</i>
+        <ul>
+            <li>average vs. worst-case complexity</li>
+            <li>RAM model</li>
+            <li>word-RAM</li>
+        </ul>
+        <b>For this course, we are most concerned with worst-case complexity</b>
+    </div>
+    <div>
+        <i>Recall asymptotic notations:</i> <br>
+        \(g(n) = O(f(n)) \leftrightarrow \lim_{n\to\infty} \frac{g(n)}{f(n)} \leq c\) <br>
+        \(g(n) = o(f(n)) \leftrightarrow \lim_{n\to\infty} \frac{g(n)}{f(n)} = 0\) <br>
+        \(g(n) = \Theta(f(n) \leftrightarrow g(n) = O(f(n))\) & \(f(n) = O(g(n))\)
+    </div>
+    <div>
+        <i>Algorithm Analysis - correctness & complexity <br>
+        Algorithm development</i>
+        <ul>
+            <li>Reduction</li>
+            <li>Recursion</li>
+            <li>Divide-and-conquer</li>
+            <li>Greedy</li>
+            <li>Dynamic programming</li>
+        </ul>
+    </div>
+    <div>
+        <i>Topics we will study in this course:</i> <br>
+        <ul>
+            <li>Intractability</li>
+            <li>Polynomial - time reduction</li>
+            <li>Undecidability</li>
+        </ul>
+    </div>
+    <div>
+        <em>Question: Given an array, find the min and max element</em>
+        <div class="definition">
+            <b>Trivial solution:</b>
+            <div>Go through each element and compare for the max and min</div>
+        </div>
+        <div class="nospace b2">Worst case is 2n comparisons</div>
+        <div class="code">
+            min <- A[1], max <- A{i]
+            for i = 2...n
+                if A[i] > max then max \(\leftarrow\) A[i]
+                else if A[i] < min then min \(\leftarrow\) A[i]</div>
+        <div class="definition">
+            <b>Better:</b>
+            <div>Split array into pairs and then compare each pair, separating the lower to a "small" array and bigger to a "big" array.
+                Then find the min in "small" array, and the max in "big" array
+            </div>
+        </div>
+        <div class="nospace b2">Worst case \(\frac{1}{2}n + \frac{1}{2}n + \frac{1}{2}n = \frac{3}{2}n\) comparisons</div>
+        <div class="divider"></div>
+    </div>
 </div>

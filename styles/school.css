@@ -179,21 +179,72 @@
     font-weight: 700;
 }
 
-.notes > div {
+.notes > eqn {
     text-align: center;
     font-size: 20px;
     margin: 20px auto;
     padding: 0 50px;
     max-width: 1000px;
+    display: block;
 }
 
-.code {
+.notes div {
+    font-size:20px;
+    margin: 20px auto 0 auto;
+    padding: 0 50px;
+    max-width: 1000px;
+}
+
+.notes .code {
     font-family: monospace;
     color: #EEE;
     padding-left: 90px !important;
+    white-space: pre;
+    margin-top: -20px;
 }
 
 .notes em {
     font-style: normal;
     color: #66FFFF;
+    border-bottom: 1px dotted;
+}
+
+.notes ul {
+    padding: 0 50px;
+    margin: 0;
+}
+
+.notes .numbers {
+    list-style: decimal;
+}
+
+.notes .divider {
+    border: 1px dotted #66FFFF;
+}
+
+.notes b {
+    color: #A7F;
+}
+
+.notes i {
+    font-style: normal;
+    color: oldlace;
+}
+
+.notes .definition b {
+    display: table-cell;
+}
+
+.notes .definition div {
+    margin: 0;
+    padding: 0 0 0 5px;
+    display: table-cell;
+}
+
+.notes .nospace {
+   margin: 0 auto;
+}
+
+.notes .b2 {
+    color: chartreuse;
 }
