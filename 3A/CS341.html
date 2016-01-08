@@ -106,3 +106,169 @@
         <div class="divider"></div>
     </div>
 </div>
+<div class="notes 20160108">
+    <h5>January 8, 2016</h5>
+    <div>
+        <em>Find two elements in an array that sum to m</em>
+        <div class="definition">
+            <b>Trivial Solution:</b>
+            <div>For each element, go through all elements searching for a match</div>
+        </div>
+        <div class="nospace b2">\(O(n^2)\)</div>
+        <div class="code">
+            Input: A, m.
+            for i = 1...n
+                for j = i...n
+                    if A[i] + A[j] = m
+                        return yes
+            return no
+        </div>
+        <div class="definition">
+            <b>Better:</b>
+            <div>Sort it and use binary search on second element</div>
+        </div>
+        <div class="nospace b2">\(O(nlogn)\)</div>
+        <div class="code">
+            Sort(A)
+            for i = 1...n
+                binary-search(m - A[i])
+                if succeed return yes
+            return no
+        </div>
+        <div class="definition">
+            <b>Even Better:</b>
+            <div>Use a hashtable</div>
+        </div>
+        <div class="nospace b2">\(O(n)\)</div>
+        <div class="code">
+            put A in hashtable H
+            for i = 1...n
+                if H.contains(m-A[i])
+                    return yes
+            return no
+        </div>
+        <div class="divider"></div>
+    </div>
+    <div>
+        <em>Question: How would you extend this problem to 3 elements to add up to m?</em>
+        <div class="definition">
+            <b>Trivial Solution:</b>
+            <div>Go through each element and then use trivial solution of 2 element case</div>
+        </div>
+        <div class="nospace b2">\(O(n^3)\)</div>
+        <div class="definition">
+            <b>Better:</b>
+            <div>Go through each element and use the better solution of 2 element case</div>
+        </div>
+        <div class="nospace b2">\(O(n^2logn)\)</div>
+        <div class="code">
+            for i = 1...n
+                if (Two-Sum(A, m-A[i]))
+                    return yes
+            return no
+        </div>
+        <div class="divider"></div>
+    </div>
+    <div>
+        <em>Sorted 2 sum case</em>
+        <div class="code">
+            while (j > i) {
+                if (A[i] + A[j] > m)
+                    j--;
+                else if (A[i] + A[j] < m)
+                    i++;
+                else
+                    return yes
+            }
+            return no
+        </div>
+        <div>
+            Proof of correctness: <br>
+            If array has A[i'] + A[j'] == m <br>
+            Time: j-i is n-1 initially <br>
+            Each time while loop is repeated, j-i is reduced by 1, so the max will be n-1 loops <br>
+            w.t.o.g. Assume i becomes i' when j > j' during the algorithm.
+            The other case can be proved by symmetry <br>
+            Because A is sorted <br>
+            A[i] + A[j] > m <br>
+            So j will be reduced constantly until j == j' <span class="qed"></span>
+        </div>
+    </div>
+    <div>
+        <em>Back to 3 sum knowing this sorted 2 sum algorithm</em>
+        <div class="code">
+            Sort(A)                             //\(O(nlogn)\)
+            for i = 0...n                       //\(O(n^2))\)
+                if (Sorted-2-Sum(A, m-A[i]))
+                    return yes
+            return no
+        </div>
+        <div class="divider"></div>
+    </div>
+    <div>
+        <i>Idea of algorithm design:</i>
+        <ul>
+            <li>reduction</li>
+            <li>data structure</li>
+            <li>avoid repeated computation</li>
+            <li>hot spot</li>
+        </ul>
+    </div>
+    <div>
+        <i>Divide-and-conquer</i>
+        <div>
+            Divide problem into smaller, simpler problems of the same kind <br>
+            Eg. merge-sort <br>
+            <div class="code">
+                merge-sort(A)
+                    if |A| < 3 sort A trivially, return
+                    mergesort(A[0...n/2])
+                    mergesort(A[n/2+1...n])
+                merge(A[1...n/2], A[n/2+1...n])
+            </div>
+            \(T(n) = 2T(\frac{n}{2}) + O(n)\) <br>
+            unrolling the recurrence relation <br>
+            \(T(n) = 2T(\frac{n}{2}) + n\) <br>
+            \(= 2(2T(\frac{n}{4}) + n/2) + n\) <br>
+            \(= 4T(\frac{n}{4}) + n + n\) <br>
+            \(= 4(2T(\frac{n}{8}) + n/4) + n + n\) <br>
+            \(= 8T(\frac{n}{8}) + n + n + n\) <br>
+            \(= 2^kT(\frac{n}{2^k}) + n + ... + n\) (k times)
+        </div>
+    </div>
+    <div>
+        <i>Guess and check (verify)</i>
+        <div>
+            Lemma: \(T(n) \leq cnlogn\) <br>
+            Proof: Mathematical Induction <br>
+            Lemma is correct for n < 3 (vacuously true) <br>
+            Assume Lemma correct for n < m <br>
+            To prove Lemma for n = m <br>
+            \(T(m) = 2T(\frac{m}{2}) + m\) <br>
+            \(\leq 2(c\frac{m}{2}log\frac{m}{2}) + m\) <br>
+            \(= cm(log_2m - 1) + m\) <br>
+            \(= cmlog_2m - (c-1)m\) <br>
+            \(\leq cmlog_2m\) <span class="qed"></span> <br>
+            <br>
+            \(T(n) = 2T(\frac{n}{2}) + n <br>
+            <err>Mistake:</err><br>
+            \(T(n) = O(n)\) <br>
+            Assume correctness for n < m <br>
+            \(T(m) = 2T(\frac{m}{2}) + m\) <br>
+            \(= 2O(\frac{m}{2}) + O(m)\) <br>
+            \(=O(m)\) <br>
+            What went wrong? <br>
+            Every time we get an O(m), we introduce another constant, so because it is induction,
+            we cannot simplify it like this. <br>
+            <br>
+            \(T(n) \leq 2T(\frac{n}{2} + \sqrt{n}\) <br>
+            \(\rightarrow T(n) = O(n)\) <br>
+            Lemma: \(T(n) \leq cn\) <br>
+            Proof: Assume correctness for n < m <br>
+            \(T(m) = 2T(\frac{m}{2}) + \sqrt{m}\) <br>
+            \(\leq 2(c\frac{m}{2}) + \sqrt{m}\) <br>
+            \(= cm + \sqrt{m}\) <br>
+            Lemma: \(T(n) = cn - 3\sqrt{n}\) <br>
+        </div>
+    </div>
+</div>
