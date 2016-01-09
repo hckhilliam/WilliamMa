@@ -198,7 +198,6 @@
 .notes .code {
     font-family: monospace;
     color: #EEE;
-    padding-left: 70px !important;
     white-space: pre;
     margin-top: -20px;
 }
@@ -231,6 +230,10 @@
     color: oldlace;
 }
 
+.notes .definition {
+    padding: 0;
+}
+
 .notes .definition b {
     display: table-cell;
 }
@@ -245,6 +248,10 @@
    margin: 0 auto;
 }
 
-.notes .b2 {
+.notes b2 {
     color: chartreuse;
+}
+
+.notes err {
+    color: red;
 }

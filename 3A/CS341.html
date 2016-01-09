@@ -13,41 +13,43 @@
     </div>
     <div>
         <em>Question: How would you determine if there is a duplicate item in an array?</em>
-        <div class="definition">
-            <b>Trivial solution:</b>
-            <div>For each element, look for another element equal to this one</div>
-        </div>
-        <div class="nospace b2">\(O(n^2)\)</div>
-        <div class="code">
-            Input = A size n
-            for i = 1...n
-                for j = i+1...n
-                    if A[i] == A[j]
+        <div>
+            <div class="definition">
+                <b>Trivial solution:</b>
+                <div>For each element, look for another element equal to this one</div>
+            </div>
+            <b2>\(O(n^2)\)</b2>
+            <div class="code">
+                Input = A size n
+                for i = 1...n
+                    for j = i+1...n
+                        if A[i] == A[j]
+                            return yes
+                return no</div>
+            <div class="definition">
+                <b>Better:</b>
+                <div>Using a hashtable</div>
+            </div>
+            <b2>\(O(n)\)</b2>
+            <div class="code">
+                let H be a hash table
+                for i = 1...n
+                    if H.contains(A[i])
                         return yes
-            return no</div>
-        <div class="definition">
-            <b>Better:</b>
-            <div>Using a hashtable</div>
+                    else H.add(A[i])
+                return no</div>
+            <div class="definition">
+                <b>Another solution:</b>
+                <div>Sort the array first and then find a duplicate element</div>
+            </div>
+            <b2>\(O(nlogn) + O(n) = O(nlogn)\)</b2>
+            <div class="code">
+                Sort(A)
+                for i = 1...n
+                    if A[i] == A[i+1]
+                        return yes
+                return no</div>
         </div>
-        <div class="nospace b2">\(O(n)\)</div>
-        <div class="code">
-            let H be a hash table
-            for i = 1...n
-                if H.contains(A[i])
-                    return yes
-                else H.add(A[i])
-            return no</div>
-        <div class="definition">
-            <b>Another solution:</b>
-            <div>Sort the array first and then find a duplicate element</div>
-        </div>
-        <div class="nospace b2">\(O(nlogn) + O(n) = O(nlogn)\)</div>
-        <div class="code">
-            Sort(A)
-            for i = 1...n
-                if A[i] == A[i+1]
-                    return yes
-            return no</div>
         <div class="divider"></div>
     </div>
     <div>
@@ -60,10 +62,12 @@
         <b>For this course, we are most concerned with worst-case complexity</b>
     </div>
     <div>
-        <i>Recall asymptotic notations:</i> <br>
-        \(g(n) = O(f(n)) \leftrightarrow \lim_{n\to\infty} \frac{g(n)}{f(n)} \leq c\) <br>
-        \(g(n) = o(f(n)) \leftrightarrow \lim_{n\to\infty} \frac{g(n)}{f(n)} = 0\) <br>
-        \(g(n) = \Theta(f(n) \leftrightarrow g(n) = O(f(n))\) & \(f(n) = O(g(n))\)
+        <i>Recall asymptotic notations:</i>
+        <div class="nospace">
+            \(g(n) = O(f(n)) \leftrightarrow \lim_{n\to\infty} \frac{g(n)}{f(n)} \leq c\) <br>
+            \(g(n) = o(f(n)) \leftrightarrow \lim_{n\to\infty} \frac{g(n)}{f(n)} = 0\) <br>
+            \(g(n) = \Theta(f(n) \leftrightarrow g(n) = O(f(n))\) & \(f(n) = O(g(n))\)
+        </div>
     </div>
     <div>
         <i>Algorithm Analysis - correctness & complexity <br>
@@ -86,86 +90,91 @@
     </div>
     <div>
         <em>Question: Given an array, find the min and max element</em>
-        <div class="definition">
-            <b>Trivial solution:</b>
-            <div>Go through each element and compare for the max and min</div>
-        </div>
-        <div class="nospace b2">Worst case is 2n comparisons</div>
-        <div class="code">
-            min <- A[1], max <- A{i]
-            for i = 2...n
-                if A[i] > max then max \(\leftarrow\) A[i]
-                else if A[i] < min then min \(\leftarrow\) A[i]</div>
-        <div class="definition">
-            <b>Better:</b>
-            <div>Split array into pairs and then compare each pair, separating the lower to a "small" array and bigger to a "big" array.
-                Then find the min in "small" array, and the max in "big" array
+        <div>
+            <div class="definition">
+                <b>Trivial solution:</b>
+                <div>Go through each element and compare for the max and min</div>
             </div>
+            <b2>Worst case is 2n comparisons</b2>
+            <div class="code">
+                min <- A[1], max <- A{i]
+                for i = 2...n
+                    if A[i] > max then max \(\leftarrow\) A[i]
+                    else if A[i] < min then min \(\leftarrow\) A[i]</div>
+            <div class="definition">
+                <b>Better:</b>
+                <div>Split array into pairs and then compare each pair, separating the lower to a "small" array and bigger to a "big" array.
+                    Then find the min in "small" array, and the max in "big" array
+                </div>
+            </div>
+            <b2>Worst case \(\frac{1}{2}n + \frac{1}{2}n + \frac{1}{2}n = \frac{3}{2}n\) comparisons</b2>
         </div>
-        <div class="nospace b2">Worst case \(\frac{1}{2}n + \frac{1}{2}n + \frac{1}{2}n = \frac{3}{2}n\) comparisons</div>
-        <div class="divider"></div>
     </div>
 </div>
 <div class="notes 20160108">
     <h5>January 8, 2016</h5>
     <div>
         <em>Find two elements in an array that sum to m</em>
-        <div class="definition">
-            <b>Trivial Solution:</b>
-            <div>For each element, go through all elements searching for a match</div>
-        </div>
-        <div class="nospace b2">\(O(n^2)\)</div>
-        <div class="code">
-            Input: A, m.
-            for i = 1...n
-                for j = i...n
-                    if A[i] + A[j] = m
+        <div>
+            <div class="definition">
+                <b>Trivial Solution:</b>
+                <div>For each element, go through all elements searching for a match</div>
+            </div>
+            <b2>\(O(n^2)\)</b2>
+            <div class="code">
+                Input: A, m.
+                for i = 1...n
+                    for j = i...n
+                        if A[i] + A[j] = m
+                            return yes
+                return no
+            </div>
+            <div class="definition">
+                <b>Better:</b>
+                <div>Sort it and use binary search on second element</div>
+            </div>
+            <b2>\(O(nlogn)\)</b2>
+            <div class="code">
+                Sort(A)
+                for i = 1...n
+                    binary-search(m - A[i])
+                    if succeed return yes
+                return no
+            </div>
+            <div class="definition">
+                <b>Even Better:</b>
+                <div>Use a hashtable</div>
+            </div>
+            <b2>\(O(n)\)</b2>
+            <div class="code">
+                put A in hashtable H
+                for i = 1...n
+                    if H.contains(m-A[i])
                         return yes
-            return no
-        </div>
-        <div class="definition">
-            <b>Better:</b>
-            <div>Sort it and use binary search on second element</div>
-        </div>
-        <div class="nospace b2">\(O(nlogn)\)</div>
-        <div class="code">
-            Sort(A)
-            for i = 1...n
-                binary-search(m - A[i])
-                if succeed return yes
-            return no
-        </div>
-        <div class="definition">
-            <b>Even Better:</b>
-            <div>Use a hashtable</div>
-        </div>
-        <div class="nospace b2">\(O(n)\)</div>
-        <div class="code">
-            put A in hashtable H
-            for i = 1...n
-                if H.contains(m-A[i])
-                    return yes
-            return no
+                return no
+            </div>
         </div>
         <div class="divider"></div>
     </div>
     <div>
         <em>Question: How would you extend this problem to 3 elements to add up to m?</em>
-        <div class="definition">
-            <b>Trivial Solution:</b>
-            <div>Go through each element and then use trivial solution of 2 element case</div>
-        </div>
-        <div class="nospace b2">\(O(n^3)\)</div>
-        <div class="definition">
-            <b>Better:</b>
-            <div>Go through each element and use the better solution of 2 element case</div>
-        </div>
-        <div class="nospace b2">\(O(n^2logn)\)</div>
-        <div class="code">
-            for i = 1...n
-                if (Two-Sum(A, m-A[i]))
-                    return yes
-            return no
+        <div>
+            <div class="definition">
+                <b>Trivial Solution:</b>
+                <div>Go through each element and then use trivial solution of 2 element case</div>
+            </div>
+            <b2>\(O(n^3)\)</b2>
+            <div class="definition">
+                <b>Better:</b>
+                <div>Go through each element and use the better solution of 2 element case</div>
+            </div>
+            <b2>\(O(n^2logn)\)</b2>
+            <div class="code">
+                for i = 1...n
+                    if (Two-Sum(A, m-A[i]))
+                        return yes
+                return no
+            </div>
         </div>
         <div class="divider"></div>
     </div>
@@ -193,12 +202,13 @@
             A[i] + A[j] > m <br>
             So j will be reduced constantly until j == j' <span class="qed"></span>
         </div>
+        <div class="divider"></div>
     </div>
     <div>
         <em>Back to 3 sum knowing this sorted 2 sum algorithm</em>
         <div class="code">
-            Sort(A)                             //\(O(nlogn)\)
-            for i = 0...n                       //\(O(n^2))\)
+            Sort(A)                          //\(O(nlogn)\)
+            for i = 0...n                    //\(O(n^2))\)
                 if (Sorted-2-Sum(A, m-A[i]))
                     return yes
             return no
@@ -216,7 +226,7 @@
     </div>
     <div>
         <i>Divide-and-conquer</i>
-        <div>
+        <div class="nospace">
             Divide problem into smaller, simpler problems of the same kind <br>
             Eg. merge-sort <br>
             <div class="code">
@@ -238,19 +248,27 @@
     </div>
     <div>
         <i>Guess and check (verify)</i>
-        <div>
-            Lemma: \(T(n) \leq cnlogn\) <br>
-            Proof: Mathematical Induction <br>
-            Lemma is correct for n < 3 (vacuously true) <br>
-            Assume Lemma correct for n < m <br>
-            To prove Lemma for n = m <br>
-            \(T(m) = 2T(\frac{m}{2}) + m\) <br>
-            \(\leq 2(c\frac{m}{2}log\frac{m}{2}) + m\) <br>
-            \(= cm(log_2m - 1) + m\) <br>
-            \(= cmlog_2m - (c-1)m\) <br>
-            \(\leq cmlog_2m\) <span class="qed"></span> <br>
+        <div class="nospace">
+            <div class="definition">
+                <b>Lemma:</b>
+                <div>\(T(n) \leq cnlogn\)</div>
+            </div>
+            <div class="definition">
+                <b>Proof:</b>
+                <div>Mathematical Induction</div>
+            </div>
+            <div>
+                Lemma is correct for n < 3 (vacuously true) <br>
+                Assume Lemma correct for n < m <br>
+                To prove Lemma for n = m <br>
+                \(T(m) = 2T(\frac{m}{2}) + m\) <br>
+                \(\leq 2(c\frac{m}{2}log\frac{m}{2}) + m\) <br>
+                \(= cm(log_2m - 1) + m\) <br>
+                \(= cmlog_2m - (c-1)m\) <br>
+                \(\leq cmlog_2m\) <span class="qed"></span>
+            </div>
             <br>
-            \(T(n) = 2T(\frac{n}{2}) + n <br>
+            \(T(n) = 2T(\frac{n}{2}) + n\) <br>
             <err>Mistake:</err><br>
             \(T(n) = O(n)\) <br>
             Assume correctness for n < m <br>
@@ -261,14 +279,25 @@
             Every time we get an O(m), we introduce another constant, so because it is induction,
             we cannot simplify it like this. <br>
             <br>
-            \(T(n) \leq 2T(\frac{n}{2} + \sqrt{n}\) <br>
+            \(T(n) \leq 2T(\frac{n}{2}) + \sqrt{n}\) <br>
             \(\rightarrow T(n) = O(n)\) <br>
-            Lemma: \(T(n) \leq cn\) <br>
-            Proof: Assume correctness for n < m <br>
-            \(T(m) = 2T(\frac{m}{2}) + \sqrt{m}\) <br>
-            \(\leq 2(c\frac{m}{2}) + \sqrt{m}\) <br>
-            \(= cm + \sqrt{m}\) <br>
-            Lemma: \(T(n) = cn - 3\sqrt{n}\) <br>
+            <div class="definition">
+                <b>Lemma:</b>
+                <div>\(T(n) \leq cn\) </div>
+            </div>
+            <div class="definition">
+                <b>Proof:</b>
+                <div>Assume correctness for n < m </div>
+            </div>
+            <div>
+                \(T(m) = 2T(\frac{m}{2}) + \sqrt{m}\) <br>
+                \(\leq 2(c\frac{m}{2}) + \sqrt{m}\) <br>
+                \(= cm + \sqrt{m}\) <br>
+            </div>
+            <div class="definition">
+                <b>Lemma:</b>
+                <div>\(T(n) = cn - 3\sqrt{n}\) </div>
+            </div>
         </div>
     </div>
 </div>
