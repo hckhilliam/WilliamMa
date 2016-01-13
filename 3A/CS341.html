@@ -272,3 +272,134 @@
         </div>
     </div>
 </div>
+<div class="notes 20160113">
+    <div>
+        Modify the induction conclusion
+        <div>
+            \(T(n) \leq 2T(\frac{n}{2}) + \sqrt {n}\) <br>
+            Guess \(T(n) \leq cn\) <br>
+            \(T(n) \leq 2T(\frac{n}{2} + \sqrt {n})\) <br>
+            \(\leq 2c\frac{n}{2} + \sqrt {n}\) <br>
+            \(= cn + \sqrt {n}\) <br>
+
+            Lemma: \(T(n) \leq cn - 3\sqrt{n}\) <br>
+            Proof: Omit base case <br>
+            \(T(n) \leq 2T(n/2) + \sqrt{n}\) <br>
+            \(\leq 2(cn/2 - 3\sqrt {n/2})\) <br>
+            \(= cn - 3\sqrt{2}\sqrt{n} + \sqrt{n\)<br>
+            \(\leq cn - 3\sqrt {n}\)
+        </div>
+    </div>
+    <div>
+        Variable Substitution
+        <div>
+            \(T(n) = 2T(\sqrt{n}) + log_2n\) <br>
+            \(m = logn\) <br>
+            \(S(m) = T(2^m) = 2T(2^\frac{m}{2}) + m\) <br>
+            \(= 2S(m/2) + m\)<br><br>
+            Proved that \(S(m) = O(mlogm)\) <br>
+            \(T(n) = S(log_2n)\) <br>
+            \(= O(log_2n*loglogn))
+        </div>
+    </div>
+    <div>
+        Master's Theorem
+        <div>
+            \(n \rightarrow\) a smaller problems of size n/6 fix up the solution with \(n^c\) <br>
+            \(a \geq 1, b > 1, c \geq 0\), and \(T(n) = aT(n/b) + n^c\) <br>
+            Then: <br>
+            \(T(n) = \Theta(n^c) if c > log_ba\) <br>
+                        \(\Theta(n^clogn) if c = log_ba\) <br>
+                        \(Theta(n^{log_ba}) if c < log_ba\)
+            <br><br>
+            To prove the theorem, we only need to choos y > 0 s.t <br>
+            \(\frac{a}{b^c}\gamma + 1 = \gamma\) <br>
+            \(\gamma = \frac{1}{1-\frac{a}{b^c}} > 0\) <br>
+            Proof of case I: <br>
+            To prove \(T(n) \leq \gamman^c for \gamma > 0\) <br>
+            \(T(n) = aT(n/b) + n^c\) <br>
+            \(\leq a\gamma(n/b)^c + n^c\) <br>
+            \(= (\frac{a}{b^c}\gamma + 1)n^c\) <br>
+            \(= \gamma n^c\)
+        </div>
+    </div>
+    <div>
+        Counting inversion
+        <div>
+            1, 2, 3,..., n <br>
+            \(i_1, i_2,..., i_n \leftarrow \) permutation <br>
+            if j < k, and \(i_j > i_k\), then (j, k) is an inversion. 
+        </div>
+        <div>
+            <em>Count the number of inversions in an array</em>
+            <div class="definition">
+                <i>Better</i>
+                <div>Sort Count</div>
+            </div>
+            <div class="code">
+                counter <- 0
+                while (i < n/2 || j < n/2) {
+                    if (A1[i] <= A2[j])
+                        i++;
+                    else
+                        counter += n/2 - i + 1;
+                        j++;
+                }
+            </div>
+            <div class="divider"></div>
+        </div>
+        <div>
+            <em>Find a max subarray</em>
+            <div class="definition">
+                <em>Trivial Case:</em>
+                <div>Search every single subarray and sum them</div>
+            </div>
+            <div class="nospace b2">\(O(n^3)\)</div>
+            <div class="definition">
+                <em>Trivial 2:</em>
+                <div></div>
+            </div>
+            <div class="nospace b2">\(O(n^2)\)</div>
+            <div class="definition">
+                <em>Better:</em>
+                <div></div>
+            </div>
+            <div class="nospace b2">\(O(nlogn)\)</div>
+            <div class="code">
+                MS(A)
+                    return max(MS(A1), MS(A2), maxSuffix(A1) + maxPrefix(A2))
+            </div>
+            <div>
+                \(T(n) = 2T(n/2) + O(n)\) <br>
+                \(= O(nlogn)\)
+            </div>
+            <div class="definition">
+                <em>Even Better:</em>
+                <div></div>
+            </div>
+            <div class="nospace b2">\(O(n)\)</div>
+            <div class="divider"></div>
+        </div>
+    </div>
+    <div>
+        Big Integer Multiplication
+        <div class="definition">
+            <em>Trivial Solution:</em>
+            <div></div>
+        </div>
+        <div class="nospace b2">\(O(n^2)\)</div>
+        <div>
+            \(m = n/2\) <br>
+            \(x = 2^mx_1 + x_2\) <br>
+            \(y = 2^my_1 + y_2\) <br>
+            \(xy = 2^nx_1y_1 + 2^m(x_1y_2 + x_2y_1) + x_2y_2\) <br>
+            <br>
+            \(T(n) = 4T(n/2) + O(n)\) <br>
+            a = 4 <br>
+            b = 2 <br>
+            c = 1 <br>
+            \(c < log_ba\) <br>
+            \(n^{log_ba} = n^2\)
+        </div>
+    </div>
+</div>
