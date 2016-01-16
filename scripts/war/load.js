@@ -33,30 +33,33 @@ War.Load.prototype = {
         game.scale.refresh();
 
         game.stage.disableVisibilityChange = true;
-        // Load the bird sprite
-        //game.load.image('enemy1', 'images/blockerMad.png');
-        //game.load.image('grassMid', 'images/grassMid.png');
-        //game.load.image('grassLeft', 'images/grassLeft.png');
-       // game.load.image('grassRight', 'images/grassRight.png');
-      //  game.load.image('grassCliffLeft', 'images/grassCliffLeft.png');
-     //   game.load.image('grassCliffRight', 'images/grassCliffRight.png');
-    //    game.load.tilemap('map', 'images/tileMap.json', null, Phaser.Tilemap.TILED_JSON);
-     //   game.load.spritesheet('player', 'images/player.png', 32, 48);
 
-        game.load.image('marineSkin', 'images/marineBall2.png');
-        game.load.image('greenSkin', 'images/greenBall.png');
-        game.load.image('batSkin', 'images/batBall.png');
-        game.load.image('diamondSkin', 'images/diamondBall.png');
-        game.load.image('electricSkin', 'images/electricBall.png');
-        game.load.image('zergSkin', 'images/zergBall.png');
-        game.load.image('zealotSkin', 'images/zealotBall.png');
-        game.load.image('skullSkin', 'images/skullBall.png');
-        game.load.image('minionSkin', 'images/minionBall.png');
-        game.load.image('ninjaSkin', 'images/ninjaBall.png');
-        game.load.image('superSkin', 'images/superBall.png');
-        game.load.image('richSkin', 'images/richBall.png');
-        game.load.image('loveSkin', 'images/loveBall.png');
-        game.load.image('moneySkin', 'images/moneyBall.png');
+        game.load.image('batSkin', 'images/War/batBall.png');
+        game.load.image('blackSkin', 'images/War/blackBall.png');
+        game.load.image('blueSkin', 'images/War/blueBall.png');
+        game.load.image('cookieSkin', 'images/War/cookieBall.png');
+        game.load.image('cyanSkin', 'images/War/cyanBall.png');
+        game.load.image('electricSkin', 'images/War/electricBall.png');
+        game.load.image('fireSkin', 'images/War/fireBall.png');
+        game.load.image('greenSkin', 'images/War/greenBall.png');
+        game.load.image('happySkin', 'images/War/happyBall.png');
+        game.load.image('loveSkin', 'images/War/loveBall.png');
+        game.load.image('magentaSkin', 'images/War/magentaBall.png');
+        game.load.image('marineSkin', 'images/War/marineBall2.png');
+        game.load.image('minionSkin', 'images/War/minionBall.png');
+        game.load.image('moneySkin', 'images/War/moneyBall.png');
+        game.load.image('ninjaSkin', 'images/War/ninjaBall.png');
+        game.load.image('pokeSkin', 'images/War/pokeBall.png');
+        game.load.image('redSkin', 'images/War/redBall.png');
+        game.load.image('richSkin', 'images/War/richBall.png');
+        game.load.image('sadSkin', 'images/War/sadBall.png');
+        game.load.image('enemySkin', 'images/War/skullBall.png');
+        game.load.image('slimeSkin', 'images/War/slimeBall.png');
+        game.load.image('superSkin', 'images/War/superBall.png');
+        game.load.image('superHappySkin', 'images/War/superHappyBall.png');
+        game.load.image('yellowSkin', 'images/War/yellowBall.png');
+        game.load.image('zealotSkin', 'images/War/zealotBall.png');
+        game.load.image('zergSkin', 'images/War/zergBall.png');
 },
     create: function () {
         game.state.start('Game');

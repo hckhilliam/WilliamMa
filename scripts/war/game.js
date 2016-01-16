@@ -1,3 +1,5 @@
+var GAME_WIDTH = 2520, GAME_HEIGHT = 1260;
+
 var PlayerEnum = {
     Player1: 1, //red
     Player2: 2, //blue
@@ -6,25 +8,37 @@ var PlayerEnum = {
     Computer: 5
 };
 
-var skins = [ 'marineSkin',
-                'greenSkin',
-                'batSkin',
-                'diamondSkin',
+var skins = [ 'batSkin',
+                'blackSkin',
+                'blueSkin',
+                'cookieSkin',
+                'cyanSkin',
                 'electricSkin',
-                'zergSkin',
-                'zealotSkin',
-                'skullSkin',
-                'minionSkin',
-                'ninjaSkin',
-                'superSkin',
-                'richSkin',
+                'fireSkin',
+                'greenSkin',
+                'happySkin',
                 'loveSkin',
-                'moneySkin'
+                'magentaSkin',
+                'marineSkin',
+                'minionSkin',
+                'moneySkin',
+                'ninjaSkin',
+                'pokeSkin',
+                'redSkin',
+                'richSkin',
+                'sadSkin',
+                'slimeSkin',
+                'superSkin',
+                'superHappySkin',
+                'yellowSkin',
+                'zealotSkin',
+                'zergSkin'
 ];
+var ENEMY_SKIN = 'enemySkin';
 
 War.Game.prototype = {
-    players: [],
-    wallGroup: null,
+    players: null,
+    arrayMap: null, //0 = wall, pos numbers = free spaces (clearance), and neg nums means temporary blockages
     create: function () {
 
         // Set the physics system
@@ -32,11 +46,13 @@ War.Game.prototype = {
 
         // The player and its settings
         this.players = [];
+        War.Game.prototype.players = this.players;
         this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player1));
         this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player2));
         this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player3));
         this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player4));
 
+        this.players.push(new EnemyBot());
         this.wallGroup = game.add.group();
         this.wallGroup.enableBody = true;
         this.wallGroup.physicsBodyType = Phaser.Physics.ARCADE;
@@ -79,6 +95,16 @@ War.Game.prototype = {
 };
 
 function renderMap(wallGroup, wall, snap) {
+    //turn this map to a 2D array for easier pathfinding
+    var arrMap = new Array(GAME_HEIGHT/10);
+    for (var i = 0; i < arrMap.length; i++) {
+        var row = new Array(GAME_WIDTH/10);
+        for (var j = 0; j < row.length; j++) {
+            row[j] = 1;
+        }
+        arrMap[i] = row;
+    }
+
     //takes start and how many positions left and computes place of hole in positions
     function getRandomPos(refP, posLeft) {
         return refP + Math.floor(Math.random()*posLeft);
@@ -99,6 +125,9 @@ function renderMap(wallGroup, wall, snap) {
                 newWall.body.immovable = true;
                 while (newPos + newWall.width > endPos) { newWall.width -= snap; }
                 width = newWall.width;
+                for (var j = newPos/10; j < (newPos + newWall.width)/10; j++) {
+                    arrMap[constantPos/10][j] = 0;
+                }
             }
 
             //note this spacing of 2-6 or more could cause to overlap to next wall so we handle that in while loop above
@@ -110,6 +139,9 @@ function renderMap(wallGroup, wall, snap) {
             var endWall = wallGroup.create(newPos, constantPos, wall);
             endWall.width = endPos - newPos;
             endWall.body.immovable = true;
+            for (var j = newPos/10; j < (newPos + endWall.width)/10; j++) {
+                arrMap[constantPos/10][j] = 0;
+            }
         }
     }
 
@@ -127,6 +159,9 @@ function renderMap(wallGroup, wall, snap) {
                 newWall.body.immovable = true;
                 while (newPos + newWall.height > endPos) { newWall.height -= snap; }
                 height = newWall.height;
+                for (var j = newPos/10; j < (newPos + newWall.height)/10; j++) {
+                    arrMap[j][constantPos/10] = 0;
+                }
             }
 
             newPos = newPos + height + snap*(Math.floor(Math.random()*5)+2);
@@ -136,6 +171,9 @@ function renderMap(wallGroup, wall, snap) {
             var endWall = wallGroup.create(constantPos, newPos, wall);
             endWall.height = endPos - newPos;
             endWall.body.immovable = true;
+            for (var j = newPos/10; j < (newPos + endWall.width)/10; j++) {
+                arrMap[j][constantPos/10] = 0;
+            }
         }
     }
 
@@ -203,7 +241,20 @@ function renderMap(wallGroup, wall, snap) {
         }
     }
 
-    recurse({x: 0, y: 0}, {x: 2520, y: 1260});
+    recurse({x: 0, y: 0}, {x: GAME_WIDTH, y: GAME_HEIGHT});
+    War.Game.prototype.arrayMap = arrMap;
+
+    /*
+    PRINTING THE 2D MAP ARRAY
+    var string = '';
+    for (var i = 0; i < arrMap.length; i++) {
+        var row = arrMap[i];
+        for (var j = 0; j < row.length; j++) {
+            string += row[j];
+        }
+        string += '\n';
+    }
+    console.log(string);*/
 }
 
 function Player(skin, playerNum) {
@@ -220,8 +271,6 @@ function Player(skin, playerNum) {
     var gun;
     var color;
     var cursors;
-
-
 
     this.getSprite = function() {
         return sprite;
@@ -245,7 +294,7 @@ function Player(skin, playerNum) {
     };
 
     this.envCollide = function (bullet) {
-        bullet.bounce();
+        bullet.bounce(maxBounces);
     };
 
     this.update = function() {
@@ -283,7 +332,7 @@ function Player(skin, playerNum) {
     };
 
     function _addBullet() {
-        var bullet = new Bullet(bulletSpeed, bulletRadius, maxBounces, bulletDrawing);
+        var bullet = new Bullet(bulletSpeed, bulletRadius, bulletDrawing);
         game.add.existing(bullet);
         bullets.add(bullet);
         bullet.initialize();
@@ -291,14 +340,12 @@ function Player(skin, playerNum) {
 
     function _increaseBounces() {
         maxBounces++;
-        for (var i = 0; i < bullets.children.length; i++) {
-            bullets.children[i].updateMaxBounces(maxBounces);
-        }
     }
 
     function construct() {
         var pos = _getRandomPos();
         sprite = game.add.sprite(pos.x, pos.y, skin);
+        game.physics.arcade.enable(sprite);
 
         switch (playerNum) {
             case PlayerEnum.Player1:
@@ -338,6 +385,9 @@ function Player(skin, playerNum) {
                 });
                 color = '#FF00FF';
                 break;
+            default:
+                color = '#FFFFFF';
+                break;
         }
 
         gunDrawing.context.fillStyle = color;
@@ -349,7 +399,6 @@ function Player(skin, playerNum) {
         gun.pivot.x = 5;
         sprite.width = radius*2;
         sprite.height = radius*2;
-        game.physics.arcade.enable(sprite);
 
         bullets.enableBody = true;
         bullets.physicsBodyType = Phaser.Physics.ARCADE;
@@ -359,15 +408,17 @@ function Player(skin, playerNum) {
         for (var i = 0; i < 3; i++) { _addBullet(); }
 
         //fire only happens once when holding
-        cursors.fire.onDown.add(function () {
-            if (game.time.now > bulletTime) {
-                var bullet = bullets.getFirstExists(false);
-                if (bullet) {
-                    bullet.fire(gun.angle, sprite.x, sprite.y, radius);
-                    bulletTime = game.time.now + 100;
+        if (playerNum != PlayerEnum.Computer) {
+            cursors.fire.onDown.add(function () {
+                if (game.time.now > bulletTime) {
+                    var bullet = bullets.getFirstExists(false);
+                    if (bullet) {
+                        bullet.fire(gun.angle, sprite.x, sprite.y, radius);
+                        bulletTime = game.time.now + 100;
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     function _revive() {
@@ -376,18 +427,51 @@ function Player(skin, playerNum) {
     }
 
     function _getRandomPos() {
-        War.Game.prototype.players;// CONTINUE WORK HERE
-        return  { x:Math.floor(Math.random()*(2520/70))*70, y:Math.floor(Math.random()*(1260/70))*70 };
+        var players = War.Game.prototype.players;
+        var collision = false;
+        var point = null;
+        //do not spawn in a 2 sprite radius zone
+        do {
+            collision = false;
+            point = {x: Math.floor(Math.random() * (2520 / 70)) * 70, y: Math.floor(Math.random() * (1260 / 70)) * 70};
+            for (var i = 0; i < players.length; i++) {
+                var pSprite = players[i].getSprite();
+                if (point.x >= pSprite.x-2*pSprite.width && point.x <= pSprite.x + 3*pSprite.width &&
+                    point.y >= pSprite.y-2*pSprite.height && point.y <= pSprite.y + 3*pSprite.height) {
+                    collision = true;
+                    break;
+                }
+            }
+        } while (collision);
+
+        return  point;
     }
 
     construct();
 }
 
-function Bullet(s, r, b, bD) {
+//Inherits Player (I have no idea how to inherit javascript objects)
+function EnemyBot() {
+    var player = new Player(ENEMY_SKIN, PlayerEnum.Computer);
+
+    this.getSprite = player.getSprite;
+    this.getBullets = player.getBullets;
+    this.addBullet = player.addBullet;
+    this.increaseBounces = player.increaseBounces;
+    this.bulletCollide = player.bulletCollide;
+    this.envCollide = player.envCollide;
+
+    this.update = function () {
+
+    }
+
+
+}
+
+function Bullet(s, r, bD) {
     var initialBounces = 0;
     var speed = s;
     var radius = r;
-    var maxBounces = b;
     Phaser.Sprite.call(this, game, 0, 0, bD);
 
     this.initialize = function () {
@@ -398,10 +482,11 @@ function Bullet(s, r, b, bD) {
         this.body.bounce.set(1);
     };
 
-    this.bounce = function() {
-        initialBounces++;
+    this.bounce = function(maxBounces) {
         if (initialBounces == maxBounces) {
             this.killEm();
+        } else {
+            initialBounces++;
         }
     };
 
@@ -433,11 +518,11 @@ function Bullet(s, r, b, bD) {
         this.body.velocity.x = speed*Math.cos(transformedTheta);
         this.body.velocity.y = -speed*Math.sin(transformedTheta);
     };
-
-    this.updateMaxBounces = function (newBounces) {
-        maxBounces = newBounces;
-    };
 }
 
 Bullet.prototype = Object.create(Phaser.Sprite.prototype);
 Bullet.prototype.constructor = Bullet;
+
+/*known issues:
+Ppl can go on top of each other
+ */
