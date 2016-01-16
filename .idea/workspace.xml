@@ -2,73 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="764d5e96-d45b-42c5-8862-be94c76aeb9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/batBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/blackBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/blueBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/cookieBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/cyanBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/electricBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/fireBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/greenBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/happyBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/loveBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/magentaBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/marineBall2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/minionBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/moneyBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/ninjaBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/pokeBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/redBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/richBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/sadBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/skullBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/slimeBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/superBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/superHappyBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/yellowBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/zealotBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/War/zergBall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\batBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\bird.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\blackBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\blockerMad.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\blueBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\cookieBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\cyanBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\diamondBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\electricBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\fireball.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\grassCliffLeft.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\grassCliffRight.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\grassLeft.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\grassMid.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\grassRight.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\greenBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\happyBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\loveBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\magentaBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\marineBall2.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\minionBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\moneyBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\ninjaBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\pipe.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\player.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\pokeBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\redBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\richBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\sadBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\skullBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\slimeBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\superBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\superHappyBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\testMap.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\tileMap.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\yellowBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\zealotBall.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\WilliamMa\images\zergBall.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/war/game.js" afterPath="$PROJECT_DIR$/scripts/war/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/war/load.js" afterPath="$PROJECT_DIR$/scripts/war/load.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WilliamMa.iws" />
@@ -89,13 +23,13 @@
     <favorites_list name="WilliamMa" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.61337006">
+    <splitter split-orientation="horizontal" split-proportion="0.61061335">
       <split-first>
         <leaf>
           <file leaf-file-name="3A.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/3A.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.0">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="55" column="20" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="20" />
                   <folding />
                 </state>
@@ -106,10 +40,9 @@
             <entry file="file://$PROJECT_DIR$/3A/CS341.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="113" column="10" selection-start-line="113" selection-start-column="10" selection-end-line="113" selection-end-column="10" />
+                  <caret line="326" column="10" selection-start-line="326" selection-start-column="10" selection-end-line="326" selection-end-column="10" />
                   <folding>
-                    <element signature="n#div#0;n#!!top" expanded="false" />
-                    <element signature="n#div#1;n#!!top" expanded="false" />
+                    <element signature="n#div#3;n#!!top" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -158,8 +91,8 @@
           <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/scripts/war/game.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.33333334">
-                  <caret line="230" column="44" selection-start-line="230" selection-start-column="44" selection-end-line="230" selection-end-column="44" />
+                <state vertical-scroll-proportion="0.67391306">
+                  <caret line="287" column="22" selection-start-line="286" selection-start-column="31" selection-end-line="287" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
@@ -182,8 +115,8 @@
           <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/scripts/war/game.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="6.138796">
-                  <caret line="259" column="34" selection-start-line="259" selection-start-column="34" selection-end-line="259" selection-end-column="34" />
+                <state vertical-scroll-proportion="0.7090301">
+                  <caret line="41" column="93" selection-start-line="41" selection-start-column="93" selection-end-line="41" selection-end-column="93" />
                   <folding />
                 </state>
               </provider>
@@ -272,7 +205,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -354,6 +286,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -517,7 +450,13 @@
       <option name="project" value="LOCAL" />
       <updated>1452353510825</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="updated war:&#10;-created 2d array map for pathfinding to be implemented&#10;-improved spawning such that you cannot spawn within a 3 person radius of another player">
+      <created>1452919884995</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1452919884995</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -529,7 +468,7 @@
       <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3193096" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2707659" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26968718" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -569,7 +508,8 @@
     <MESSAGE value="changed a little for cs370 notes" />
     <MESSAGE value="styled notes a little more" />
     <MESSAGE value="updated war:&#10;-created 2d array map for pathfinding to be implemented&#10;-improved spawning such that you cannot spawn within a 3 person radius of another player" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated war:&#10;-created 2d array map for pathfinding to be implemented&#10;-improved spawning such that you cannot spawn within a 3 person radius of another player" />
+    <MESSAGE value="updated war:&#10;-finished algorithm for generating the clearance based 2d array map of the game" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated war:&#10;-finished algorithm for generating the clearance based 2d array map of the game" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -578,13 +518,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -883,10 +816,9 @@
     <entry file="file://$PROJECT_DIR$/3A/CS341.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="113" column="10" selection-start-line="113" selection-start-column="10" selection-end-line="113" selection-end-column="10" />
+          <caret line="326" column="10" selection-start-line="326" selection-start-column="10" selection-end-line="326" selection-end-column="10" />
           <folding>
-            <element signature="n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -937,10 +869,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/war/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="230" column="44" selection-start-line="230" selection-start-column="44" selection-end-line="230" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.67391306">
+          <caret line="287" column="22" selection-start-line="286" selection-start-column="31" selection-end-line="287" selection-end-column="22" />
           <folding />
         </state>
       </provider>

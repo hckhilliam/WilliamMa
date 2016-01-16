@@ -39,6 +39,7 @@ var ENEMY_SKIN = 'enemySkin';
 War.Game.prototype = {
     players: null,
     arrayMap: null, //0 = wall, pos numbers = free spaces (clearance), and neg nums means temporary blockages
+                    //Also note that the map is a condensed version (every cell is actually a 10x10 pixel)
     create: function () {
 
         // Set the physics system
@@ -98,11 +99,7 @@ function renderMap(wallGroup, wall, snap) {
     //turn this map to a 2D array for easier pathfinding
     var arrMap = new Array(GAME_HEIGHT/10);
     for (var i = 0; i < arrMap.length; i++) {
-        var row = new Array(GAME_WIDTH/10);
-        for (var j = 0; j < row.length; j++) {
-            row[j] = 1;
-        }
-        arrMap[i] = row;
+        arrMap[i] = new Array(GAME_WIDTH/10);
     }
 
     //takes start and how many positions left and computes place of hole in positions
@@ -242,15 +239,57 @@ function renderMap(wallGroup, wall, snap) {
     }
 
     recurse({x: 0, y: 0}, {x: GAME_WIDTH, y: GAME_HEIGHT});
+
+    //fill rest of arrayMap in with clearance values
+  //  var time = new Date().getTime();
+    for (var i = 0; i < arrMap.length; i++) { //i = row position
+        var row = arrMap[i];
+        for (var j = 0; j < row.length; j++) { //j = column position
+            //if there is something in the cell already, then we can skip it
+            //skipping and calculating diagonal clearances improves average calculation speeds from 167ms to 10ms :D
+            if (row[j] == undefined) {
+                var columnRight = j+1;
+                var rowBot = i+1;
+                var clearance = 1;
+                var notBlocked = true;
+                //make sure we are not going out of the map
+                while (notBlocked && columnRight < row.length && rowBot < arrMap.length) {
+                    //go down right column as well as across bottom row to find wall
+                    //k is new row pos, l is new column position
+                    //Should always be a square so we only need to compare one section
+                    for (var k = i, l = j; k <= rowBot; k++, l++) {
+                        //anything <= 0 means it is impassable
+                        //first is the one in right column, and second one is cell in bottom row
+                        if (arrMap[k][columnRight] <= 0 || arrMap[rowBot][l] <= 0) {
+                            notBlocked = false;
+                            break;
+                        }
+                    }
+
+                    //make sure no wall was in the way before adding 1 to clearance
+                    if (notBlocked) clearance++;
+                    columnRight++;
+                    rowBot++;
+                }
+
+                //We can safely mark the current cell as well as all bottom right diagonals until clearance reaches 0
+                for (var k = 0; clearance > 0; clearance--, k++) {
+                    arrMap[i+k][j+k] = clearance;
+                }
+            }
+        }
+    }
+   // console.log('Execution time: ' + (new Date().getTime() - time));
+
     War.Game.prototype.arrayMap = arrMap;
 
-    /*
-    PRINTING THE 2D MAP ARRAY
-    var string = '';
-    for (var i = 0; i < arrMap.length; i++) {
+
+    //PRINTING THE 2D MAP ARRAY
+    /*var string = '';
+    for (var i = 0; i < 50; i++) {
         var row = arrMap[i];
-        for (var j = 0; j < row.length; j++) {
-            string += row[j];
+        for (var j = 0; j < 50; j++) {
+            string += row[j] + '\t';
         }
         string += '\n';
     }
