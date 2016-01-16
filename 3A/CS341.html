@@ -403,3 +403,84 @@
         </div>
     </div>
 </div>
+<div class="notes 20160115">
+    <div>
+        \(x = x_1*10^m + x_2\) <br>
+        \(y = y_110^m + y_2\) <br>
+        \(xy = (x_110^m + x_2)(y_110^m + y_2)\) <br>
+        \(= x_1y_110^{2m} + (x_2y_1 + x_1y_2)10^m + x_2y_2\) <br>
+        \(= x_1y_110^{2m} + (x_1 + x2)(y_1 + y_2)10^m + x_2y_2 - x_1y_110^m - x_2y_210^m\) <br>
+        \(= x_1y_1(10^{2m}-10^m) + (x_1 + x_2)(y_1 + y_2)10^m + x_2y_2(1-10^m)\) <br>
+        <br>
+        \(T(n) = 3T(n/2) + O(n)\) <br>
+        \(n^{log_ba} = n^{log_23} < O(n^1.59)\) <br>
+        Karatsuba's Algorithm
+    </div>
+    <div>
+        <i>Matrix Multiplication</i>
+        <div>
+            A, B are nxn matrices <br>
+            C = A x B <br>
+            \(C_{ij} = \sum\limits{k=1}{n}a_{ik}b_{kj}\) <br>
+        </div>
+         <div class="nospace b2">\(On^3)\)</div>
+         <div>
+            \(T(n) = 8T(n/2) + O(n^2)\) <br>
+            Want to reduce that 8 coefficient <br>
+            Use Strassen algorithm <br>
+            \(M_1 = (A_{11} + A_{22})(B_{11} + B_{22})\) <br>
+            \(M_2 = (A_{21} + A_{22})B_{11}\) <br>
+            \(M_3 = ...\) <br>
+            <br>
+            \(c_{11} = M_1 + M_4 - M_5 + M_7\) <br>
+            \(c_{12} = M_3 + M_5\) <br>
+            \(c_{21} = M_2 + M_4\) <br>
+            \(c_{22} = M_1 - M_2 + M_3 + M_6\) <br>
+            \(T(n) = 7T(n/2) + O(n^2)\) <br>
+            \(= O(n^{log_27}) ~ n^{2.807}\)
+         </div>
+    </div>
+    <div>
+        <em>Question: Closest Pair of Points</em>
+        <div>
+            <div class="definition">
+                <em>Trivial Solution:</em>
+                <div>Go through each point and save shortest pair</div>
+            </div>
+            <div class="nospace b2">\(O(n^2)\)</div>
+            <div class="code">
+                for i = 1...n
+                    for j = 1...n
+                        compute d(i,j)
+            </div>
+            <div class="definition">
+                <em>Better:</em>
+                <div>Divide and conquer the graph by continuously splitting in 2 and finding the min on each side.
+                     Then, using the min of both sides, find the min point of the middle section, only needing to 
+                     search at most current min left and current min right
+                 </div>
+             </div>
+             <div class="definition">
+                <em>Lemma:</em>
+                <div>There is at most one point in each d/2 x d/2 block</div>
+            </div>
+            <div class="definition">
+                <em>Proof:</em>
+                <div></div>
+            </div>
+            <div>
+                \(T(n) = 2T(n/2) + O(n)\) <br>
+                \(= O(nlogn)\)
+            </div>
+            <div class="code">
+                \(j_1 \leftarrow 0, j_2 \leftarrow 1\)
+                for i = 1...|left|
+                    while (R[j_1+1] < L[i] - \delta)
+                        j_1++;
+                    while (R[j_2] \leq L[i] + \delta)
+                        j_2++;
+                    compare L[i] vs R[j_1+1...j_2-1]
+        </div>
+        <div class="divider"></div>
+    </div>
+</div>
