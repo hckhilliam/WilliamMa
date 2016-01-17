@@ -38,22 +38,36 @@ var ENEMY_SKIN = 'enemySkin';
 
 War.Game.prototype = {
     players: null,
-    arrayMap: null, //0 = wall, pos numbers = free spaces (clearance), and neg nums means temporary blockages
+    arrayMap: null, //0 = wall, pos numbers = free spaces (clearance), and neg nums means player is on it
                     //Also note that the map is a condensed version (every cell is actually a 10x10 pixel)
+    printMap: function (startRow, startCol, rows, cols) {
+        //PRINTING THE 2D MAP ARRAY
+        var string = '';
+        var map = War.Game.prototype.arrayMap;
+        if (!rows) rows = map.length;
+        if (!cols) cols = map[0].length;
+
+        for (var i = startRow; i < Math.min(startRow + rows, map.length); i++) {
+            var row = map[i];
+            for (var j = startCol; j < Math.min(startCol + cols, row.length); j++) {
+                string += row[j].clearance + '\t';
+            }
+        string += '\n';
+        }
+        console.log(string);
+    },
+    findPath: function () {
+        War.Game.prototype.players[4].computerUpdate();
+    },
+    stopPath: function () {
+        War.Game.prototype.players[4].stop();
+    },
     create: function () {
 
         // Set the physics system
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        // The player and its settings
-        this.players = [];
-        War.Game.prototype.players = this.players;
-        this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player1));
-        this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player2));
-        this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player3));
-        this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player4));
-
-        this.players.push(new EnemyBot());
+        //map related items
         this.wallGroup = game.add.group();
         this.wallGroup.enableBody = true;
         this.wallGroup.physicsBodyType = Phaser.Physics.ARCADE;
@@ -74,6 +88,24 @@ War.Game.prototype = {
         wall.rect(0, 0, 10, 10, '#ffffff');
         renderMap(this.wallGroup, wall, 70);
 
+        // The player and its settings
+        this.players = [];
+        War.Game.prototype.players = this.players;
+        this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player1));
+        this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player2));
+        this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player3));
+        this.players.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player4));
+        //ai
+        for (var i = 0; i < 1; i++) {
+            this.players.push(new EnemyBot());
+        }
+
+        for (var i = 0; i < this.players.length; i++) {
+            var currPlayer = this.players[i];
+            if (!currPlayer.isHuman) {
+                currPlayer.computerUpdate();
+            }
+        }
     },
 
     update: function () {
@@ -89,15 +121,30 @@ War.Game.prototype = {
                 if (i != j) {
                     var bulletPlayer = this.players[j];
                     game.physics.arcade.collide(sprite, bulletPlayer.getBullets(), currPlayer.bulletCollide);
+                    if (currPlayer.isHuman && !bulletPlayer.isHuman) {
+                        game.physics.arcade.overlap(sprite, bulletPlayer.getSprite(), currPlayer.enemyCollide);
+                    }
                 }
             }
         }
     }
 };
 
+//for the map
+function Node(x, y, c) {
+    this.parent = null;
+    this.x = x;
+    this.y = y;
+    this.clearance = c;
+    this.edgeNodes = [];
+}
+
 function renderMap(wallGroup, wall, snap) {
+    var time = new Date().getTime();
     //turn this map to a 2D array for easier pathfinding
     var arrMap = new Array(GAME_HEIGHT/10);
+    War.Game.prototype.arrayMap = arrMap;
+
     for (var i = 0; i < arrMap.length; i++) {
         arrMap[i] = new Array(GAME_WIDTH/10);
     }
@@ -123,7 +170,7 @@ function renderMap(wallGroup, wall, snap) {
                 while (newPos + newWall.width > endPos) { newWall.width -= snap; }
                 width = newWall.width;
                 for (var j = newPos/10; j < (newPos + newWall.width)/10; j++) {
-                    arrMap[constantPos/10][j] = 0;
+                    arrMap[constantPos/10][j] = new Node(j, constantPos/10, 0);
                 }
             }
 
@@ -137,7 +184,7 @@ function renderMap(wallGroup, wall, snap) {
             endWall.width = endPos - newPos;
             endWall.body.immovable = true;
             for (var j = newPos/10; j < (newPos + endWall.width)/10; j++) {
-                arrMap[constantPos/10][j] = 0;
+                arrMap[constantPos/10][j] = new Node(j, constantPos/10, 0);
             }
         }
     }
@@ -157,7 +204,7 @@ function renderMap(wallGroup, wall, snap) {
                 while (newPos + newWall.height > endPos) { newWall.height -= snap; }
                 height = newWall.height;
                 for (var j = newPos/10; j < (newPos + newWall.height)/10; j++) {
-                    arrMap[j][constantPos/10] = 0;
+                    arrMap[j][constantPos/10] = new Node(constantPos/10, j, 0);
                 }
             }
 
@@ -168,8 +215,8 @@ function renderMap(wallGroup, wall, snap) {
             var endWall = wallGroup.create(constantPos, newPos, wall);
             endWall.height = endPos - newPos;
             endWall.body.immovable = true;
-            for (var j = newPos/10; j < (newPos + endWall.width)/10; j++) {
-                arrMap[j][constantPos/10] = 0;
+            for (var j = newPos/10; j < (newPos + endWall.height)/10; j++) {
+                arrMap[j][constantPos/10] = new Node(constantPos/10, j, 0);
             }
         }
     }
@@ -239,9 +286,9 @@ function renderMap(wallGroup, wall, snap) {
     }
 
     recurse({x: 0, y: 0}, {x: GAME_WIDTH, y: GAME_HEIGHT});
+    //console.log('Execution time: ' + (new Date().getTime() - time));
 
     //fill rest of arrayMap in with clearance values
-  //  var time = new Date().getTime();
     for (var i = 0; i < arrMap.length; i++) { //i = row position
         var row = arrMap[i];
         for (var j = 0; j < row.length; j++) { //j = column position
@@ -260,7 +307,8 @@ function renderMap(wallGroup, wall, snap) {
                     for (var k = i, l = j; k <= rowBot; k++, l++) {
                         //anything <= 0 means it is impassable
                         //first is the one in right column, and second one is cell in bottom row
-                        if (arrMap[k][columnRight] <= 0 || arrMap[rowBot][l] <= 0) {
+                        if ((arrMap[k][columnRight] && arrMap[k][columnRight].clearance <= 0) ||
+                            (arrMap[rowBot][l] && arrMap[rowBot][l].clearance <= 0)) {
                             notBlocked = false;
                             break;
                         }
@@ -273,27 +321,46 @@ function renderMap(wallGroup, wall, snap) {
                 }
 
                 //We can safely mark the current cell as well as all bottom right diagonals until clearance reaches 0
-                for (var k = 0; clearance > 0; clearance--, k++) {
-                    arrMap[i+k][j+k] = clearance;
-                }
+            //    for (var k = 0; clearance > 0; clearance--, k++) {
+              //      arrMap[i+k][j+k] = new Node(j+k, i+k, clearance);
+             //   }
+                arrMap[i][j] = new Node(j, i, clearance);
             }
         }
     }
-   // console.log('Execution time: ' + (new Date().getTime() - time));
-
-    War.Game.prototype.arrayMap = arrMap;
-
-
-    //PRINTING THE 2D MAP ARRAY
-    /*var string = '';
-    for (var i = 0; i < 50; i++) {
+    console.log('Execution time: ' + (new Date().getTime() - time));
+    //go through the map again to update all the edgeNodes
+    for (var i = 0; i < arrMap.length; i++) { //i = row position
         var row = arrMap[i];
-        for (var j = 0; j < 50; j++) {
-            string += row[j] + '\t';
+        for (var j = 0; j < row.length; j++) { //j = column position
+            var cell = row[j];
+            if (j > 1) {
+                cell.edgeNodes.push(row[j-1]);
+                if (i > 1) {
+                    cell.edgeNodes.push(arrMap[i-1][j-1]);
+                }
+                if (i < arrMap.length-1) {
+                    cell.edgeNodes.push(arrMap[i+1][j-1]);
+                }
+            }
+            if (j < row.length-1) {
+                cell.edgeNodes.push(row[j+1]);
+                if (i > 1) {
+                    cell.edgeNodes.push(arrMap[i-1][j+1]);
+                }
+                if (i < arrMap.length-1) {
+                    cell.edgeNodes.push(arrMap[i+1][j+1]);
+                }
+            }
+            if (i > 1) {
+                cell.edgeNodes.push(arrMap[i-1][j]);
+            }
+            if (i < arrMap.length-1) {
+                cell.edgeNodes.push(arrMap[i+1][j]);
+            }
         }
-        string += '\n';
     }
-    console.log(string);*/
+    console.log('Execution time: ' + (new Date().getTime() - time));
 }
 
 function Player(skin, playerNum) {
@@ -310,6 +377,9 @@ function Player(skin, playerNum) {
     var gun;
     var color;
     var cursors;
+    var prevPositions = [];
+
+    this.isHuman = true;
 
     this.getSprite = function() {
         return sprite;
@@ -325,9 +395,18 @@ function Player(skin, playerNum) {
 
     this.bulletCollide = function (player, bullet) {
         if (sprite.alive) {
+            _clearMap();
             sprite.kill();
             bullet.killEm();
 
+            setTimeout(_revive, 5000);
+        }
+    };
+
+    this.enemyCollide = function() {
+        if (sprite.alive) {
+            _clearMap();
+            sprite.kill();
             setTimeout(_revive, 5000);
         }
     };
@@ -366,6 +445,19 @@ function Player(skin, playerNum) {
                 gun.angle -= 3;
             } else if (cursors.rotateRight.isDown) {
                 gun.angle += 3;
+            }
+
+            var map = War.Game.prototype.arrayMap;
+            //first get rid of previous positions
+            _clearMap();
+            //update new position
+            var currY = Math.floor(sprite.y/10);
+            var currX = Math.floor(sprite.x/10);
+            for (var i = currY; i < currY + radius/5; i++){
+                for (var j = currX; j < currX + radius/5; j++) {
+                    map[i][j].clearance = -Math.abs(map[i][j].clearance);
+                    prevPositions.push({x: j, y: i});
+                }
             }
         }
     };
@@ -460,6 +552,7 @@ function Player(skin, playerNum) {
         }
     }
 
+    this.revive = _revive;
     function _revive() {
         var randomPos = _getRandomPos();
         sprite.reset(randomPos.x, randomPos.y);
@@ -469,21 +562,33 @@ function Player(skin, playerNum) {
         var players = War.Game.prototype.players;
         var collision = false;
         var point = null;
+        var collisions = 0; //collisions to log
         //do not spawn in a 2 sprite radius zone
         do {
             collision = false;
             point = {x: Math.floor(Math.random() * (2520 / 70)) * 70, y: Math.floor(Math.random() * (1260 / 70)) * 70};
             for (var i = 0; i < players.length; i++) {
-                var pSprite = players[i].getSprite();
-                if (point.x >= pSprite.x-2*pSprite.width && point.x <= pSprite.x + 3*pSprite.width &&
-                    point.y >= pSprite.y-2*pSprite.height && point.y <= pSprite.y + 3*pSprite.height) {
-                    collision = true;
-                    break;
+                if (players.isHuman) {
+                    var pSprite = players[i].getSprite();
+                    if (point.x >= pSprite.x - 2 * pSprite.width && point.x <= pSprite.x + 3 * pSprite.width &&
+                        point.y >= pSprite.y - 2 * pSprite.height && point.y <= pSprite.y + 3 * pSprite.height) {
+                        collision = true;
+                        collisions++;
+                        break;
+                    }
                 }
             }
         } while (collision);
-
+        if (collisions > 0) console.log('collisions: ' + collisions);
         return  point;
+    }
+
+    function _clearMap() {
+        var map = War.Game.prototype.arrayMap;
+        while (prevPositions.length) {
+            var pos = prevPositions.pop();
+            map[pos.y][pos.x].clearance = Math.abs(map[pos.y][pos.x].clearance);
+        }
     }
 
     construct();
@@ -492,19 +597,133 @@ function Player(skin, playerNum) {
 //Inherits Player (I have no idea how to inherit javascript objects)
 function EnemyBot() {
     var player = new Player(ENEMY_SKIN, PlayerEnum.Computer);
+    var speed = 400;
+    var tween = game.add.tween(player.getSprite());
+  //  var debugPath = game.add.graphics(0, 0);
+    var timeoutPathFinding;
 
     this.getSprite = player.getSprite;
     this.getBullets = player.getBullets;
     this.addBullet = player.addBullet;
     this.increaseBounces = player.increaseBounces;
-    this.bulletCollide = player.bulletCollide;
+    this.bulletCollide = function (p, bullet) {
+        var sprite = player.getSprite();
+        if (sprite.alive) {
+            sprite.kill();
+            tween.stop();
+          //  debugPath.clear();
+            clearTimeout(timeoutPathFinding);
+            bullet.killEm();
+            player.revive();
+            _pathToClosestEnemy();
+        }
+    };
     this.envCollide = player.envCollide;
+    this.isHuman = false;
 
     this.update = function () {
 
+    };
+
+    this.computerUpdate = function () {
+        _pathToClosestEnemy();
+    };
+
+    this.stop = function () {
+        tween.stop();
+    };
+
+    //uses breadth first search to find the closest enemy to target and then follows the path
+    //we will run this piece every 1 second
+    function _pathToClosestEnemy() {
+        var time = new Date().getTime();
+        var map = War.Game.prototype.arrayMap;
+        var sprite = player.getSprite();
+        var clearanceLevel = sprite.width/10;
+        var startNode = map[Math.round(sprite.y/10)][Math.round(sprite.x/10)];
+        startNode.parent = null; //first node parent is null
+        var searchedList = []; //list of nodes that we already looked at
+        var queue = [startNode]; //queue of nodes that we will search next
+        while (queue.length) {
+            var currNode = queue.shift(); //first element in the queue
+            searchedList.push(currNode);
+            //found a path when clearance is < 0
+            if (currNode.clearance < 0) {
+                //return the path, pushing all its parents until parent is null
+                var path = [currNode];
+                while (currNode.parent) {
+                    path.push(currNode.parent);
+                    currNode = currNode.parent;
+                }
+         //       console.log('Execution time: ' + (new Date().getTime() - time));
+                _followPath(new Date().getTime() - time, path);
+                return;
+            }
+            else if (currNode.clearance >= clearanceLevel) {
+                for (var i = 0; i < currNode.edgeNodes.length; i++) {
+                    var edgeNode = currNode.edgeNodes[i];
+                    //make sure node is not searched already or is going to be searched
+                    if (searchedList.indexOf(edgeNode) < 0 && queue.indexOf(edgeNode) < 0) {
+                        edgeNode.parent = currNode; //this guys parent is currNode
+                        queue.push(edgeNode); //add it to the queue
+                    }
+                }
+            }
+        }
+     //   console.log('Execution time: ' + (new Date().getTime() - time));
+        clearTimeout(timeoutPathFinding);
+        timeoutPathFinding = setTimeout(_pathToClosestEnemy, 3000);
+     //   return []; //no path found
     }
 
+    //for some reason, tween starts already for the time calculating the minpath, so we delay it
+    //by the amount of time it took to calculate the path
+    function _followPath(time, path) {
+        tween.stop();
+        setTimeout(function () {
+            var sprite = player.getSprite();
+       //     debugPath.clear();
+       //     debugPath.lineStyle(1, 0xff0000);
+         //   debugPath.moveTo(sprite.x, sprite.y);
 
+            var startCount = path.length-1;
+
+            //if sprite already in the middle of the path, we just continue from that point
+            var currentNode = War.Game.prototype.arrayMap[Math.round(sprite.y/10)][Math.round(sprite.x/10)];
+            var existingInPath = path.indexOf(currentNode);
+            if (existingInPath >= 0) {
+                startCount = existingInPath;
+            }
+
+            var xCoords = [sprite.x];
+            var yCoords = [sprite.y];
+            for (var i = startCount; i >= 0; i--) {
+                var node = path[i];
+                xCoords.push(node.x * 10);
+                yCoords.push(node.y * 10);
+            //    debugPath.lineTo(node.x * 10, node.y * 10);
+            }
+
+            tween = game.add.tween(player.getSprite());
+         /*   while (path.length) {
+                var node = path.pop();
+                xCoords.push(node.x * 10);
+                yCoords.push(node.y * 10);
+                debugPath.lineTo(node.x * 10, node.y * 10);
+            }*/
+            //time is distance*10 to get pixels / pixels/second (speed) and multiply by 1000 to get milliseconds
+            //console.log('tween time: ' + xCoords.length * 10000 / speed);
+            tween.to({x: xCoords, y: yCoords}, xCoords.length * 10000 / speed, null)
+                .onComplete.add(function() {
+                    clearTimeout(timeoutPathFinding);
+                    _pathToClosestEnemy();
+                });
+            tween.interpolation(Phaser.Math.linearInterpolation);
+            tween.start();
+            clearTimeout(timeoutPathFinding);
+            timeoutPathFinding = setTimeout(_pathToClosestEnemy, 3000);
+        }, time);
+    }
 }
 
 function Bullet(s, r, bD) {

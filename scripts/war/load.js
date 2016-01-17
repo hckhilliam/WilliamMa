@@ -8,8 +8,8 @@ var War = {
     Game: function (game) {}
 };
 
-var w = 2300;
-var h = 1000;
+var w = 2520;
+var h = 1400;
 
 War.Boot.prototype = {
     preload: function() {
@@ -31,7 +31,7 @@ War.Load.prototype = {
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVeritcally = true;
         game.scale.refresh();
-
+        adjust();
         game.stage.disableVisibilityChange = true;
 
         game.load.image('batSkin', 'images/War/batBall.png');
@@ -65,3 +65,13 @@ War.Load.prototype = {
         game.state.start('Game');
     }
 };
+
+$(window).resize(adjust);
+
+function adjust() {
+    var game = $('#war');
+    game.css({
+        'width': window.innerWidth + 'px',
+        'height': window.innerHeight + 'px'
+    });
+}
