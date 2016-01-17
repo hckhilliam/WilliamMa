@@ -120,7 +120,7 @@ War.Game.prototype = {
             for (var j = 0; j < this.players.length; j++) {
                 if (i != j) {
                     var bulletPlayer = this.players[j];
-                    game.physics.arcade.collide(sprite, bulletPlayer.getBullets(), currPlayer.bulletCollide);
+                    game.physics.arcade.overlap(sprite, bulletPlayer.getBullets(), currPlayer.bulletCollide);
                     if (currPlayer.isHuman && !bulletPlayer.isHuman) {
                         game.physics.arcade.overlap(sprite, bulletPlayer.getSprite(), currPlayer.enemyCollide);
                     }
@@ -450,11 +450,11 @@ function Player(skin, playerNum) {
             var map = War.Game.prototype.arrayMap;
             //first get rid of previous positions
             _clearMap();
-            //update new position
-            var currY = Math.floor(sprite.y/10);
-            var currX = Math.floor(sprite.x/10);
-            for (var i = currY; i < currY + radius/5; i++){
-                for (var j = currX; j < currX + radius/5; j++) {
+            //update new position (we update middle 40px so ai can get closer to you
+            var currY = Math.floor(sprite.y/10)+1;
+            var currX = Math.floor(sprite.x/10)+1;
+            for (var i = currY; i < currY + radius/5 - 1; i++){
+                for (var j = currX; j < currX + radius/5 - 1; j++) {
                     map[i][j].clearance = -Math.abs(map[i][j].clearance);
                     prevPositions.push({x: j, y: i});
                 }
@@ -521,13 +521,6 @@ function Player(skin, playerNum) {
                 break;
         }
 
-        gunDrawing.context.fillStyle = color;
-        gunDrawing.context.fillRect(0, 0, 10, 10);
-        gun = game.make.sprite(16, 16, gunDrawing);
-
-        sprite.addChild(gun);
-        gun.pivot.y = 23;
-        gun.pivot.x = 5;
         sprite.width = radius*2;
         sprite.height = radius*2;
 
@@ -540,6 +533,13 @@ function Player(skin, playerNum) {
 
         //fire only happens once when holding
         if (playerNum != PlayerEnum.Computer) {
+            gunDrawing.context.fillStyle = color;
+            gunDrawing.context.fillRect(0, 0, 10, 10);
+            gun = game.make.sprite(16, 16, gunDrawing);
+            sprite.addChild(gun);
+            gun.pivot.y = 23;
+            gun.pivot.x = 5;
+
             cursors.fire.onDown.add(function () {
                 if (game.time.now > bulletTime) {
                     var bullet = bullets.getFirstExists(false);
@@ -597,7 +597,7 @@ function Player(skin, playerNum) {
 //Inherits Player (I have no idea how to inherit javascript objects)
 function EnemyBot() {
     var player = new Player(ENEMY_SKIN, PlayerEnum.Computer);
-    var speed = 400;
+    var speed = 2000;
     var tween = game.add.tween(player.getSprite());
   //  var debugPath = game.add.graphics(0, 0);
     var timeoutPathFinding;
@@ -640,7 +640,14 @@ function EnemyBot() {
         var map = War.Game.prototype.arrayMap;
         var sprite = player.getSprite();
         var clearanceLevel = sprite.width/10;
-        var startNode = map[Math.round(sprite.y/10)][Math.round(sprite.x/10)];
+        var startRow = Math.floor(sprite.y/10);
+        var startCol = Math.floor(sprite.x/10);
+        var startNode = map[startRow][startCol];
+        while (startNode.clearance < clearanceLevel) {
+            startRow--;
+            startCol--;
+            startNode = map[startRow][startCol];
+        }
         startNode.parent = null; //first node parent is null
         var searchedList = []; //list of nodes that we already looked at
         var queue = [startNode]; //queue of nodes that we will search next
