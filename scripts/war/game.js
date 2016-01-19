@@ -1,11 +1,11 @@
-var GAME_WIDTH = 2520, GAME_HEIGHT = 1260;
+var GAME_WIDTH = config.width, GAME_HEIGHT = config.height - 140;
 
 var PlayerEnum = {
-    Player1: 1, //red
-    Player2: 2, //blue
-    Player3: 3, //green
-    Player4: 4, //pink
-    Computer: 5
+    Player1: 'PLAYER 1', //red
+    Player2: 'PLAYER 2', //blue
+    Player3: 'PLAYER 3', //green
+    Player4: 'PLAYER 4', //pink
+    Computer: 'COMPUTER'
 };
 
 var skins = [ 'batSkin',
@@ -35,6 +35,8 @@ var skins = [ 'batSkin',
                 'zergSkin'
 ];
 var ENEMY_SKIN = 'enemySkin';
+
+var greenColour = null;
 
 War.Game.prototype = {
     players: [],
@@ -84,6 +86,21 @@ War.Game.prototype = {
         wall.rect(0, 0, 10, 10, '#ffffff');
         renderMap(this.wallGroup, wall, 70);
 
+        //bottom panel
+        var bottomFiller = game.add.sprite(0, GAME_HEIGHT,
+            game.add.bitmapData(10,10).rect(0,0,10,10,'#666'));
+        bottomFiller.width = GAME_WIDTH;
+        bottomFiller.height = config.height - GAME_HEIGHT;
+
+        greenColour = game.add.bitmapData(10,10);
+        greenColour.rect(0, 0, 10, 10, '#99FFCC');
+        var bBorder = game.add.sprite(0, GAME_HEIGHT, greenColour);
+        bBorder.width = GAME_WIDTH;
+        for (var i = GAME_WIDTH/ 5, j = 0; j < 4; i+= GAME_WIDTH/5, j++) {
+            var dividerWall = game.add.sprite(i-5, GAME_HEIGHT, greenColour);
+            dividerWall.height = config.height - GAME_HEIGHT;
+        }
+
         // The player and its settings
         this.computers = [];
         this.humans = [];
@@ -121,9 +138,13 @@ War.Game.prototype = {
             for (var j = 0; j < this.players.length; j++) {
                 if (i != j) {
                     var bulletPlayer = this.players[j];
-                    game.physics.arcade.overlap(sprite, bulletPlayer.getBullets(), currPlayer.bulletCollide);
+                    game.physics.arcade.overlap(sprite, bulletPlayer.getBullets(), function (p, bullet) {
+                        currPlayer.killPlayer(bulletPlayer, bullet);
+                    });
                     if (currPlayer.isHuman && !bulletPlayer.isHuman) {
-                        game.physics.arcade.overlap(sprite, bulletPlayer.getSprite(), currPlayer.enemyCollide);
+                        game.physics.arcade.overlap(sprite, bulletPlayer.getSprite(), function () {
+                            currPlayer.killPlayer(bulletPlayer);
+                        });
                     }
                 }
             }
@@ -292,7 +313,6 @@ function renderMap(wallGroup, wall, snap) {
         var row = arrMap[i];
         for (var j = 0; j < row.length; j++) { //j = column position
             //if there is something in the cell already, then we can skip it
-            //skipping and calculating diagonal clearances improves average calculation speeds from 167ms to 10ms :D
             if (row[j] == undefined) {
                 var columnRight = j+1;
                 var rowBot = i+1;
@@ -319,10 +339,6 @@ function renderMap(wallGroup, wall, snap) {
                     rowBot++;
                 }
 
-                //We can safely mark the current cell as well as all bottom right diagonals until clearance reaches 0
-            //    for (var k = 0; clearance > 0; clearance--, k++) {
-              //      arrMap[i+k][j+k] = new Node(j+k, i+k, clearance);
-             //   }
                 arrMap[i][j] = new Node(j, i, clearance);
             }
         }
@@ -360,10 +376,11 @@ function renderMap(wallGroup, wall, snap) {
     }
 }
 
+var xPosText = 0;   //static variable to get next spot for player stats
 function Player(skin, playerNum) {
     var radius = 30;
     var speed = 300;
-    var bulletSpeed = 350;
+    var bulletSpeed = 400;
     var bulletRadius = 10;
     var bulletTime = 0;
     var maxBounces = 1;
@@ -376,8 +393,13 @@ function Player(skin, playerNum) {
     var cursors;
     var prevPositions = [];
 
+    var kills = 0;
+    var deaths = 0;
+    var textKills;
+    var textDeaths;
+
     this.computerFire = function (target) {
-        if (target && game.time.now > bulletTime) {
+        if (sprite.alive && target && game.time.now > bulletTime) {
             var bullet = bullets.getFirstExists(false);
             if (bullet) {
                 var angle = game.physics.arcade.angleBetween(sprite, target.getSprite()) + (Math.random()*Math.PI/3 - Math.PI/6);
@@ -408,20 +430,17 @@ function Player(skin, playerNum) {
 
     this.increaseBounces = _increaseBounces;
 
-    this.bulletCollide = function (player, bullet) {
-        if (sprite.alive) {
-            _clearMap();
-            sprite.kill();
-            bullet.killEm();
-
-            setTimeout(_revive, 5000);
-        }
+    this.incKills = function() {
+        textKills.setText('KILLS: ' + ++kills);
     };
 
-    this.enemyCollide = function() {
+    this.killPlayer = function (enemyPlayer, bullet) {
         if (sprite.alive) {
             _clearMap();
             sprite.kill();
+            if (bullet) bullet.killEm();
+            enemyPlayer.incKills();
+            textDeaths.setText('DEATHS: ' + ++deaths);
             setTimeout(_revive, 5000);
         }
     };
@@ -531,6 +550,20 @@ function Player(skin, playerNum) {
                 color = '#FFFFFF';
                 break;
         }
+        //set up stats in text
+        game.add.text(xPosText + 10, GAME_HEIGHT+20, playerNum + ':',
+            { font: "32px Arial", fill: '#99ffcc', fontStyle: 'bold' });
+        var divider = game.add.sprite(xPosText, GAME_HEIGHT + 55, greenColour);
+        divider.width = GAME_WIDTH/5;
+        divider.height = 5;
+        textKills = game.add.text(xPosText + 10, GAME_HEIGHT + 80, 'KILLS: ' + kills,
+            { font: "32px Arial", fill: '#99ffcc' });
+        textDeaths = game.add.text(xPosText + GAME_WIDTH/10, GAME_HEIGHT + 80, 'DEATHS: ' + deaths,
+            { font: "32px Arial", fill: '#99ffcc' });
+
+        //increment xPosText for next player
+        if (xPosText == 0) xPosText += 5; //other than first slot, we have to add 5 to take into account the border
+        xPosText += GAME_WIDTH/5;
 
         sprite.width = radius*2;
         sprite.height = radius*2;
@@ -552,7 +585,7 @@ function Player(skin, playerNum) {
             gun.pivot.x = 5;
 
             cursors.fire.onDown.add(function () {
-                if (game.time.now > bulletTime) {
+                if (sprite.alive && game.time.now > bulletTime) {
                     var bullet = bullets.getFirstExists(false);
                     if (bullet) {
                         bullet.fire(gun.angle, sprite.x, sprite.y, radius);
@@ -618,16 +651,14 @@ function EnemyBot() {
     this.getBullets = player.getBullets;
     this.addBullet = player.addBullet;
     this.increaseBounces = player.increaseBounces;
-    this.bulletCollide = function (p, bullet) {
+    this.incKills = player.incKills;
+
+    this.killPlayer = function (enemyPlayer, bullet) {
         var sprite = player.getSprite();
         if (sprite.alive) {
-            sprite.kill();
             tween.stop();
     //        debugPath.clear();
-            clearTimeout(timeoutPathFinding);
-            bullet.killEm();
-            player.revive();
-            _pathToClosestEnemy();
+            player.killPlayer(enemyPlayer, bullet);
         }
     };
     this.envCollide = player.envCollide;
@@ -641,106 +672,103 @@ function EnemyBot() {
         _pathToClosestEnemy();
     };
 
-    this.stop = function () {
-        tween.stop();
-    };
-
     //uses breadth first search to find the closest enemy to target and then follows the path
     //we will run this piece every 1 second
     function _pathToClosestEnemy() {
         var time = new Date().getTime();
+        if (player.getSprite().alive) {
+            var humans = War.Game.prototype.humans;
+            var noneAlive = true;
+            for (var i = 0; i < humans.length; i++) {
+                if (humans[i].getSprite().alive) {
+                    noneAlive = false;
+                    break;
+                }
+            }
 
-        var humans = War.Game.prototype.humans;
-        var noneAlive = true;
-        for (var i = 0; i < humans.length; i++) {
-            if (humans[i].getSprite().alive) {
-                noneAlive = false;
-                break;
-            }
-        }
-
-        if (!noneAlive) {
-            var map = War.Game.prototype.arrayMap;
-            var sprite = player.getSprite();
-            var clearanceLevel = sprite.width / 10;
-            var startRow = Math.floor(sprite.y / 10);
-            var startCol = Math.floor(sprite.x / 10);
-            //   try {
-            if (!map[startRow]) {
-                console.log(startRow);
-                console.log(startCol);
-            }
-            var startNode = map[startRow][startCol];
-            if (!startNode) {
-                console.log(startRow);
-                console.log(startCol);
-            }
-            while (Math.abs(startNode.clearance) < clearanceLevel) {
-                startRow--;
-                startCol--;
+            if (!noneAlive) {
+                var map = War.Game.prototype.arrayMap;
+                var sprite = player.getSprite();
+                var clearanceLevel = sprite.width / 10;
+                var startRow = Math.floor(sprite.y / 10);
+                var startCol = Math.floor(sprite.x / 10);
+                //   try {
                 if (!map[startRow]) {
                     console.log(startRow);
                     console.log(startCol);
                 }
-                startNode = map[startRow][startCol];
+                var startNode = map[startRow][startCol];
                 if (!startNode) {
                     console.log(startRow);
                     console.log(startCol);
                 }
-            }
-            //    } catch (exception) {
-            //         console.log(startRow);
-            //         console.log(startCol);
-            //         throw exception;
-            //     }
-            startNode.parent = null; //first node parent is null
-            var searchedList = []; //list of nodes that we already looked at
-            var queue = [startNode]; //queue of nodes that we will search next
-            while (queue.length) {
-                var currNode = queue.shift(); //first element in the queue
-                searchedList.push(currNode);
-                //found a path when clearance is < 0
-                if (currNode.clearance < 0) {
-                    //get the target player and set it as this AI's target
-                    var humans = War.Game.prototype.humans;
-                    for (var i = 0; i < humans.length; i++) {
-                        var human = humans[i];
-                        if (human.prevPositions.indexOf(currNode) >= 0) {
-                            target = human;
-                        }
+                while (Math.abs(startNode.clearance) < clearanceLevel) {
+                    startRow--;
+                    startCol--;
+                    if (!map[startRow]) {
+                        console.log(startRow);
+                        console.log(startCol);
                     }
-
-                    //return the path, pushing all its parents until parent is null
-                    var path = [currNode];
-                    while (currNode.parent) {
-                        path.push(currNode.parent);
-                        currNode = currNode.parent;
-                    }
-                    //       console.log('Execution time: ' + (new Date().getTime() - time));
-                    _followPath(new Date().getTime() - time, path);
-                    return;
-                }
-                else if (Math.abs(currNode.clearance) >= clearanceLevel) {
-                    for (var i = 0; i < currNode.edgeNodes.length; i++) {
-                        var edgeNode = currNode.edgeNodes[i];
-                        //make sure node is not searched already or is going to be searched
-                        if (searchedList.indexOf(edgeNode) < 0 && queue.indexOf(edgeNode) < 0) {
-                            edgeNode.parent = currNode; //this guys parent is currNode
-                            queue.push(edgeNode); //add it to the queue
-                        }
+                    startNode = map[startRow][startCol];
+                    if (!startNode) {
+                        console.log(startRow);
+                        console.log(startCol);
                     }
                 }
-            }
+                //    } catch (exception) {
+                //         console.log(startRow);
+                //         console.log(startCol);
+                //         throw exception;
+                //     }
+                startNode.parent = null; //first node parent is null
+                var searchedList = []; //list of nodes that we already looked at
+                var queue = [startNode]; //queue of nodes that we will search next
+                while (queue.length) {
+                    var currNode = queue.shift(); //first element in the queue
+                    searchedList.push(currNode);
+                    //found a path when clearance is < 0
+                    if (currNode.clearance < 0) {
+                        //get the target player and set it as this AI's target
+                        var humans = War.Game.prototype.humans;
+                        for (var i = 0; i < humans.length; i++) {
+                            var human = humans[i];
+                            if (human.prevPositions.indexOf(currNode) >= 0) {
+                                target = human;
+                            }
+                        }
 
-            clearTimeout(timeoutPathFinding);
-            timeoutPathFinding = setTimeout(_pathToClosestEnemy, 3000);
-        } else {
-            clearTimeout(timeoutPathFinding);
-            timeoutPathFinding = setTimeout(_pathToClosestEnemy, 300);
+                        //return the path, pushing all its parents until parent is null
+                        var path = [currNode];
+                        while (currNode.parent) {
+                            path.push(currNode.parent);
+                            currNode = currNode.parent;
+                        }
+                        //       console.log('Execution time: ' + (new Date().getTime() - time));
+                        _followPath(new Date().getTime() - time, path);
+                        return;
+                    }
+                    else if (Math.abs(currNode.clearance) >= clearanceLevel) {
+                        for (var i = 0; i < currNode.edgeNodes.length; i++) {
+                            var edgeNode = currNode.edgeNodes[i];
+                            //make sure node is not searched already or is going to be searched
+                            if (searchedList.indexOf(edgeNode) < 0 && queue.indexOf(edgeNode) < 0) {
+                                edgeNode.parent = currNode; //this guys parent is currNode
+                                queue.push(edgeNode); //add it to the queue
+                            }
+                        }
+                    }
+                }
+
+                clearTimeout(timeoutPathFinding);
+                timeoutPathFinding = setTimeout(_pathToClosestEnemy, 1000);
+                return;
+            }
+            //   console.log('Execution time: ' + (new Date().getTime() - time));
+
+            //   return []; //no path found
         }
-     //   console.log('Execution time: ' + (new Date().getTime() - time));
-
-     //   return []; //no path found
+        clearTimeout(timeoutPathFinding);
+        timeoutPathFinding = setTimeout(_pathToClosestEnemy, 300);
     }
 
     //for some reason, tween starts already for the time calculating the minpath, so we delay it
@@ -782,7 +810,7 @@ function EnemyBot() {
             tween.interpolation(Phaser.Math.linearInterpolation);
             tween.start();
             clearTimeout(timeoutPathFinding);
-            timeoutPathFinding = setTimeout(_pathToClosestEnemy, 1000);
+            timeoutPathFinding = setTimeout(_pathToClosestEnemy, 3000);
         }, time);
     }
 }

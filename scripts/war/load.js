@@ -8,8 +8,15 @@ var War = {
     Game: function (game) {}
 };
 
-var w = 2520;
-var h = 1400;
+// Initialize Phaser, and create a 2520x1400px game
+var config = {
+    width: 2520,
+    height: 1400,
+    renderer: Phaser.AUTO,
+    parent: 'war',
+    forceSetTimeOut: true
+};
+var game = new Phaser.Game(config);
 
 War.Boot.prototype = {
     preload: function() {
@@ -22,8 +29,8 @@ War.Boot.prototype = {
 
 War.Load.prototype = {
     preload: function () {
-        label2 = game.add.text(Math.floor(w / 2) + 0.5, Math.floor(h / 2) - 15 + 0.5, 'loading...', {
-            font: '30px Arial',
+        game.add.text(Math.floor(config.width / 2) + 0.5, Math.floor(config.height / 2) - 15 + 0.5, 'loading...', {
+            font: '50px Arial',
             fill: '#fff'
         });
         game.scale.startFullScreen();
