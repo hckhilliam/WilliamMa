@@ -513,3 +513,69 @@
         <div class="divider"></div>
     </div>
 </div>
+<div class="notes 20160120">
+    <div>
+        <em>Question: Find the kth largest element given an array</em>
+        <div>Refer to CS240</div>
+        <div>
+            Selectk(L,k)
+            <ul>
+                <li>If |L| < 10, then return sort-select</li>
+                <li>Select a pivot x <br>
+                    \(A \leftarrow {L[i] \geq x}\) <br>
+                    \(B \leftarrow {L[i] < x}\) 
+                </li>
+                <li>
+                    If \(|A| \geq k\), return selectk(A,k) <br>
+                    else return selectk(B, k - |A|)
+                </li>
+            </ul>
+        </div>
+        <div>
+            \(T(n) \leq n + T(max(|A|, |B|))\)
+        </div>
+        <div>
+            How to choose the pivot point (medians of 5) <br>
+            Get the median of every 5 elements in n (m = 5) <br>
+            Then recursively get the median of the medians group <br>
+            Called the median of medians
+        </div>
+        <div class="code">
+            selectPivot(L)
+                Divide L to n/5 groups                          //O(n)
+                Let \(X_i\) be median of group i                //O(n)
+                \(x \leftarrow Selectk({x,...,x_{n/5}}, n/10)\) //T(n/5)
+                return x
+        </div>
+        <div class="definition">
+            <em>Lemma:</em>
+            <div>X is such that \(max(|A|, |B|) \leq \frac{7}{10}n\)</div>
+        </div>
+        <div class="definition">
+            <em>Proof:</em>
+            <div>For each group \(G_i, i=1,...,n/5\) <br>
+                there are 3 elements \(\geq x_i\) <br>
+                There are \(\frac{n}{10}x_i\) that is \(\geq x\) <br>
+                Therefore \(\frac{3}{10}n\) elements are guaranteed \(\geq x\) <br>
+                Then \(|A| \geq \frac{3}{10}n \rightarrow |B| \leq \frac{7}{10}n\) <br>
+                By symmetry, \(|B| \geq \frac{3}{10}n \rightarrow |A| \leq \frac{7}{10}n\) <br>
+                Therefore <span class="QED"></span> 
+        </div>
+        <div>
+            <em>Time Complexity of SelectPivot(L)</em>
+            <div>
+                \(T(n) \leq n + T(n/5) + T(max(|A|, |B|))\) <br>
+                \(\leq n + T(n/5) + T(7n/10)\) <br>
+                Claim: \(T(n) \leq cn\) <br>
+                Proof: Induction <br>
+                Base case is trivial <br>
+                \(T(n) \leq n + T(n/5) + T(7n/10)\) <br>
+                \(\leq n + cn/5 + 7cn/10\) by induction hyp <br>
+                \(=(1 + 9c/10)n\) <br>
+                let c = 10 <br>
+                = cn <span class="QED"></span>
+            </div>
+        </div>
+        <div class="divider"></div>
+    </div>
+</div>
