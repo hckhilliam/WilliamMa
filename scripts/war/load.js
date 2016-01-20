@@ -5,11 +5,22 @@ var War = {
     Boot: function (game) {},
     Load: function (game) {},
     Menu: function (game) {},
-    Game: function (game) {}
+    Help: function (game) {},
+    Settings: function (game) {},
+    StartGame: function (game) {},
+    Game: function (game) {},
+    GameOver: function (game) {}
 };
 
-var w = 2300;
-var h = 1000;
+// Initialize Phaser, and create a 2520x1400px game
+var config = {
+    width: 2520,
+    height: 1400,
+    renderer: Phaser.AUTO,
+    parent: 'war',
+    forceSetTimeOut: true
+};
+var game = new Phaser.Game(config);
 
 War.Boot.prototype = {
     preload: function() {
@@ -22,43 +33,76 @@ War.Boot.prototype = {
 
 War.Load.prototype = {
     preload: function () {
-        label2 = game.add.text(Math.floor(w / 2) + 0.5, Math.floor(h / 2) - 15 + 0.5, 'loading...', {
-            font: '30px Arial',
-            fill: '#fff'
-        });
+     /*   game.add.text(Math.floor(config.width / 2), Math.floor(config.height / 2), 'Loading...', {
+            font: '100px Stencil',
+            fill: '#99FFCC'
+        }).anchor.set(0.5, 0.5);*/
+
         game.scale.startFullScreen();
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVeritcally = true;
         game.scale.refresh();
-
+        adjust();
         game.stage.disableVisibilityChange = true;
-        // Load the bird sprite
-        //game.load.image('enemy1', 'images/blockerMad.png');
-        //game.load.image('grassMid', 'images/grassMid.png');
-        //game.load.image('grassLeft', 'images/grassLeft.png');
-       // game.load.image('grassRight', 'images/grassRight.png');
-      //  game.load.image('grassCliffLeft', 'images/grassCliffLeft.png');
-     //   game.load.image('grassCliffRight', 'images/grassCliffRight.png');
-    //    game.load.tilemap('map', 'images/tileMap.json', null, Phaser.Tilemap.TILED_JSON);
-     //   game.load.spritesheet('player', 'images/player.png', 32, 48);
 
-        game.load.image('marineSkin', 'images/marineBall2.png');
-        game.load.image('greenSkin', 'images/greenBall.png');
-        game.load.image('batSkin', 'images/batBall.png');
-        game.load.image('diamondSkin', 'images/diamondBall.png');
-        game.load.image('electricSkin', 'images/electricBall.png');
-        game.load.image('zergSkin', 'images/zergBall.png');
-        game.load.image('zealotSkin', 'images/zealotBall.png');
-        game.load.image('skullSkin', 'images/skullBall.png');
-        game.load.image('minionSkin', 'images/minionBall.png');
-        game.load.image('ninjaSkin', 'images/ninjaBall.png');
-        game.load.image('superSkin', 'images/superBall.png');
-        game.load.image('richSkin', 'images/richBall.png');
-        game.load.image('loveSkin', 'images/loveBall.png');
-        game.load.image('moneySkin', 'images/moneyBall.png');
+        game.load.image('batSkin', 'images/War/batBall.png');
+        game.load.image('blackSkin', 'images/War/blackBall.png');
+        game.load.image('blueSkin', 'images/War/blueBall.png');
+        game.load.image('cookieSkin', 'images/War/cookieBall.png');
+        game.load.image('cyanSkin', 'images/War/cyanBall.png');
+        game.load.image('electricSkin', 'images/War/electricBall.png');
+        game.load.image('fireSkin', 'images/War/fireBall.png');
+        game.load.image('greenSkin', 'images/War/greenBall.png');
+        game.load.image('happySkin', 'images/War/happyBall.png');
+        game.load.image('loveSkin', 'images/War/loveBall.png');
+        game.load.image('magentaSkin', 'images/War/magentaBall.png');
+        game.load.image('marineSkin', 'images/War/marineBall2.png');
+        game.load.image('minionSkin', 'images/War/minionBall.png');
+        game.load.image('moneySkin', 'images/War/moneyBall.png');
+        game.load.image('ninjaSkin', 'images/War/ninjaBall.png');
+        game.load.image('pokeSkin', 'images/War/pokeBall.png');
+        game.load.image('redSkin', 'images/War/redBall.png');
+        game.load.image('richSkin', 'images/War/richBall.png');
+        game.load.image('sadSkin', 'images/War/sadBall.png');
+        game.load.image('enemySkin', 'images/War/skullBall.png');
+        game.load.image('slimeSkin', 'images/War/slimeBall.png');
+        game.load.image('superSkin', 'images/War/superBall.png');
+        game.load.image('superHappySkin', 'images/War/superHappyBall.png');
+        game.load.image('yellowSkin', 'images/War/yellowBall.png');
+        game.load.image('zealotSkin', 'images/War/zealotBall.png');
+        game.load.image('zergSkin', 'images/War/zergBall.png');
 },
     create: function () {
-        game.state.start('Game');
+        //game.state.start('Game');
+        game.state.start('Menu');
     }
+};
+
+$(window).resize(adjust);
+
+function adjust() {
+    var game = $('#war');
+    game.css({
+        'width': window.innerWidth + 'px',
+        'height': window.innerHeight + 'px'
+    });
+}
+
+//used for hovering buttons
+function hoverInBtn(btn) {
+    btn.fill = 'lightgreen';
+    game.canvas.style.cursor = "pointer";
+}
+
+function hoverOutBtn(btn) {
+    btn.fill = '#99FFCC';
+    game.canvas.style.cursor = "default";
+}
+
+//font style for text buttons
+var btnConfig = {
+    font: '175px Stencil',
+    fill: '#99FFCC',
+    fontStyle: 'bold'
 };
