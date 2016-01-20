@@ -13,7 +13,7 @@ War.Menu.prototype = {
         playBtn.events.onInputOut.add(hoverOutBtn, this);
         playBtn.events.onInputDown.add(function () {
             game.canvas.style.cursor = "default";
-            game.state.start('StartGame')
+            game.state.start('Settings');
         });
 
         var instructionsBtn = game.add.text(Math.floor(3*config.width / 4), 1000, 'HELP', $.extend({}, btnConfig));

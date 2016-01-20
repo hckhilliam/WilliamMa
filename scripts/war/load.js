@@ -6,6 +6,7 @@ var War = {
     Load: function (game) {},
     Menu: function (game) {},
     Help: function (game) {},
+    Settings: function (game) {},
     StartGame: function (game) {},
     Game: function (game) {},
     GameOver: function (game) {}

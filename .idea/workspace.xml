@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="764d5e96-d45b-42c5-8862-be94c76aeb9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resume.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/war/settings.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/War.html" afterPath="$PROJECT_DIR$/War.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/war/game.js" afterPath="$PROJECT_DIR$/scripts/war/game.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/war/init.js" afterPath="$PROJECT_DIR$/scripts/war/init.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/war/load.js" afterPath="$PROJECT_DIR$/scripts/war/load.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/war/menu.js" afterPath="$PROJECT_DIR$/scripts/war/menu.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WilliamMa.iws" />
@@ -30,20 +35,8 @@
             <entry file="file://$PROJECT_DIR$/scripts/war/init.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+                  <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="help.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/scripts/war/help.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="45" column="70" selection-start-line="45" selection-start-column="70" selection-end-line="45" selection-end-column="70" />
-                  <folding>
-                    <element signature="e#0#44#0" expanded="false" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -52,7 +45,7 @@
             <entry file="file://$PROJECT_DIR$/scripts/war/load.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+                  <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
                   <folding />
                 </state>
               </provider>
@@ -74,8 +67,8 @@
           <file leaf-file-name="War.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/War.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-11.115385">
-                  <caret line="17" column="97" selection-start-line="17" selection-start-column="97" selection-end-line="17" selection-end-column="97" />
+                <state vertical-scroll-proportion="-7.1923075">
+                  <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
                   <folding />
                 </state>
               </provider>
@@ -84,9 +77,21 @@
           <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/scripts/war/game.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.67177916">
-                  <caret line="454" column="47" selection-start-line="454" selection-start-column="47" selection-end-line="454" selection-end-column="47" />
+                <state vertical-scroll-proportion="0.33588958">
+                  <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="settings.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scripts/war/settings.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="60" column="91" selection-start-line="60" selection-start-column="91" selection-end-line="60" selection-end-column="91" />
+                  <folding>
+                    <element signature="e#0#44#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -110,8 +115,8 @@
           <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/scripts/war/game.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-13.425567">
-                  <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+                <state vertical-scroll-proportion="-0.16181229">
+                  <caret line="73" column="39" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="39" />
                   <folding />
                 </state>
               </provider>
@@ -121,8 +126,20 @@
             <entry file="file://$PROJECT_DIR$/scripts/war/menu.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+                  <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="help.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scripts/war/help.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="45" column="70" selection-start-line="45" selection-start-column="70" selection-end-line="45" selection-end-column="70" />
+                  <folding>
+                    <element signature="e#0#44#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -169,12 +186,13 @@
         <option value="$PROJECT_DIR$/styles/war.css" />
         <option value="$PROJECT_DIR$/Menu.html" />
         <option value="$PROJECT_DIR$/Home.html" />
-        <option value="$PROJECT_DIR$/scripts/war/menu.js" />
-        <option value="$PROJECT_DIR$/scripts/war/load.js" />
-        <option value="$PROJECT_DIR$/scripts/war/init.js" />
-        <option value="$PROJECT_DIR$/War.html" />
         <option value="$PROJECT_DIR$/scripts/war/help.js" />
         <option value="$PROJECT_DIR$/scripts/war/gameover.js" />
+        <option value="$PROJECT_DIR$/scripts/war/init.js" />
+        <option value="$PROJECT_DIR$/scripts/war/load.js" />
+        <option value="$PROJECT_DIR$/War.html" />
+        <option value="$PROJECT_DIR$/scripts/war/menu.js" />
+        <option value="$PROJECT_DIR$/scripts/war/settings.js" />
         <option value="$PROJECT_DIR$/scripts/war/game.js" />
       </list>
     </option>
@@ -502,12 +520,18 @@
       <option name="project" value="LOCAL" />
       <updated>1453249424917</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="added resume&#10;">
+      <created>1453254008964</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1453254008964</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="0" width="1929" height="1050" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1426299" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -581,7 +605,9 @@
     <MESSAGE value="updated war:&#10;-added bottom panel for game to keep track of kills and deaths&#10;-refactored a little bit&#10;" />
     <MESSAGE value="updated war:&#10;-bit of refactoring&#10;" />
     <MESSAGE value="updated war:&#10;-Created menu screen&#10;-Created Game over screen&#10;-Created Help screen&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated war:&#10;-Created menu screen&#10;-Created Game over screen&#10;-Created Help screen&#10;" />
+    <MESSAGE value="added resume&#10;" />
+    <MESSAGE value="-added game settings page although not functional yet&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="-added game settings page although not functional yet&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -590,13 +616,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Projects.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/School.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -904,18 +923,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/war/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/war/init.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -923,7 +934,7 @@
     <entry file="file://$PROJECT_DIR$/scripts/war/load.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -940,8 +951,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/War.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385">
-          <caret line="17" column="97" selection-start-line="17" selection-start-column="97" selection-end-line="17" selection-end-column="97" />
+        <state vertical-scroll-proportion="-7.1923075">
+          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -956,10 +967,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/war/menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/war/settings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="91" selection-start-line="60" selection-start-column="91" selection-end-line="60" selection-end-column="91" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/war/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67177916">
-          <caret line="454" column="47" selection-start-line="454" selection-start-column="47" selection-end-line="454" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.33588958">
+          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
           <folding />
         </state>
       </provider>

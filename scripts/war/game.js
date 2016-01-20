@@ -44,7 +44,7 @@ War.Game.prototype = {
     computers: [],
     arrayMap: null, //0 = wall, pos numbers = free spaces (clearance), and neg nums means player is on it
                     //Also note that the map is a condensed version (every cell is actually a 10x10 pixel)
-    targetKills: 1,
+    targetKills: 25,
     respawnTime: 5000,
     winner: null,
     printMap: function (startRow, startCol, rows, cols) {
