@@ -44,8 +44,10 @@ War.Game.prototype = {
     computers: [],
     arrayMap: null, //0 = wall, pos numbers = free spaces (clearance), and neg nums means player is on it
                     //Also note that the map is a condensed version (every cell is actually a 10x10 pixel)
-    targetKills: 25,
+    totalPlayers: 1,
+    difficulty: 'EASY',
     respawnTime: 5000,
+    targetKills: 25,
     winner: null,
     printMap: function (startRow, startCol, rows, cols) {
         //PRINTING THE 2D MAP ARRAY
@@ -110,14 +112,20 @@ War.Game.prototype = {
         this.computers = [];
         this.humans = [];
 
-        this.humans.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player1));
-        this.humans.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player2));
-        this.humans.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player3));
-        this.humans.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player4));
-        //ai
-        for (var i = 0; i < 1; i++) {
-            this.computers.push(new EnemyBot());
+
+        switch (War.Game.prototype.totalPlayers) {
+            case '4':
+                this.humans.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player4));
+            case '3':
+                this.humans.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player3));
+            case '2':
+                this.humans.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player2));
+            default:
+                this.humans.push(new Player(skins[Math.floor(Math.random()*skins.length)], PlayerEnum.Player1));
         }
+
+        //ai
+        if (War.Game.prototype.difficulty != 'NONE') this.computers.push(new EnemyBot());
 
         this.players = this.humans.concat(this.computers);
         War.Game.prototype.players = this.players;
@@ -404,12 +412,35 @@ function Player(skin, playerNum) {
     var textDeaths;
 
     this.computerFire = function (target) {
+        var balls = 1;
+        var rotation = Math.PI;
+        switch (War.Game.prototype.difficulty) {
+            case 'HARD':
+                balls = 3;
+                break;
+            case 'WINDMILL':
+                balls = 4;
+                rotation = Math.PI/2;
+                break;
+            case 'SHOTGUN':
+                balls = 4;
+                rotation = 2*Math.PI;
+                break;
+            case 'INSANE':
+                balls = 8;
+                break;
+            case 'FRENZY':
+                balls = 12;
+                rotation = Math.PI/6;
+                break;
+        }
+
         if (sprite.alive && target && game.time.now > bulletTime) {
-            var bullet = bullets.getFirstExists(false);
-            if (bullet) {
-                var angle = game.physics.arcade.angleBetween(sprite, target.getSprite()) + (Math.random()*Math.PI/3 - Math.PI/6);
-                bullet.fire2(angle, sprite.x, sprite.y, radius);
-                bulletTime = game.time.now + 1000;
+            var angle = game.physics.arcade.angleBetween(sprite, target.getSprite());
+            for (var i = 0; i < balls; i++) {
+                var bullet = bullets.getFirstExists(false) || _addBullet(this);
+                bullet.fire2(angle + rotation*i + (Math.random()*Math.PI/3 - Math.PI/6), sprite.x, sprite.y, radius);
+                bulletTime = game.time.now + 700;
             }
         }
     };
@@ -455,6 +486,7 @@ function Player(skin, playerNum) {
         textKills.setText('KILLS: ' + ++kills);
         if (kills >= War.Game.prototype.targetKills) {
             War.Game.prototype.winner = playerNum;
+            clearTimeout(timeoutPathFinding);
             game.state.start('GameOver');
         }
     };
@@ -527,6 +559,7 @@ function Player(skin, playerNum) {
         game.add.existing(bullet);
         bullets.add(bullet);
         bullet.initialize();
+        return bullet;
     }
 
     function _increaseBounces() {
@@ -602,8 +635,6 @@ function Player(skin, playerNum) {
 
         bulletDrawing.circle(bulletRadius, bulletRadius, bulletRadius, color);
 
-        for (var i = 0; i < 3; i++) { _addBullet(p); }
-
         //fire only happens once when holding
         if (playerNum != PlayerEnum.Computer) {
             gunDrawing.context.fillStyle = color;
@@ -615,11 +646,9 @@ function Player(skin, playerNum) {
 
             cursors.fire.onDown.add(function () {
                 if (sprite.alive && game.time.now > bulletTime) {
-                    var bullet = bullets.getFirstExists(false);
-                    if (bullet) {
-                        bullet.fire(gun.angle, sprite.x, sprite.y, radius);
-                        bulletTime = game.time.now + 100;
-                    }
+                    var bullet = bullets.getFirstExists(false) || _addBullet(p);
+                    bullet.fire(gun.angle, sprite.x, sprite.y, radius);
+                    bulletTime = game.time.now + 700;
                 }
             });
         }
@@ -666,12 +695,15 @@ function Player(skin, playerNum) {
 }
 
 //Inherits Player (I have no idea how to inherit javascript objects)
+var timeoutPathFinding;
 function EnemyBot() {
     var player = new Player(ENEMY_SKIN, PlayerEnum.Computer);
-    var speed = 1000;//2000;
+    var speed = 2000;
+    if (War.Game.prototype.difficulty == 'EASY') speed = 1000;
+
     var tween = game.add.tween(player.getSprite());
    // var debugPath = game.add.graphics(0, 0);
-    var timeoutPathFinding;
+
     var target; //target player this AI will chase and shoot
 
    // player.setBulletSpeed(300);
@@ -823,7 +855,7 @@ function EnemyBot() {
             tween.interpolation(Phaser.Math.linearInterpolation);
             tween.start();
             clearTimeout(timeoutPathFinding);
-            timeoutPathFinding = setTimeout(_pathToClosestEnemy, 3000);
+            timeoutPathFinding = setTimeout(_pathToClosestEnemy, 1000);
         }, time);
     }
 }

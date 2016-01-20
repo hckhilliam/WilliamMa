@@ -23,10 +23,12 @@ War.GameOver.prototype = {
             var player = War.Game.prototype.players[i];
             var space = '';
             if (player.isHuman) space += '\t\t\t';
-            var score = game.add.text(Math.floor(config.width / 2), 550 + i*100, space +
-                player.getPlayerNum() + ': \t\t\t\t\tKILLS: ' + player.getKills() + ' \t\t\t\t\tDEATHS: ' + player.getDeaths(),
-                $.extend({}, statsFont));
-            score.anchor.set(0.5,0);
+            game.add.text(Math.floor(3*config.width / 10), 550 + i*100, space + player.getPlayerNum() + ':',
+                $.extend({}, statsFont)).anchor.set(0.5,0);
+            game.add.text(Math.floor(config.width / 2), 550 + i*100, 'KILLS: ' + player.getKills(),
+                $.extend({}, statsFont)).anchor.set(0.5,0);
+            game.add.text(Math.floor(7*config.width / 10), 550 + i*100, 'DEATHS: ' + player.getDeaths(),
+                $.extend({}, statsFont)).anchor.set(0.5,0);
             game.add.sprite(2150, 550 + i*100, game.add.bitmapData(75,75).rect(0, 0, 75, 75, player.getColour()));
         }
 
