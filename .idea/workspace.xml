@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="764d5e96-d45b-42c5-8862-be94c76aeb9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/war/gameover.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/war/help.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/War.html" afterPath="$PROJECT_DIR$/War.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/war/game.js" afterPath="$PROJECT_DIR$/scripts/war/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/war/init.js" afterPath="$PROJECT_DIR$/scripts/war/init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/war/load.js" afterPath="$PROJECT_DIR$/scripts/war/load.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/war/menu.js" afterPath="$PROJECT_DIR$/scripts/war/menu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resume.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WilliamMa.iws" />
@@ -90,8 +84,8 @@
           <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/scripts/war/game.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.20245399">
-                  <caret line="436" column="0" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.67177916">
+                  <caret line="454" column="47" selection-start-line="454" selection-start-column="47" selection-end-line="454" selection-end-column="47" />
                   <folding />
                 </state>
               </provider>
@@ -502,12 +496,18 @@
       <option name="project" value="LOCAL" />
       <updated>1453238423352</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="updated war:&#10;-Created menu screen&#10;-Created Game over screen&#10;-Created Help screen&#10;">
+      <created>1453249424917</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1453249424917</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="0" width="1929" height="1050" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1426299" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -958,8 +958,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/war/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20245399">
-          <caret line="436" column="0" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.67177916">
+          <caret line="454" column="47" selection-start-line="454" selection-start-column="47" selection-end-line="454" selection-end-column="47" />
           <folding />
         </state>
       </provider>
