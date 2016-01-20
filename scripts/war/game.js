@@ -44,6 +44,9 @@ War.Game.prototype = {
     computers: [],
     arrayMap: null, //0 = wall, pos numbers = free spaces (clearance), and neg nums means player is on it
                     //Also note that the map is a condensed version (every cell is actually a 10x10 pixel)
+    targetKills: 1,
+    respawnTime: 5000,
+    winner: null,
     printMap: function (startRow, startCol, rows, cols) {
         //PRINTING THE 2D MAP ARRAY
         var string = '';
@@ -61,6 +64,8 @@ War.Game.prototype = {
         console.log(string);
     },
     create: function () {
+        //reset xposition
+        xPosText = 5;
 
         // Set the physics system
         game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -96,7 +101,7 @@ War.Game.prototype = {
         greenColour.rect(0, 0, 10, 10, '#99FFCC');
         var bBorder = game.add.sprite(0, GAME_HEIGHT, greenColour);
         bBorder.width = GAME_WIDTH;
-        for (var i = GAME_WIDTH/ 5, j = 0; j < 4; i+= GAME_WIDTH/5, j++) {
+        for (var i = 0, j = 0; j < 6; i+= GAME_WIDTH/5, j++) {
             var dividerWall = game.add.sprite(i-5, GAME_HEIGHT, greenColour);
             dividerWall.height = config.height - GAME_HEIGHT;
         }
@@ -376,7 +381,7 @@ function renderMap(wallGroup, wall, snap) {
     }
 }
 
-var xPosText = 0;   //static variable to get next spot for player stats
+var xPosText = 5;   //static variable to get next spot for player stats
 function Player(skin, playerNum) {
     var radius = 30;
     var speed = 300;
@@ -422,6 +427,14 @@ function Player(skin, playerNum) {
         return sprite;
     };
 
+    this.getPlayerNum = function () {
+        return playerNum;
+    };
+
+    this.getColour = function () {
+        return color;
+    };
+
     this.getBullets = function() {
         return bullets;
     };
@@ -430,8 +443,20 @@ function Player(skin, playerNum) {
 
     this.increaseBounces = _increaseBounces;
 
+    this.getKills = function () {
+        return kills;
+    };
+
+    this.getDeaths = function () {
+        return deaths;
+    };
+
     this.incKills = function() {
         textKills.setText('KILLS: ' + ++kills);
+        if (kills >= War.Game.prototype.targetKills) {
+            War.Game.prototype.winner = playerNum;
+            game.state.start('GameOver');
+        }
     };
 
     this.killPlayer = function (enemyPlayer, bullet) {
@@ -441,7 +466,7 @@ function Player(skin, playerNum) {
             if (bullet) bullet.killEm();
             enemyPlayer.incKills();
             textDeaths.setText('DEATHS: ' + ++deaths);
-            setTimeout(_revive, 5000);
+            setTimeout(_revive, War.Game.prototype.respawnTime);
         }
     };
 
@@ -516,13 +541,22 @@ function Player(skin, playerNum) {
         switch (playerNum) {
             case PlayerEnum.Player1:
                 cursors = game.input.keyboard.addKeys({
+                    'up': Phaser.Keyboard.UP, 'down': Phaser.Keyboard.DOWN,
+                    'left': Phaser.Keyboard.LEFT, 'right': Phaser.Keyboard.RIGHT, 'rotateLeft': Phaser.Keyboard.DELETE,
+                    'rotateRight': Phaser.Keyboard.PAGE_DOWN, 'fire': Phaser.Keyboard.HOME
+                });
+
+                color = '#FF0000';
+                break;
+            case PlayerEnum.Player2:
+                cursors = game.input.keyboard.addKeys({
                     'up': Phaser.Keyboard.W, 'down': Phaser.Keyboard.S,
                     'left': Phaser.Keyboard.A, 'right': Phaser.Keyboard.D, 'rotateLeft': Phaser.Keyboard.Q,
                     'rotateRight': Phaser.Keyboard.E, 'fire': Phaser.Keyboard.TWO
                 });
-                color = '#FF0000';
+                color = '#FF00FF';
                 break;
-            case PlayerEnum.Player2:
+            case PlayerEnum.Player3:
                 cursors = game.input.keyboard.addKeys({
                     'up': Phaser.Keyboard.Y, 'down': Phaser.Keyboard.H,
                     'left': Phaser.Keyboard.G, 'right': Phaser.Keyboard.J, 'rotateLeft': Phaser.Keyboard.T,
@@ -530,7 +564,7 @@ function Player(skin, playerNum) {
                 });
                 color = '#66FFFF';
                 break;
-            case PlayerEnum.Player3:
+            case PlayerEnum.Player4:
                 cursors = game.input.keyboard.addKeys({
                     'up': Phaser.Keyboard.P, 'down': Phaser.Keyboard.COLON,
                     'left': Phaser.Keyboard.L, 'right': Phaser.Keyboard.QUOTES, 'rotateLeft': Phaser.Keyboard.O,
@@ -538,31 +572,26 @@ function Player(skin, playerNum) {
                 });
                 color = '#00FF00';
                 break;
-            case PlayerEnum.Player4:
-                cursors = game.input.keyboard.addKeys({
-                    'up': Phaser.Keyboard.UP, 'down': Phaser.Keyboard.DOWN,
-                    'left': Phaser.Keyboard.LEFT, 'right': Phaser.Keyboard.RIGHT, 'rotateLeft': Phaser.Keyboard.DELETE,
-                    'rotateRight': Phaser.Keyboard.PAGE_DOWN, 'fire': Phaser.Keyboard.HOME
-                });
-                color = '#FF00FF';
-                break;
             default:
                 color = '#FFFFFF';
                 break;
         }
         //set up stats in text
-        game.add.text(xPosText + 10, GAME_HEIGHT+20, playerNum + ':',
-            { font: "32px Arial", fill: '#99ffcc', fontStyle: 'bold' });
+        game.add.text(xPosText + 10, GAME_HEIGHT + 15, playerNum + ':',
+            { font: "40px Stencil", fill: '#99ffcc', fontStyle: 'bold' });
         var divider = game.add.sprite(xPosText, GAME_HEIGHT + 55, greenColour);
         divider.width = GAME_WIDTH/5;
         divider.height = 5;
-        textKills = game.add.text(xPosText + 10, GAME_HEIGHT + 80, 'KILLS: ' + kills,
-            { font: "32px Arial", fill: '#99ffcc' });
-        textDeaths = game.add.text(xPosText + GAME_WIDTH/10, GAME_HEIGHT + 80, 'DEATHS: ' + deaths,
-            { font: "32px Arial", fill: '#99ffcc' });
+        textKills = game.add.text(xPosText + 10, GAME_HEIGHT + 77, 'KILLS: ' + kills,
+            { font: "35px Stencil", fill: '#99ffcc' });
+        textDeaths = game.add.text(xPosText + GAME_WIDTH/10, GAME_HEIGHT + 77, 'DEATHS: ' + deaths,
+            { font: "35px Stencil", fill: '#99ffcc' });
 
+        //colour distinguisher
+        game.add.sprite(xPosText + GAME_WIDTH/5 - 40, GAME_HEIGHT + 25,
+                            game.add.bitmapData(20,20).rect(0, 0, 20, 20, color));
         //increment xPosText for next player
-        if (xPosText == 0) xPosText += 5; //other than first slot, we have to add 5 to take into account the border
+      //  if (xPosText == 0) xPosText += 5; //other than first slot, we have to add 5 to take into account the border
         xPosText += GAME_WIDTH/5;
 
         sprite.width = radius*2;
@@ -648,9 +677,13 @@ function EnemyBot() {
    // player.setBulletSpeed(300);
 
     this.getSprite = player.getSprite;
+    this.getPlayerNum = player.getPlayerNum;
+    this.getColour = player.getColour;
     this.getBullets = player.getBullets;
     this.addBullet = player.addBullet;
     this.increaseBounces = player.increaseBounces;
+    this.getKills = player.getKills;
+    this.getDeaths = player.getDeaths;
     this.incKills = player.incKills;
 
     this.killPlayer = function (enemyPlayer, bullet) {
@@ -692,34 +725,14 @@ function EnemyBot() {
                 var clearanceLevel = sprite.width / 10;
                 var startRow = Math.floor(sprite.y / 10);
                 var startCol = Math.floor(sprite.x / 10);
-                //   try {
-                if (!map[startRow]) {
-                    console.log(startRow);
-                    console.log(startCol);
-                }
                 var startNode = map[startRow][startCol];
-                if (!startNode) {
-                    console.log(startRow);
-                    console.log(startCol);
-                }
+
                 while (Math.abs(startNode.clearance) < clearanceLevel) {
                     startRow--;
                     startCol--;
-                    if (!map[startRow]) {
-                        console.log(startRow);
-                        console.log(startCol);
-                    }
                     startNode = map[startRow][startCol];
-                    if (!startNode) {
-                        console.log(startRow);
-                        console.log(startCol);
-                    }
                 }
-                //    } catch (exception) {
-                //         console.log(startRow);
-                //         console.log(startCol);
-                //         throw exception;
-                //     }
+
                 startNode.parent = null; //first node parent is null
                 var searchedList = []; //list of nodes that we already looked at
                 var queue = [startNode]; //queue of nodes that we will search next

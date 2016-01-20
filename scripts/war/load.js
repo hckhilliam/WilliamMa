@@ -5,7 +5,10 @@ var War = {
     Boot: function (game) {},
     Load: function (game) {},
     Menu: function (game) {},
-    Game: function (game) {}
+    Help: function (game) {},
+    StartGame: function (game) {},
+    Game: function (game) {},
+    GameOver: function (game) {}
 };
 
 // Initialize Phaser, and create a 2520x1400px game
@@ -29,10 +32,11 @@ War.Boot.prototype = {
 
 War.Load.prototype = {
     preload: function () {
-        game.add.text(Math.floor(config.width / 2) + 0.5, Math.floor(config.height / 2) - 15 + 0.5, 'loading...', {
-            font: '50px Arial',
-            fill: '#fff'
-        });
+     /*   game.add.text(Math.floor(config.width / 2), Math.floor(config.height / 2), 'Loading...', {
+            font: '100px Stencil',
+            fill: '#99FFCC'
+        }).anchor.set(0.5, 0.5);*/
+
         game.scale.startFullScreen();
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.pageAlignHorizontally = true;
@@ -69,7 +73,8 @@ War.Load.prototype = {
         game.load.image('zergSkin', 'images/War/zergBall.png');
 },
     create: function () {
-        game.state.start('Game');
+        //game.state.start('Game');
+        game.state.start('Menu');
     }
 };
 
@@ -82,3 +87,21 @@ function adjust() {
         'height': window.innerHeight + 'px'
     });
 }
+
+//used for hovering buttons
+function hoverInBtn(btn) {
+    btn.fill = 'lightgreen';
+    game.canvas.style.cursor = "pointer";
+}
+
+function hoverOutBtn(btn) {
+    btn.fill = '#99FFCC';
+    game.canvas.style.cursor = "default";
+}
+
+//font style for text buttons
+var btnConfig = {
+    font: '175px Stencil',
+    fill: '#99FFCC',
+    fontStyle: 'bold'
+};
