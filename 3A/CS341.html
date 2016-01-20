@@ -542,9 +542,9 @@
         </div>
         <div class="code">
             selectPivot(L)
-                Divide L to n/5 groups
-                Let \(X_i\) be median of group i
-                \(x \leftarrow Selectk({x,...,x_{n/5}}, n/10)\)
+                Divide L to n/5 groups                          //O(n)
+                Let \(X_i\) be median of group i                //O(n)
+                \(x \leftarrow Selectk({x,...,x_{n/5}}, n/10)\) //T(n/5)
                 return x
         </div>
         <div class="definition">
@@ -560,6 +560,21 @@
                 Then \(|A| \geq \frac{3}{10}n \rightarrow |B| \leq \frac{7}{10}n\) <br>
                 By symmetry, \(|B| \geq \frac{3}{10}n \rightarrow |A| \leq \frac{7}{10}n\) <br>
                 Therefore <span class="QED"></span> 
+        </div>
+        <div>
+            <em>Time Complexity of SelectPivot(L)</em>
+            <div>
+                \(T(n) \leq n + T(n/5) + T(max(|A|, |B|))\) <br>
+                \(\leq n + T(n/5) + T(7n/10)\) <br>
+                Claim: \(T(n) \leq cn\) <br>
+                Proof: Induction <br>
+                Base case is trivial <br>
+                \(T(n) \leq n + T(n/5) + T(7n/10)\) <br>
+                \(\leq n + cn/5 + 7cn/10\) by induction hyp <br>
+                \(=(1 + 9c/10)n\) <br>
+                let c = 10 <br>
+                = cn <span class="QED"></span>
+            </div>
         </div>
         <div class="divider"></div>
     </div>
