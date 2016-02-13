@@ -579,3 +579,158 @@
         <div class="divider"></div>
     </div>
 </div>
+<div class="notes 20160122">
+    <div class="definition">
+        <i>Property:</i>
+        <div>A tree with n vertices has n-1 edges</div>
+    </div>
+    <div class="definition">
+        <i>Property:</i>
+        <div>A tree minimizes # of edges to connect n vertices</div>
+    </div>
+    <em>Graph Representation: |E| << n(n-1)/2</em>
+    <div>
+        Adjacency Matrix <br>
+        M[i,j] = 1 if (i,j) \in E <br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 0 if not <br>
+        nxn <br>
+        \(O(n^2)\) dense v.s sparse
+    </div>    
+    <div>
+        Desired O(m + n) <br>
+        Adjaccency List <br>
+        M[i] = List of neighbouring verticces of i <br>
+        \(n + \sum\limits{v \in V}{} deg(v)\) <br>
+        = n + 2|E| <br>
+        = O(n + m)
+    </div>
+    <div>
+        <i>Connectivity</i>
+        <div class="definition">
+            <b>Problem:</b>
+            <div>Given G = (V,E), S \(\leq\) V, find all vertices reachable from S</div>
+        </div>
+        <div class="code">
+            Q
+            BFS
+            enqueue(Q,S); Visited[s] = true
+            while (Q is not empty)
+                u = dequeue(Q)
+                for v being a neighbour of u
+                    if Visited[v] is false
+                        enqueue(Q,V); visited[v] = true;
+        </div>
+    </div>
+    <div>
+        <div class="definition">
+            <b>Lemma:</b>
+            <div>The pareting edges form a tree.</div>
+        </div>
+        <div class="definition">
+            <b>Proof:</b>
+            <div>Omitted</div>
+        </div>
+
+        <div class="definition">
+            <b>Theorem:</b>
+            <div>For every edge (u, v) in the component, the layers of u and v differ by at most 1.</div>
+        </div>
+        <div class="definition">
+            <b>Theorem:</b>
+            <div>The following are equivalent:
+                <ul class="numbers">
+                    <li>Path s->v on BFS tree has length k</li>
+                    <li>v is at layer k</li>
+                    <li>The shortest path s-> on graph has aslo length k</li>
+                </ul>
+            </div>
+        </div>
+        <div class="definition">
+            <b>Proof:</b>
+            <div>Indcution on k. Clearly it's correct for k = 0. Assume correct for < k.
+                <br><br>
+                If shortest path = k' < k <br>
+                Then by induction, it should be in layer k'. <br>
+                <br>
+                If shortest path = k
+            </div>
+    </div>
+</div>
+<div class="notes 29012016">
+    <div>Previous days we learned BFS and DFS I think</div>
+    <div>
+        Cut-vertex<br>
+        Low[u] = earliest start time of w that has an edge connecting to Tu <br>
+        Tu connect to Top <br>
+        \(\leftrightarrow\) low[u] < start[u] <br>
+        for every v in the finish time order <br>
+        low[v] = min(min w being a neighbour of v start[w], min u being a child of v low[u]) 
+    </div>
+
+    <div>Today</div>
+    <div> Incoming Edges and outcoming edges</div>
+</div>
+<div class="notes 03022016">
+    <div>
+        <i>Strongly Connected Components</i>
+        <ul class="numbers">
+            <li>strongly connected subgraph</li>
+            <li>maximal</li>
+        </ul>
+    </div>
+    <div>
+        <em>Question: Find all strongly connected components of G</em>
+        <div>Time Complexity: O(n+m) -> k components O((n+m)k)</div>
+        <div>
+            Faster idea: create a supergraph which connects all k componets together. The graph will be acyclic and every edge has to be directed because if it had a cycle or had a double ended edge, those nodes could be combined into 1 component. So, we can find each component (sink) and remove it from the graph, and continue searching until we removed the whole graph. Then, the total time complexity is O(n+m)
+        </div>
+        <div>
+            WANT: Find a vertex v in a sink component (use topological ordering). <br>
+            <br>
+            \(finish(c) = maxfinish(v) v\inC \) <br>
+            Let u be the first started vertex m C U C' <br>
+            Case I: \(u \in C\), finish(C) > finish(C') <br>
+            Case II: \(u \in C'\), finish(C) > finish(C') <br>
+            <div class="definition">
+                <b>Lemma:</b>
+                Lemma: \(C \rightarrow C\ \dblrightarrow finish(C) > finish(C') \) <br>
+                <div></div>
+            </div>
+            <div class="definition">
+                <b>Corollary:</b>
+                <div>
+                    Earliest finish component is a sink <br>
+                    Latest finish component is a source
+                </div>
+            </div>
+            <div class="definition">
+                <b>Corollary:</b>
+                <div>If u is the latest finished vertex of the whole graph, then u is in a source component</div>
+            </div>
+        </div>
+        <div>
+            <i>Algorithm</i>
+            <div class="code">
+                While G is nonemptyRevert G to get G'
+                    DFS(G')                                 //TO ESTABLISH THE FINISH[*]
+                    Let u be the latest finishing vertex
+                    DFS(G, u) to find C
+                    G <- G - C
+            </div>
+        </div>
+        <div class="divider"></div>
+    </div>
+    <div>
+        <i>Interval Scheduling</i>
+        <em>Question: Process the most amount of intervals without any overlaps</em>
+        <i>Possible solutions</i>
+        <ul class="numbers">
+            <li>Earliest Start - doesn't work</li>
+            <li>Shortest First - doesn't work</li>
+            <li>Dynamic Programming</li>
+            <li>Least Conflict - doesn't work</li>
+            <li>Earliest Finishing</li>
+        </ul>
+
+    </div>
+</div>
