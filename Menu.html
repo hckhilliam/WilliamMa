@@ -3,15 +3,17 @@
 	<li><a id="Work">Work</a></li>
 	<li><a id="Projects">Projects</a></li>
 	<li><a id="Minigames">Minigames</a></li>
-	<li class="icon">
-		<a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
-	</li>
 </ul>
+<div class="selectedBar" id="selectedBar"></div>
 
 <script>
 	$(function() {
-		$('.menu > li, .menu > div').click(function() {
-			var link = $(this).children('a');
+		$('.menu > li').click(function() {
+			var li = $(this);
+			var link = li.children('a');
+			$('#selectedBar').width(li.width()).animate({
+				'left' : li.position().left
+			}, 250);
 			if (!link.attr('href')) {
 				if (game && typeof(game.endGame) === typeof(Function)) {
 					console.log('game deleted');
@@ -25,16 +27,4 @@
 			}
 		});
 	});
-
-	/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
-	function myFunction() {
-		var menu = $('.menu');
-		if (menu.hasClass('responsive')) {
-			menu.removeClass('responsive');
-			$('.menu.responsive li').hide(300);
-		} else {
-			menu.addClass('responsive');
-			$('.menu.responsive li').show(300);
-		}
-	}
 </script>

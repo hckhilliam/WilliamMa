@@ -6,7 +6,7 @@ body {
     color: #99FFCC;
     font-size: 16px;
     line-height: 1.5;
-    /*min-width:1000px;*/
+    min-width:650px;
     min-height:700px;
 }
 
@@ -210,6 +210,5 @@ img {
 }
 
 .main {
-    margin-left:245px;
     height:100%;
 }
