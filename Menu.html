@@ -1,14 +1,11 @@
-<ul class="menu">
+<ul class="menu" id="menu">
 	<li><a id="Home">Home</a></li>
-	<!--<li><a id="About">About</a></li>-->
 	<li><a id="Work">Work</a></li>
 	<li><a id="Projects">Projects</a></li>
-	<div style="margin-bottom:10px;"><div class="arrow-right"></div><a href="War.html">War</a></div>
 	<li><a id="Minigames">Minigames</a></li>
-	<div><div class="arrow-right"></div><a id="Shades">Shades</a></div>
-	<div style="margin-bottom:10px;"><div class="arrow-right"></div><a id="Items">Items</a></div>
-	<li><a id="School">School</a></li>
-	<div><div class="arrow-right"></div><a id="3A">3A</a></div>
+	<li class="icon">
+		<a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+	</li>
 </ul>
 
 <script>
@@ -28,4 +25,16 @@
 			}
 		});
 	});
+
+	/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+	function myFunction() {
+		var menu = $('.menu');
+		if (menu.hasClass('responsive')) {
+			menu.removeClass('responsive');
+			$('.menu.responsive li').hide(300);
+		} else {
+			menu.addClass('responsive');
+			$('.menu.responsive li').show(300);
+		}
+	}
 </script>

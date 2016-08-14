@@ -1,56 +1,58 @@
-.menu {
-    position:fixed;
-    float: left;
-    margin:0;
-    height:calc(100% - 50px);
-    border: 5px solid #99FFCC;
-    border-left:none;
-    width:240px;
-    border-bottom-right-radius: 500px 100px;
-    border-top-right-radius: 500px 100px;
-    box-shadow: 1px 0 5px rgba(153,255,204,0.5);
-    line-height: 50px;
-    padding:40px 0 0 0;
-    min-height:650px;
-    background-color:#444;
+/* Remove margins and padding from the list, and add a black background color */
+ul.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
 }
 
-.menu > li:hover, .menu > div:hover {
-    background-color:#555;
-    cursor:pointer;
-}
+/* Float the list items side by side */
+ul.menu li {float: left;}
 
-.menu > li {
-    display:block;
-}
-
-.menu > div {
-    padding:5px 15px 5px 25px;
-    line-height:normal;
-}
-
-.menu > li:first-child > a {
-    border:none;
-}
-
-.menu > li > a {
+/* Style the links inside the list items */
+ul.menu li a {
+    display: inline-block;
+    color: #99FFCC;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
-    color: #99FFCC;
-    font-size:22px;
-    border-top:1px solid;
-    display:block;
-    margin:0 15px;
-    -webkit-user-select: none; /* Chrome/Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+ */
+    transition: 0.3s;
+    font-size: 17px;
 }
 
-.menu > div > a {
-    text-decoration:none;
-    color: #99FFCC;
-    font-size:18px;
-    margin:0 15px 0 10px;
-    -webkit-user-select: none; /* Chrome/Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+ */
+/* Change background color of links on hover */
+ul.menu li a:hover {
+    background-color: #555;
+    cursor: pointer;
+}
+
+/* Hide the list item that contains the link that should open and close the topnav on small screens */
+ul.menu li.icon {display: none;}
+
+/* When the screen is less than 680 pixels wide, hide all list items, except for the first one ("Home"). Show the list item that contains the link to open and close the topnav (li.icon) */
+@media screen and (max-width:680px) {
+    ul.menu li:not(:first-child) {display: none;}
+    ul.menu li.icon {
+        float: right;
+        display: inline-block;
+    }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens */
+@media screen and (max-width:680px) {
+    ul.menu.responsive {position: relative;}
+    ul.menu.responsive li.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    ul.menu.responsive li {
+        float: none;
+        /*display: inline;*/
+    }
+    ul.menu.responsive li a {
+        display: block;
+        text-align: left;
+    }
 }
