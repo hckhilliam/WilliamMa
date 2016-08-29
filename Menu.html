@@ -26,5 +26,12 @@
 				location.href = link.attr('href');
 			}
 		});
+
+		var hrefIndex = location.href.indexOf('#');
+		if (hrefIndex != -1) {
+			$(location.href.substring(hrefIndex)).parent().trigger('click');
+		} else {
+			$('#Home').parent().trigger('click');
+		}
 	});
 </script>
