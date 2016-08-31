@@ -1,6 +1,6 @@
-.desc {
-    white-space: normal;
-}
+/*.desc {*/
+    /*white-space: normal;*/
+/*}*/
 
 .expandIcon {
     background-image: url('../images/expand.png');
@@ -21,13 +21,38 @@
 }
 
 .gitIcon {
-    background-image: url('../images/github.png');
+    background-image: url('../images/github.svg');
 }
 
 .gitIcon:hover {
-    background-image: url('../images/githubHover.png');
+    background-image: url('../images/githubHover.svg');
 }
 
 .projectDetails {
     padding: 0 15px;
+}
+
+.projectsTable .tableButton {
+    width: 25px;
+}
+
+.projectsTable .tableButton:last-child {
+    padding-right: 12px;
+}
+
+.projectsTable .tableDate {
+    text-transform: uppercase;
+    width: 70px;
+}
+
+.projectsTable .tableName {
+    width: 15%;
+}
+
+.projectsTable .tableType {
+    width: 15%
+}
+
+.projectsTable .tableDesc {
+    width: 50%;
 }
