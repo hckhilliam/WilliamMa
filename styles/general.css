@@ -260,3 +260,13 @@ img {
 .hidden {
     display: none;
 }
+
+.inlineLink {
+    color: #00FFFF;
+    text-decoration: underline;
+}
+
+.inlineLink:hover {
+    color: #80FFFF;
+    text-decoration: underline;
+}

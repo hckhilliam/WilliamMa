@@ -31,7 +31,7 @@
             <td class="tableDate">Nov 2014</td>
             <td class="tableName"><a target="_blank" href="https://chrome.google.com/webstore/detail/pg13/gopkaalmpckipgfjdoieohmngoflagaj">PG13</a></td>
             <td class="tableType">Chrome Extension</td>
-            <td class="tableDesc">Replaces all profanity on page with less offensive words, featuring customizable dictionary of censored words.</td>
+            <td class="tableDesc"  title="Replaces all profanity on page with less offensive words, featuring customizable dictionary of censored words.">Replaces all profanity on page with less offensive words, featuring customizable dictionary of censored words.</td>
             <td class="tableButton"><a target="_blank" href="https://github.com/tonyruns/WordSensorChrome"><div class="gitIcon icon unselectable"></div></a></td>
             <td class="tableButton"><div data-id="pg13"  class="moreBtn icon-padding expandIcon unselectable"></div></td>
         </tr>
@@ -45,7 +45,7 @@
             <td class="tableDate">Mar 2014</td>
             <td class="tableName"><a target="_blank" href="http://wj2ma.github.io/FindtheCountry/">Find the Country</a></td>
             <td class="tableType">Web Game</td>
-            <td class="tableDesc">Given a country name, scroll through the map of the world and try to find the country.</td>
+            <td class="tableDesc" title="Given a country name, scroll through the map of the world and try to find the country.">Given a country name, scroll through the map of the world and try to find the country.</td>
             <td class="tableButton"><a target="_blank" href="https://github.com/Wj2ma/FindtheCountry"><div class="gitIcon icon unselectable"></div></a></td>
             <td class="tableButton"><div data-id="findTheCountry" class="moreBtn icon-padding expandIcon unselectable"></div></td>
         </tr>
@@ -59,7 +59,7 @@
             <td class="tableDate">Jan 2014</td>
             <td class="tableName">The Labyrinth</td>
             <td class="tableType">Android Game</td>
-            <td class="tableDesc">Find your way out of a maze with locked doors, keys, and food that keeps you alive.</td>
+            <td class="tableDesc" title="Find your way out of a maze with locked doors, keys, and food that keeps you alive.">Find your way out of a maze with locked doors, keys, and food that keeps you alive.</td>
             <td class="tableButton"><a target="_blank" href="https://github.com/Wj2ma/Hack-Game-Labyrinth-"><div class="gitIcon icon unselectable"></div></a></td>
             <td class="tableButton"><div data-id="labyrinth" class="moreBtn icon-padding expandIcon unselectable"></div></td>
         </tr>
@@ -73,7 +73,7 @@
             <td class="tableDate">Dec 2013</td>
             <td class="tableName"><a target="_blank" href="https://play.google.com/store/apps/details?id=com.williamma.greed&hl=en">Greed: Dodge Game</a></td>
             <td class="tableType">Android Game</td>
-            <td class="tableDesc">Collect coins while avoiding cannonballs bouncing around the screen.</td>
+            <td class="tableDesc" title="Collect coins while avoiding cannonballs bouncing around the screen.">Collect coins while avoiding cannonballs bouncing around the screen.</td>
             <td class="tableButton"><a target="_blank" href="https://github.com/Wj2ma/Greed-Dodge-Game"><div class="gitIcon icon unselectable"></div></a></td>
             <td class="tableButton"><div data-id="greed" class="moreBtn icon-padding expandIcon unselectable"></div></td>
         </tr>
@@ -87,7 +87,7 @@
             <td class="tableDate">Jul 2013</td>
             <td class="tableName">Mouse Trainer</td>
             <td class="tableType">Java Program</td>
-            <td class="tableDesc">Test your mouse accuracy by trying to click on targets as fast and accurately as possible.</td>
+            <td class="tableDesc" title="Test your mouse accuracy by trying to click on targets as fast and accurately as possible.">Test your mouse accuracy by trying to click on targets as fast and accurately as possible.</td>
             <td class="tableButton"><a target="_blank" href="https://github.com/Wj2ma/MouseTrainer"><div class="gitIcon icon unselectable"></div></a></td>
             <td class="tableButton"><div data-id="mouseTrainer" class="moreBtn icon-padding expandIcon unselectable"></div></td>
         </tr>
@@ -101,16 +101,37 @@
             <td class="tableDate">Feb 2013</td>
             <td class="tableName">Schematic-o-matic</td>
             <td class="tableType">Java Program</td>
-            <td class="tableDesc">Design and simulate your own circuits with over 15 different circuit parts.</td>
+            <td class="tableDesc" title="Design and simulate your own circuits with over 15 different circuit parts.">Design and simulate your own circuits with over 15 different circuit parts.</td>
             <td class="tableButton"><a target="_blank" href="https://github.com/Wj2ma/Schematic-o-matic"><div class="gitIcon icon unselectable"></div></a></td>
             <td class="tableButton"><div data-id="schematicomatic" class="moreBtn icon-padding expandIcon unselectable"></div></td>
         </tr>
         <tr class="hidden">
             <td colspan="6" class="projectDetails">
                 <p id="schematicomatic">
-                    Schematic-o-matic is my biggest project to date, with over 10,000 lines of code.
-                    It was created for my grade 12 computer science summative,
-
+                    Schematic-o-matic was my biggest project to date, with over 10,000 lines of code.
+                    It was created for my grade 12 computer science summative, where you had to create a program
+                    that was useful for another teacher.<br><br>
+                    For the most part, the designing your circuit functionality was straightforward to code, but
+                    figuring out how to develop the simulation part was one of the hardest tasks I have worked on.
+                    Unfortunately, I didn't know anything about Kirchhoff's laws at the time, and I think that
+                    knowledge could have helped greatly. I basically used a recursive approach to find connections
+                    between all wires and their corresponding circuit parts or other wires. Then, when a power switch
+                    is flipped on, I would start at the power, and then recursively go into all the connections to turn
+                    them on, using the part's properties to figure out if it should give out current in its output.
+                    The initial circuit creation would simulate fine and cleanly, but when the users start to
+                    delete/move parts, and save and load the circuit, the algorithms I had in place to handle those
+                    were extremely buggy and unstable, and I probably spent over 24 hours debugging and fixing those
+                    issues. <br><br>
+                    To this day, there are still bugs in the simulation from deleting and moving wires, but I thought
+                    it was stable enough, and I do not have the time to try to understand what I was doing to fix it
+                    now. However, again, this project was done just in my second year of starting computer science,
+                    and I actually learned recursion maybe less than one month before the start of this project. For
+                    my demo, I was able to showcase all the typical gates, but what was most satisfying, was that I
+                    was able to successfully simulate flip flops. I built a simple memory circuit schematic that could
+                    save bits of data. If you're interested, you can
+                    <a target="_blank" class="inlineLink" href="https://github.com/Wj2ma/Schematic-o-matic">check out</a>
+                    the program on my GitHub, and load the memory circuit to try it yourself. Please read the memory
+                    circuit readme for further instructions.
                 </p>
             </td>
         </tr>
@@ -119,7 +140,7 @@
             <td class="tableDate">Jan 2012</td>
             <td class="tableName">Javelin Tosser</td>
             <td class="tableType">Java Program</td>
-            <td class="tableDesc">Aim, and fire your javelin with just the right angle and power to hit a target.</td>
+            <td class="tableDesc" title="Aim, and fire your javelin with just the right angle and power to hit a target.">Aim, and fire your javelin with just the right angle and power to hit a target.</td>
             <td class="tableButton"><a target="_blank" href="https://github.com/Wj2ma/Javelin-Toss-Summative"><div class="gitIcon icon unselectable"></div></a></td>
             <td class="tableButton"><div data-id="javelinTosser" class="moreBtn icon-padding expandIcon unselectable"></div></td>
         </tr>
