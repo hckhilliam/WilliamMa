@@ -192,11 +192,13 @@ td p {
 
 section {
     width: 400px;
+    height: 612px;
     border: 3px solid #99FFCC;
     padding: 8px 16px;
-    margin: 32px;
+    margin: 0 32px 64px 32px;
     box-shadow: 0 0 8px #99FFCC;
     display: inline-block;
+    vertical-align: top;
 }
 
 section > h1 {
