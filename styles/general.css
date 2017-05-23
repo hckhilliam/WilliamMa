@@ -274,3 +274,16 @@ section > p {
     color: #80FFFF;
     text-decoration: underline;
 }
+
+.games-list {
+    font-size: 32px;
+    margin-left: 32px;
+}
+
+.games-list > li {
+    cursor: pointer;
+}
+
+.games-list > li:hover a {
+    text-decoration: underline;
+}

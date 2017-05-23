@@ -1,0 +1,21 @@
+<h1>Minigames</h1>
+
+<ul class="games-list" id="games">
+    <li><a id="Shades">Shades</a></li>
+    <li><a id="Items">Items</a></li>
+    <li><a id="War" href="War.html">War</a></li>
+</ul>
+
+<script>
+    $(function() {
+      $('#games > li').click(function() {
+        var link = $(this).children('a');
+        if (!link.attr('href')) {
+          $('#main').load(link.attr('id') + '.html');
+        } else {
+          window.location = link.attr('href');
+        }
+      });
+    });
+</script>
+

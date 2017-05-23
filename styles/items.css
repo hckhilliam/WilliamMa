@@ -12,6 +12,10 @@
     transform: translateY(-50%);
 }
 
+.items-screen h2, .items-screen h3 {
+    text-align: center;
+}
+
 .items-screen #blocks .gameSquare {
     position: absolute;
     background-color: #99FFCC;

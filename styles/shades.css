@@ -12,6 +12,10 @@
     transform: translateY(-50%);
 }
 
+.shades-screen h2, .shades-screen h3 {
+    text-align: center;
+}
+
 .shades-label {
     overflow:hidden;
 }
